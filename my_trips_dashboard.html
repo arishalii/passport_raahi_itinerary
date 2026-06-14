@@ -402,10 +402,11 @@
               
               listEl.innerHTML = comments.map(c => {
                 const commentDate = new Date(c.created_at).toLocaleDateString(undefined, {month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'});
+                const blockTitle = c.block_title || c.blockTitle || '';
                 return `
-                  <a href="/editor?day=${c.day}&highlight=${encodeURIComponent(c.block_title)}" class="block p-2 rounded-xl hover:bg-slate-50 border border-slate-100 transition-colors">
+                  <a href="/editor?day=${c.day}&highlight=${encodeURIComponent(blockTitle)}" class="block p-2 rounded-xl hover:bg-slate-50 border border-slate-100 transition-colors">
                     <div class="flex justify-between font-semibold text-primary mb-1">
-                      <span>Day ${c.day} - ${c.block_title}</span>
+                      <span>Day ${c.day} - ${blockTitle}</span>
                       <span class="text-[10px] text-on-surface-variant font-normal">${commentDate}</span>
                     </div>
                     <p class="text-on-surface-variant line-clamp-2 italic">"${c.comment}"</p>
