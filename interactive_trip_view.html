@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Interactive Trip View | Passport Raahi</title>
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Icons -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Scripts -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error-container": "#93000a",
+            "primary-container": "#0B132A",
+            "surface-bright": "#ffffff",
+            "primary-fixed-dim": "#bec6e0",
+            "error": "#ba1a1a",
+            "on-primary-fixed": "#0B132A",
+            "on-tertiary-fixed-variant": "#4d4727",
+            "primary-fixed": "#dae2fd",
+            "on-primary-fixed-variant": "#3f465c",
+            "outline": "#76777d",
+            "on-background": "#0B132A",
+            "on-primary-container": "#7c839b",
+            "background": "#F7F5F0",
+            "on-primary": "#ffffff",
+            "error-container": "#ffdad6",
+            "surface-container-highest": "#E5E2DA",
+            "surface-dim": "#D1CDC4",
+            "on-surface": "#0B132A",
+            "inverse-on-surface": "#eaf1ff",
+            "secondary-container": "#C59B27",
+            "on-tertiary-fixed": "#201c02",
+            "tertiary-fixed": "#ede3b8",
+            "primary": "#0B132A",
+            "on-secondary-fixed": "#2a1700",
+            "tertiary-container": "#b5ac84",
+            "secondary": "#C59B27",
+            "inverse-primary": "#bec6e0",
+            "on-secondary-fixed-variant": "#653e00",
+            "tertiary-fixed-dim": "#d1c79d",
+            "surface-container-high": "#E5E2DA",
+            "on-tertiary": "#ffffff",
+            "surface": "#ffffff",
+            "inverse-surface": "#213145",
+            "on-tertiary-container": "#464021",
+            "surface-tint": "#565e74",
+            "on-secondary-container": "#684000",
+            "on-secondary": "#ffffff",
+            "surface-variant": "#E5E2DA",
+            "on-surface-variant": "#5A5B63",
+            "on-error": "#ffffff",
+            "surface-container": "#F1EFE9",
+            "outline-variant": "#D1CDC4",
+            "secondary-fixed-dim": "#ffb95f",
+            "secondary-fixed": "#ffddb8",
+            "surface-container-low": "#FAF8F5",
+            "tertiary": "#665f3d",
+            "surface-container-lowest": "#ffffff",
+            "luxury-cream": "#F7F5F0",
+            "luxury-gold": "#C59B27"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-desktop": "64px",
+            "container-max": "1280px",
+            "gutter": "24px",
+            "unit": "4px",
+            "margin-mobile": "20px"
+          },
+          "fontFamily": {
+            "display-lg": ["Playfair Display"],
+            "label-sm": ["Geist"],
+            "headline-md-mobile": ["Playfair Display"],
+            "headline-md": ["Playfair Display"],
+            "label-md": ["Geist"],
+            "display-lg-mobile": ["Playfair Display"],
+            "body-md": ["Geist"],
+            "headline-sm": ["Playfair Display"],
+            "body-lg": ["Geist"]
+          },
+          "fontSize": {
+            "display-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-sm": ["12px", { "lineHeight": "1.2", "fontWeight": "600" }],
+            "headline-md-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+            "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
+            "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }],
+            "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+            "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+            "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .day-selector-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .day-selector-scroll {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .luxury-shadow {
+      box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+    }
+
+    .luxury-shadow-hover:hover {
+      box-shadow: 0px 8px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+    }
+  </style>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+
+<body class="bg-luxury-cream text-on-surface font-body-md selection:bg-luxury-gold/30">
+  <!-- TopAppBar -->
+  <header
+    class="sticky top-0 z-50 bg-surface/80 backdrop-blur-md shadow-sm h-16 w-full flex justify-between items-center px-margin-mobile md:px-margin-desktop">
+    <div class="flex items-center gap-4">
+      <span
+        class="material-symbols-outlined text-primary cursor-pointer hover:bg-surface-container-high p-2 rounded-full transition-colors">menu</span>
+      <h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tight">Passport Raahi</h1>
+    </div>
+    <div class="flex items-center gap-6">
+      <nav class="hidden md:flex gap-8 items-center">
+        <a id="nav-builder" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors"
+          href="/builder">Builder</a>
+        <a id="nav-editor" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors"
+          href="/editor">Editor</a>
+        <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors"
+          href="/">Dashboard</a>
+        <a class="font-label-md text-label-md text-primary font-bold" href="/trip">Trip</a>
+        <a class="font-label-md text-label-md text-on-surface-variant hover:text-error transition-colors ml-4"
+          href="/logout">Logout</a>
+      </nav>
+      <div class="w-10 h-10 rounded-full bg-primary-container overflow-hidden border-2 border-luxury-gold">
+        <img alt="User Profile"
+          data-alt="A professional headshot of a sophisticated traveler against a blurred architectural background. The lighting is soft and golden, reflecting a luxury lifestyle aesthetic. The person wears a minimalist charcoal linen shirt, and the overall color palette is muted with warm highlights. High-end, premium editorial photography style."
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMdX-mFlwu7eU0DKHAz4sgIScKezcyYGqfq6HEuZgYRkbSgAjSsk3LmXOXQ7oh5A5_QM8P8pFEDZFNP4e2OtCO4mW6Tqyr3ubDKa3R-62FmRYn5NXyCLy8M2DV9OijimQM3BszLqYpqO_n93ulkH0piKguLJkffieGVek6dTLf67FLREv4T17zjQGD4qYY6Dn9FHn_qKJRriLwxRU8S_EIS1QQrTwEn33jsWghsd_KV55rPkwsIoUL3g" />
+      </div>
+    </div>
+  </header>
+  <main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 pb-32">
+    <!-- Hero Header -->
+    <section class="mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+        <div>
+          <span class="font-label-md text-label-md text-secondary tracking-widest uppercase mb-2 block">8 Days in Kuala Lumpur & Singapore</span>
+          <h2 class="font-display-lg text-display-lg text-primary">Kuala Lumpur & Singapore Family Adventure</h2>
+          <p class="text-on-surface-variant max-w-xl mt-4">A curated 8-day family journey through the highlights of Malaysia and Singapore, featuring Genting Highlands, Universal Studios, and Changi Jewel.</p>
+        </div>
+        <div class="flex gap-3">
+          <button
+            class="flex items-center gap-2 bg-surface luxury-shadow px-4 py-2 rounded-xl border border-outline-variant hover:bg-surface-container-high transition-all active:scale-95">
+            <span class="material-symbols-outlined text-[20px]">download</span>
+            <span class="font-label-md text-label-md">Download PDF</span>
+          </button>
+          <button
+            class="flex items-center gap-2 bg-surface luxury-shadow px-4 py-2 rounded-xl border border-outline-variant hover:bg-surface-container-high transition-all active:scale-95">
+            <span class="material-symbols-outlined text-[20px]">share</span>
+            <span class="font-label-md text-label-md">Share</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Horizontal Day Selector -->
+    <nav class="relative mb-12">
+      <div class="day-selector-scroll flex gap-4 overflow-x-auto pb-4 px-2 snap-x" id="day-selector-container">
+        <!-- Day Items -->
+        <!-- Dynamic Day Tabs loaded from DB --><!-- Indicator Fade -->
+      <div
+        class="absolute right-0 top-0 h-24 w-12 bg-gradient-to-l from-luxury-cream to-transparent pointer-events-none">
+      </div>
+    </nav>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- Left Content: Timeline -->
+      <div class="lg:col-span-8 space-y-8">
+        
+        <!-- Dynamic Timeline Content -->
+        <div id="trip-timeline-container" class="space-y-8">
+          <!-- Loaded dynamically from database -->
+        </div>
+      </div>
+      <!-- Right Content: Map & Quick Actions -->
+      <aside class="lg:col-span-4 space-y-8 sticky top-24 self-start" id="right-sidebar-container">
+        <!-- Default View (Map & Weather) -->
+        <div id="default-sidebar-content" class="space-y-8">
+          <!-- Map Section -->
+          <div class="bg-surface rounded-3xl overflow-hidden luxury-shadow border border-surface-container-low">
+            <div class="p-4 border-b border-surface-container flex justify-between items-center bg-white">
+              <h4 class="font-label-md text-label-md text-primary font-bold">Trip Map</h4>
+              <span class="material-symbols-outlined text-secondary cursor-pointer">fullscreen</span>
+            </div>
+            <div class="h-96 relative bg-surface-dim">
+              <!-- Mock Map Background -->
+              <div class="absolute inset-0 grayscale opacity-40">
+                <img alt="Map View" class="w-full h-full object-cover" data-location="Amalfi"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk383eL-lZDTOPK12w2_SUN9E0LXiPDXuCdp9h1S4VC4aRSnBWVByVns3DitoYSfFEZRgF04lPZJaXF3qFhuC1tie5Zrk7Z1hpzcI7vIRFg2jysgPmLvd_KELhn1pb29x19a_jXStJOpSUor2zuefh8j59Or-SGE4rSVSKkpL8uwkw7sz2V1Di7xjUBOEUkWev0YiN3PiJ7-xJASjZn8d6cL0eeVLe6qgeuPX0r8m7mjPYcGVdm-7AVA" />
+              </div>
+              <!-- Mock Pins -->
+              <div class="absolute top-1/4 left-1/3 animate-bounce">
+                <span class="material-symbols-outlined text-secondary text-4xl"
+                  style="font-variation-settings: 'FILL' 1;">location_on</span>
+              </div>
+              <div class="absolute top-1/2 right-1/4 animate-pulse delay-700">
+                <span class="material-symbols-outlined text-primary text-3xl"
+                  style="font-variation-settings: 'FILL' 1;">location_on</span>
+              </div>
+              <div class="absolute bottom-1/3 left-1/2">
+                <span class="material-symbols-outlined text-primary text-3xl"
+                  style="font-variation-settings: 'FILL' 1;">location_on</span>
+              </div>
+              <!-- Glass Info Overlay -->
+              <div class="absolute bottom-4 left-4 right-4 glass-panel p-4 rounded-xl border border-white/30 shadow-lg">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-luxury-gold flex items-center justify-center text-white">
+                    <span class="material-symbols-outlined">directions</span>
+                  </div>
+                  <div>
+                    <p class="text-[12px] font-bold text-primary">Distance Today</p>
+                    <p class="text-[14px] text-on-surface-variant">10.5 km total travel</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Weather Card -->
+          <div
+            class="bg-surface rounded-3xl p-6 luxury-shadow border border-surface-container-low flex items-center justify-between">
+            <div>
+              <p class="font-label-md text-label-md text-on-surface-variant">Local Weather</p>
+              <h4 class="font-headline-sm text-headline-sm text-primary">31°C Humid</h4>
+            </div>
+            <span class="material-symbols-outlined text-luxury-gold text-5xl">light_mode</span>
+          </div>
+
+          <!-- Destination Info Hub Card -->
+          <div id="destination-hub-card" class="hidden bg-surface rounded-3xl p-6 luxury-shadow border border-surface-container-low flex flex-col gap-3">
+            <div>
+              <p class="font-label-md text-label-md text-on-surface-variant">Destination Hub</p>
+              <h4 class="font-headline-sm text-headline-sm text-primary">Hotel & Transit Guides</h4>
+            </div>
+            <p class="text-xs text-on-surface-variant">Select a city to view transit cheat sheets, currency hints, nearest metro guides, and hotel details:</p>
+            <div class="flex flex-wrap gap-2.5 mt-1" id="destination-tabs-container">
+              <!-- Dynamically populated buttons -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Detail View (Initially Hidden) -->
+        <div id="detail-sidebar-content" class="hidden space-y-8 animate-in fade-in slide-in-from-right-4 duration-300">
+          <!-- Populated dynamically on click -->
+        </div>
+      </aside>
+    </div>
+  </main>
+  <!-- FAB -->
+  <button
+    class="fixed bottom-24 right-8 w-14 h-14 bg-secondary text-on-secondary rounded-full luxury-shadow flex items-center justify-center active:scale-90 transition-transform z-40">
+    <span class="material-symbols-outlined">chat_bubble</span>
+  </button>
+  <!-- Bottom Navigation (Mobile) -->
+  <nav
+    class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center h-20 bg-surface border-t border-outline-variant pb-safe z-50">
+    <a id="mobile-nav-builder" href="/builder" class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+      <span class="material-symbols-outlined">auto_awesome</span>
+      <span class="font-label-sm text-label-sm">Builder</span>
+    </a>
+    <a id="mobile-nav-editor" href="/editor" class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+      <span class="material-symbols-outlined">edit_note</span>
+      <span class="font-label-sm text-label-sm">Editor</span>
+    </a>
+    <a href="/trip"
+      class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1">
+      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">map</span>
+      <span class="font-label-sm text-label-sm">Trip</span>
+    </a>
+    <a href="/" class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+      <span class="material-symbols-outlined">dashboard</span>
+      <span class="font-label-sm text-label-sm">Dashboard</span>
+    </a>
+  </nav>
+  <!-- Footer -->
+  <footer
+    class="w-full py-8 px-margin-mobile md:px-margin-desktop bg-surface-container-highest flex flex-col md:row justify-between items-center gap-4 mt-20 border-t border-surface-variant">
+    <p class="font-label-md text-label-md text-on-surface-variant">© 2024 Passport Raahi. All rights reserved.</p>
+    <div class="flex gap-6">
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors"
+        href="#">Privacy Policy</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Terms
+        of Service</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors"
+        href="#">Support</a>
+    </div>
+  </footer>
+  <script>
+    async function loadItineraryFromDatabase() {
+      const response = await fetch('/api/itinerary');
+      if (!response.ok) {
+        window.location.href = '/login';
+        return;
+      }
+      const data = await response.json();
+      let itineraryArray = [];
+      let destinationGuides = {};
+      
+      if (Array.isArray(data)) {
+        itineraryArray = data;
+      } else if (data && data.itinerary) {
+        itineraryArray = data.itinerary;
+        destinationGuides = data.destinationGuides || {};
+      }
+      
+      window.activeItinerary = itineraryArray;
+      window.destinationGuides = destinationGuides; // Store globally
+      
+      renderItinerary(itineraryArray);
+      renderDestinationGuides(destinationGuides);
+    }
+
+    function renderDestinationGuides(guides) {
+      const card = document.getElementById('destination-hub-card');
+      const container = document.getElementById('destination-tabs-container');
+      
+      if (!guides || Object.keys(guides).length === 0) {
+        card.classList.add('hidden');
+        return;
+      }
+      
+      card.classList.remove('hidden');
+      container.innerHTML = '';
+      
+      Object.keys(guides).forEach(city => {
+        const btn = document.createElement('button');
+        btn.onclick = () => showDestinationGuide(city);
+        btn.className = "px-4 py-2 bg-slate-100 hover:bg-secondary hover:text-white rounded-xl text-xs font-bold text-primary transition-all active:scale-95 border border-slate-200/60";
+        btn.innerText = city;
+        container.appendChild(btn);
+      });
+    }
+
+    function showDestinationGuide(city) {
+      const guide = window.destinationGuides[city];
+      if (!guide) return;
+      
+      const defaultSidebar = document.getElementById('default-sidebar-content');
+      const detailSidebar = document.getElementById('detail-sidebar-content');
+      
+      defaultSidebar.classList.add('hidden');
+      detailSidebar.classList.remove('hidden');
+      
+      let html = `
+        <div class="bg-surface rounded-3xl p-8 luxury-shadow border border-outline-variant relative">
+          <button onclick="closeEventDetail()" class="flex items-center gap-1.5 text-secondary hover:text-primary font-semibold text-sm mb-6 transition-colors">
+            <span class="material-symbols-outlined text-sm">arrow_back</span>
+            <span>Back to Map</span>
+          </button>
+          
+          <div class="mb-6 pb-6 border-b border-slate-100">
+            <span class="bg-secondary-container text-slate-950 text-[10px] uppercase tracking-wider px-3 py-1 rounded-full font-bold inline-block mb-3">Destination Guide</span>
+            <h3 class="font-display text-2xl font-bold text-primary mb-1">${city} Hub</h3>
+            <p class="text-xs text-on-surface-variant font-medium">Hotel & Area Transit Guide</p>
+          </div>
+      `;
+      
+      // 1. Hotel & Stays
+      if (guide.hotel) {
+        let bulletsHtml = '';
+        if (guide.why_stay && guide.why_stay.length > 0) {
+          bulletsHtml = `
+            <ul class="list-disc pl-5 mt-2 space-y-1.5 text-xs text-on-surface-variant">
+              ${guide.why_stay.map(b => `<li>${b}</li>`).join('')}
+            </ul>
+          `;
+        }
+        html += `
+          <div class="mb-6 pb-6 border-b border-slate-100">
+            <div class="flex items-center gap-2 mb-2 text-secondary">
+              <span class="material-symbols-outlined text-lg">hotel</span>
+              <h4 class="text-xs font-bold uppercase tracking-wider">Primary Hotel</h4>
+            </div>
+            <p class="text-sm font-semibold text-primary">${guide.hotel}</p>
+            <p class="text-xs text-on-surface-variant leading-relaxed mt-1">${guide.address || ''}</p>
+            ${bulletsHtml}
+          </div>
+        `;
+      }
+      
+      // 2. Nearest Metros
+      if (guide.metro_stations && guide.metro_stations.length > 0) {
+        html += `
+          <div class="mb-6 pb-6 border-b border-slate-100">
+            <div class="flex items-center gap-2 mb-3 text-secondary">
+              <span class="material-symbols-outlined text-lg">subway</span>
+              <h4 class="text-xs font-bold uppercase tracking-wider">Nearest Metro Stations</h4>
+            </div>
+            <div class="space-y-3">
+        `;
+        guide.metro_stations.forEach(m => {
+          html += `
+            <div class="text-xs border-l-2 border-slate-200 pl-3">
+              <div class="flex justify-between items-center font-bold text-primary mb-0.5">
+                <span>${m.station} (${m.line})</span>
+                <span class="text-secondary text-[10px]">${m.walk} walk</span>
+              </div>
+              <p class="text-[10px] text-slate-400">Best for: ${m.best_for}</p>
+            </div>
+          `;
+        });
+        html += `
+            </div>
+          </div>
+        `;
+      }
+      
+      // 3. Currency & SIM Card
+      if (guide.currency || guide.sim) {
+        html += `
+          <div class="mb-6 pb-6 border-b border-slate-100">
+            <div class="flex items-center gap-2 mb-3 text-secondary">
+              <span class="material-symbols-outlined text-lg">payments</span>
+              <h4 class="text-xs font-bold uppercase tracking-wider">Local Info & Tips</h4>
+            </div>
+            <div class="space-y-3 text-xs">
+        `;
+        if (guide.currency) {
+          html += `
+            <div>
+              <span class="font-semibold text-primary block">Currency Rate Hint:</span>
+              <span class="text-on-surface-variant">${guide.currency}</span>
+            </div>
+          `;
+        }
+        if (guide.sim) {
+          html += `
+            <div>
+              <span class="font-semibold text-primary block">SIM Card / Data:</span>
+              <span class="text-on-surface-variant">${guide.sim}</span>
+            </div>
+          `;
+        }
+        html += `
+            </div>
+          </div>
+        `;
+      }
+      
+      // 4. Area Transit Cheat Sheet
+      if (guide.transport_cheat_sheet && guide.transport_cheat_sheet.length > 0) {
+        html += `
+          <div class="mb-6">
+            <div class="flex items-center gap-2 mb-3 text-secondary">
+              <span class="material-symbols-outlined text-lg">transit_enterexit</span>
+              <h4 class="text-xs font-bold uppercase tracking-wider">Area Transit Cheat Sheet</h4>
+            </div>
+            <div class="space-y-3">
+        `;
+        guide.transport_cheat_sheet.forEach(row => {
+          html += `
+            <div class="bg-slate-50/50 p-2.5 rounded-xl border border-slate-100 text-xs">
+              <div class="flex justify-between items-center font-bold text-primary mb-1">
+                <span>${row.from} ➔ ${row.to}</span>
+                <span class="text-secondary">${row.cost}</span>
+              </div>
+              <div class="flex justify-between items-center text-[10px] text-slate-400 font-medium mt-1">
+                <span>Mode: ${row.mode} (${row.time})</span>
+                <span class="text-on-surface-variant italic font-normal">${row.why}</span>
+              </div>
+            </div>
+          `;
+        });
+        html += `
+            </div>
+          </div>
+        `;
+      }
+      
+      html += `
+        </div>
+      `;
+      
+      detailSidebar.innerHTML = html;
+    }
+
+    function showEventDetail(day, blockIdx) {
+      const dayData = window.activeItinerary.find(d => d.day === day);
+      if (!dayData) return;
+      const block = dayData.blocks[blockIdx];
+      if (!block) return;
+      
+      const defaultSidebar = document.getElementById('default-sidebar-content');
+      const detailSidebar = document.getElementById('detail-sidebar-content');
+      
+      defaultSidebar.classList.add('hidden');
+      detailSidebar.classList.remove('hidden');
+      
+      // Populate detailSidebar HTML
+      let detailsHtml = `
+        <div class="bg-surface rounded-3xl p-8 luxury-shadow border border-outline-variant relative">
+          <button onclick="closeEventDetail()" class="flex items-center gap-1.5 text-secondary hover:text-primary font-semibold text-sm mb-6 transition-colors">
+            <span class="material-symbols-outlined text-sm">arrow_back</span>
+            <span>Back to Map</span>
+          </button>
+          
+          <div class="mb-6">
+            <span class="bg-surface-container-high text-slate-700 text-[10px] uppercase tracking-wider px-3 py-1 rounded-full font-bold inline-block mb-3">${block.type || 'Event'}</span>
+            <h3 class="font-display text-2xl font-bold text-primary mb-1">${block.title}</h3>
+            <p class="text-xs text-on-surface-variant font-medium">${block.time || 'All Day'}</p>
+          </div>
+      `;
+      
+      // Determine origin title (previous block or 'Hotel')
+      let originName = 'Hotel';
+      if (blockIdx > 0) {
+        originName = dayData.blocks[blockIdx - 1].title;
+      }
+
+      if (block.details) {
+        const d = block.details;
+        
+        // 1. Address / Location
+        if (d.address) {
+          detailsHtml += `
+            <div class="mb-6 pb-6 border-b border-slate-100">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-secondary mb-2">Location</h4>
+              <p class="text-sm text-on-surface-variant leading-relaxed">${d.address}</p>
+            </div>
+          `;
+        }
+        
+        // 2. Transport Info Table
+        if (d.transport && d.transport.length > 0) {
+          detailsHtml += `
+            <div class="mb-6 pb-6 border-b border-slate-100">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-secondary mb-3">How to Reach from ${originName}</h4>
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs border-collapse">
+                  <thead>
+                    <tr class="border-b border-slate-200 text-slate-500 font-semibold">
+                      <th class="pb-2">Mode</th>
+                      <th class="pb-2">Route / Connection</th>
+                      <th class="pb-2">Time</th>
+                      <th class="pb-2">Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+          `;
+          d.transport.forEach(t => {
+            const recBadge = t.recommended ? ' <span class="text-[9px] bg-secondary-container text-slate-900 px-1.5 py-0.5 rounded font-bold">⭐ Rec</span>' : '';
+            detailsHtml += `
+              <tr class="border-b border-slate-100 last:border-0 hover:bg-slate-50/50">
+                <td class="py-2.5 font-semibold text-primary">${t.mode}${recBadge}</td>
+                <td class="py-2.5 text-on-surface-variant">${t.route || 'Direct'}</td>
+                <td class="py-2.5 text-on-surface-variant">${t.time}</td>
+                <td class="py-2.5 text-on-surface-variant">${t.cost}</td>
+              </tr>
+            `;
+          });
+          detailsHtml += `
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          `;
+        }
+        
+        // 3. Must-Try Dishes / Options
+        if (d.dishes && d.dishes.length > 0) {
+          detailsHtml += `
+            <div class="mb-6 pb-6 border-b border-slate-100">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-secondary mb-3">Must-Try Menu</h4>
+              <div class="space-y-3">
+          `;
+          d.dishes.forEach(dish => {
+            detailsHtml += `
+              <div class="flex justify-between items-start gap-4 text-xs">
+                <div>
+                  <p class="font-semibold text-primary">${dish.name}</p>
+                  <p class="text-[10px] text-slate-400 mt-0.5">${dish.kids || ''}</p>
+                </div>
+                <span class="font-medium text-secondary">${dish.price}</span>
+              </div>
+            `;
+          });
+          detailsHtml += `
+              </div>
+            </div>
+          `;
+        }
+        
+        // 4. Restaurant Dining Options
+        if (d.options && d.options.length > 0) {
+          detailsHtml += `
+            <div class="mb-6 pb-6 border-b border-slate-100">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-secondary mb-3">Dining Options</h4>
+              <div class="space-y-4 text-xs">
+          `;
+          d.options.forEach(opt => {
+            detailsHtml += `
+              <div class="hover:bg-slate-50/50 p-2.5 rounded-lg border border-slate-100">
+                <div class="flex justify-between items-center mb-1">
+                  <span class="font-bold text-primary">${opt.name} (${opt.cuisine || ''})</span>
+                  <span class="text-secondary font-medium">${opt.family_cost ? opt.family_cost + ' family' : (opt.hours || '')}</span>
+                </div>
+                <p class="text-on-surface-variant">Recommended: <span class="font-semibold">${opt.dish}</span></p>
+                ${opt.kids ? `<p class="text-[10px] text-slate-400 mt-1">${opt.kids}</p>` : ''}
+              </div>
+            `;
+          });
+          detailsHtml += `
+              </div>
+            </div>
+          `;
+        }
+
+        // 5. Highlights List
+        if (d.highlights && d.highlights.length > 0) {
+          detailsHtml += `
+            <div class="mb-6 pb-6 border-b border-slate-100">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-secondary mb-3">Family Highlights</h4>
+              <div class="space-y-3 text-xs">
+          `;
+          d.highlights.forEach(h => {
+            detailsHtml += `
+              <div class="hover:bg-slate-50/50 p-2 rounded-lg border border-slate-100">
+                <p class="font-bold text-primary">${h.name}</p>
+                <p class="text-on-surface-variant mt-0.5">${h.benefit}</p>
+                <p class="text-[10px] text-slate-400 mt-1">Best time: ${h.time}</p>
+              </div>
+            `;
+          });
+          detailsHtml += `
+              </div>
+            </div>
+          `;
+        }
+
+        // 6. Ticket Options Table
+        if (d.tickets && d.tickets.length > 0) {
+          detailsHtml += `
+            <div class="mb-6 pb-6 border-b border-slate-100">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-secondary mb-3">Ticket Information</h4>
+              <div class="space-y-3 text-xs">
+          `;
+          d.tickets.forEach(tk => {
+            detailsHtml += `
+              <div class="flex justify-between items-start gap-4">
+                <div>
+                  <p class="font-semibold text-primary">${tk.type}</p>
+                  <p class="text-[10px] text-slate-400 mt-0.5">${tk.info}</p>
+                </div>
+                <span class="font-medium text-secondary">${tk.price}</span>
+              </div>
+            `;
+          });
+          detailsHtml += `
+              </div>
+            </div>
+          `;
+        }
+
+        // 7. Timeline List
+        if (d.timeline && d.timeline.length > 0) {
+          detailsHtml += `
+            <div class="mb-6 pb-6 border-b border-slate-100">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-secondary mb-3">Suggested Timeline</h4>
+              <div class="space-y-2.5 text-xs">
+          `;
+          d.timeline.forEach(item => {
+            detailsHtml += `
+              <div class="flex gap-3">
+                <span class="font-bold text-secondary w-16 flex-shrink-0">${item.time}</span>
+                <span class="text-on-surface-variant">${item.event}</span>
+              </div>
+            `;
+          });
+          detailsHtml += `
+              </div>
+            </div>
+          `;
+        }
+        
+        // 8. Do Not Miss Banner
+        if (d.must_do) {
+          detailsHtml += `
+            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-xs">
+              <div class="flex items-center gap-2 mb-1.5 font-bold text-amber-800">
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span>DO NOT MISS</span>
+              </div>
+              <p class="text-amber-900 leading-relaxed">${d.must_do}</p>
+            </div>
+          `;
+        }
+      } else {
+        // Fallback description
+        detailsHtml += `
+          <p class="text-sm text-on-surface-variant leading-relaxed mb-6">${block.description}</p>
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-xs text-on-surface-variant flex items-center gap-2">
+            <span class="material-symbols-outlined text-slate-400">info</span>
+            <span>Refer to timeline card for basic overview.</span>
+          </div>
+        `;
+      }
+      
+      detailsHtml += `
+        </div>
+      `;
+      
+      detailSidebar.innerHTML = detailsHtml;
+    }
+
+    function closeEventDetail() {
+      document.getElementById('default-sidebar-content').classList.remove('hidden');
+      document.getElementById('detail-sidebar-content').classList.add('hidden');
+    }
+
+    function renderItinerary(itinerary) {
+      const tabsContainer = document.getElementById('day-selector-container');
+      const timelineContainer = document.getElementById('trip-timeline-container');
+
+      tabsContainer.innerHTML = '';
+      timelineContainer.innerHTML = '';
+
+      itinerary.forEach((dayData, index) => {
+        const isFirst = index === 0;
+        const formattedDay = String(dayData.day).padStart(2, '0');
+
+        // Render Day Nav Tab Button
+        const tabBtn = document.createElement('button');
+        tabBtn.onclick = () => switchDay(dayData.day);
+        tabBtn.id = `day-btn-${dayData.day}`;
+        tabBtn.className = isFirst
+          ? "day-btn snap-start flex-shrink-0 w-24 h-24 bg-primary text-on-primary rounded-2xl flex flex-col items-center justify-center luxury-shadow-hover transition-transform hover:-translate-y-1"
+          : "day-btn snap-start flex-shrink-0 w-24 h-24 bg-surface text-on-surface-variant border border-outline-variant rounded-2xl flex flex-col items-center justify-center luxury-shadow-hover transition-all hover:-translate-y-1 hover:bg-surface-container-high";
+        
+        tabBtn.innerHTML = `
+          <span class="font-label-md text-label-md opacity-80 uppercase">Day</span>
+          <span class="font-display-lg-mobile text-display-lg-mobile leading-none">${formattedDay}</span>
+        `;
+        tabsContainer.appendChild(tabBtn);
+
+        // Render Day Content Section
+        const dayContentDiv = document.createElement('div');
+        dayContentDiv.id = `day-content-${dayData.day}`;
+        dayContentDiv.className = `day-content space-y-8 animate-in fade-in duration-300 ${isFirst ? '' : 'hidden'}`;
+
+        let dayContentHtml = '';
+
+        // Add daily blocks
+        dayData.blocks.forEach((block, bIdx) => {
+          let blockIcon = "event";
+          let blockCategory = "Activity";
+          let blockTime = block.time || "All Day";
+
+          if (block.type === 'transport') {
+            blockIcon = "airport_shuttle";
+            blockCategory = "Transport";
+          } else if (block.type === 'stay') {
+            blockIcon = "hotel";
+            blockCategory = "Lodging";
+          } else if (block.type === 'dining') {
+            blockIcon = "restaurant";
+            blockCategory = "Dining";
+          }
+
+          // Special "Do Not Miss" tag for the lodging block
+          let starTagHtml = '';
+          let borderTheme = 'border-surface-container-low';
+          let highlightTheme = '';
+
+          if (block.type === 'stay') {
+            starTagHtml = `
+              <div class="absolute right-4 top-4">
+                <span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span> Do Not Miss
+                </span>
+              </div>
+            `;
+            borderTheme = 'border-luxury-gold';
+            highlightTheme = 'gold-accent';
+          }
+
+          dayContentHtml += `
+            <div onclick="showEventDetail(${dayData.day}, ${bIdx})" class="luxury-card cursor-pointer relative bg-surface border ${borderTheme} rounded-3xl p-8 luxury-shadow flex flex-col md:flex-row gap-6 hover:scale-[1.01] transition-all duration-300 hover:border-secondary hover:shadow-lg ${highlightTheme}">
+              ${starTagHtml}
+              <div class="w-16 h-16 bg-primary-container rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary-container/10">
+                <span class="material-symbols-outlined text-white text-3xl">${blockIcon}</span>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">${blockCategory}</span>
+                  <span class="text-slate-300">•</span>
+                  <span class="font-label-sm text-label-sm text-on-surface-variant font-medium">${blockTime}</span>
+                </div>
+                <h3 class="font-headline-sm text-headline-sm text-primary mb-2">${block.title}</h3>
+                <p class="text-on-surface-variant leading-relaxed">${block.description}</p>
+              </div>
+            </div>
+          `;
+        });
+
+        if (dayData.blocks.length === 0) {
+          dayContentHtml = `
+            <div class="bg-surface border border-dashed border-outline-variant rounded-3xl p-12 text-center text-on-surface-variant">
+              <span class="material-symbols-outlined text-4xl mb-2">calendar_today</span>
+              <p>No events scheduled for this day yet.</p>
+            </div>
+          `;
+        }
+
+        dayContentDiv.innerHTML = dayContentHtml;
+        timelineContainer.appendChild(dayContentDiv);
+      });
+    }
+
+    function switchDay(dayNum) {
+      document.querySelectorAll('.day-content').forEach(content => {
+        content.classList.add('hidden');
+      });
+
+      const targetContent = document.getElementById(`day-content-${dayNum}`);
+      if (targetContent) {
+        targetContent.classList.remove('hidden');
+      }
+
+      document.querySelectorAll('.day-btn').forEach(btn => {
+        btn.className = "day-btn snap-start flex-shrink-0 w-24 h-24 bg-surface text-on-surface-variant border border-outline-variant rounded-2xl flex flex-col items-center justify-center luxury-shadow-hover transition-all hover:-translate-y-1 hover:bg-surface-container-high";
+      });
+
+      const activeBtn = document.getElementById(`day-btn-${dayNum}`);
+      if (activeBtn) {
+        activeBtn.className = "day-btn snap-start flex-shrink-0 w-24 h-24 bg-primary text-on-primary rounded-2xl flex flex-col items-center justify-center luxury-shadow-hover transition-transform hover:-translate-y-1";
+      }
+    }
+
+    async function loadProfileAndSetupNav() {
+      try {
+        const response = await fetch('/api/profile');
+        if (response.ok) {
+          const profile = await response.json();
+          if (profile.role === 'customer') {
+            // Hide all builder/editor nav links
+            document.getElementById('nav-builder')?.classList.add('hidden');
+            document.getElementById('nav-editor')?.classList.add('hidden');
+            document.getElementById('mobile-nav-builder')?.classList.add('hidden');
+            document.getElementById('mobile-nav-editor')?.classList.add('hidden');
+          }
+        }
+      } catch (err) {
+        console.error("Failed to load profile", err);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProfileAndSetupNav();
+      loadItineraryFromDatabase();
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,649 @@
+
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Itinerary Editor | Passport Raahi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "primary-container": "#131b2e",
+                        "surface-bright": "#f8f9ff",
+                        "primary-fixed-dim": "#bec6e0",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#131b2e",
+                        "on-tertiary-fixed-variant": "#4d4727",
+                        "primary-fixed": "#dae2fd",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "outline": "#76777d",
+                        "on-background": "#0b1c30",
+                        "on-primary-container": "#7c839b",
+                        "background": "#f8f9ff",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-dim": "#cbdbf5",
+                        "on-surface": "#0b1c30",
+                        "inverse-on-surface": "#eaf1ff",
+                        "secondary-container": "#fea619",
+                        "on-tertiary-fixed": "#201c02",
+                        "tertiary-fixed": "#ede3b8",
+                        "primary": "#000000",
+                        "on-secondary-fixed": "#2a1700",
+                        "tertiary-container": "#b5ac84",
+                        "secondary": "#855300",
+                        "inverse-primary": "#bec6e0",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "tertiary-fixed-dim": "#d1c79d",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f8f9ff",
+                        "inverse-surface": "#213145",
+                        "on-tertiary-container": "#464021",
+                        "surface-tint": "#565e74",
+                        "on-secondary-container": "#684000",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "on-surface-variant": "#45464d",
+                        "on-error": "#ffffff",
+                        "surface-container": "#e5eeff",
+                        "outline-variant": "#c6c6cd",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "secondary-fixed": "#ffddb8",
+                        "surface-container-low": "#eff4ff",
+                        "tertiary": "#665f3d",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Playfair Display"],
+                        "label-sm": ["Geist"],
+                        "headline-md-mobile": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "label-md": ["Geist"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "body-md": ["Geist"],
+                        "headline-sm": ["Playfair Display"],
+                        "body-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-md-mobile": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .drag-handle { cursor: grab; }
+        .drag-handle:active { cursor: grabbing; }
+        .ambient-shadow { box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05); }
+        .luxury-card:hover { box-shadow: 0px 10px 30px rgba(15, 23, 42, 0.08); transform: translateY(-2px); }
+        .timeline-line { width: 2px; background: #0b1c30; }
+        .gold-accent { border-top: 2px solid #fea619; }
+        .transition-soft { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface dark:bg-background text-on-surface transition-colors duration-500 font-body-md text-body-md overflow-x-hidden">
+<!-- Top Navigation Shell -->
+<header class="bg-surface dark:bg-surface-container-low shadow-sm w-full top-0 z-40 fixed">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary dark:text-inverse-primary hover:bg-surface-container-high transition-colors duration-300 p-2 rounded-full">menu</button>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary dark:text-primary-fixed-dim">Itinerary Editor</h1>
+<nav class="hidden md:flex gap-8 items-center ml-8">
+  <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary dark:text-on-primary-container dark:hover:text-white transition-colors" href="/builder">Builder</a>
+  <a class="font-label-md text-label-md text-primary dark:text-primary-fixed font-bold" href="/editor">Editor</a>
+  <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary dark:text-on-primary-container dark:hover:text-white transition-colors" href="/">Dashboard</a>
+  <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary dark:text-on-primary-container dark:hover:text-white transition-colors" href="/trip">Trip</a>
+  <a class="font-label-md text-label-md text-on-surface-variant hover:text-error transition-colors ml-4" href="/logout">Logout</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<!-- Theme Toggle -->
+<button class="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant hover:bg-surface-container-high transition-soft" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined text-on-surface-variant">contrast</span>
+<span class="font-label-md text-label-md hidden md:block">Preview Mode</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a premium travel designer in their early 40s. They are wearing a sharp charcoal blazer and a crisp white shirt, looking directly at the camera with a warm, confident smile. The background is a blurred high-end office with warm wooden textures and soft morning light. The overall aesthetic is clean, luxurious, and authoritative." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0Vce7_MbuXTYCnSqHe2R-k2C45UgAO0d8cfnrTWsChXEsPAzbBcsdGvfSzoGCYO6PcuIjvu2jVVOxXDzRrW3YoI00srXk8NndF3Od-4OuFjkGDf8lRnC0ID0Y2rZV9RrBH-ZWv5VN0iZrJ9IAXS8hUZEDjkVvTLxhqAz39RrT4IPCeee2UE1-oYF10qaXSS9fGfpKMewBNtMP1c2wfHOEWlPCOr4ydnhAhZXvhllHk0W3FpZJKabMqA"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="pt-24 pb-32 px-margin-mobile md:px-margin-desktop min-h-screen max-w-container-max mx-auto">
+<!-- Header Info -->
+<div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<span class="font-label-md text-label-md text-secondary tracking-widest uppercase mb-2 block">Current Project</span>
+<h2 class="font-display-lg text-display-lg text-on-background">Kuala Lumpur Family Escape</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2 max-w-2xl">A curated 4-day family journey through Kuala Lumpur, visiting Petronas Twin Towers, KLCC Park, Chinatown, and Genting Highlands.</p>
+</div>
+<div class="flex gap-4">
+<button onclick="saveItineraryToDatabase()" class="bg-primary-container text-on-primary-fixed-variant px-6 py-3 rounded-xl font-label-md text-label-md hover:bg-opacity-90 transition-soft flex items-center gap-2">
+<span class="material-symbols-outlined">save</span> Save Draft
+                </button>
+<button onclick="saveItineraryToDatabase()" class="bg-secondary-container text-on-secondary-container px-6 py-3 rounded-xl font-label-md text-label-md hover:opacity-90 transition-soft flex items-center gap-2">
+<span class="material-symbols-outlined">publish</span> Publish
+                </button>
+</div>
+</div>
+<!-- Itinerary Blocks Workspace -->
+<!-- Itinerary Blocks Workspace -->
+<div id="itinerary-workspace" class="relative space-y-12">
+  <!-- Dynamic content will load here -->
+</div>
+</main>
+<!-- Floating Action Menu (Sidebar/FAB) -->
+<div class="fixed bottom-12 right-12 flex flex-col items-end gap-4 z-50">
+<!-- Expanded Tooltip/Menu -->
+<div class="hidden flex flex-col gap-3 mb-4 items-end animate-in fade-in slide-in-from-bottom-4 duration-300" id="fab-menu">
+<button onclick="addNewBlock('transport')" class="bg-surface-container-highest text-on-background px-4 py-2 rounded-full shadow-lg flex items-center gap-2 hover:bg-surface-container-high transition-soft">
+<span class="material-symbols-outlined">map</span> Add Map View
+            </button>
+<button onclick="addNewBlock('stay')" class="bg-surface-container-highest text-on-background px-4 py-2 rounded-full shadow-lg flex items-center gap-2 hover:bg-surface-container-high transition-soft">
+<span class="material-symbols-outlined">image</span> Add Photo Block
+            </button>
+<button onclick="addNewBlock('dining')" class="bg-surface-container-highest text-on-background px-4 py-2 rounded-full shadow-lg flex items-center gap-2 hover:bg-surface-container-high transition-soft">
+<span class="material-symbols-outlined">star</span> Add Badge
+            </button>
+<button onclick="addNewBlock('activity')" class="bg-surface-container-highest text-on-background px-4 py-2 rounded-full shadow-lg flex items-center gap-2 hover:bg-surface-container-high transition-soft">
+<span class="material-symbols-outlined">local_activity</span> Add Activity
+            </button>
+<button onclick="addNewBlock('stay')" class="bg-surface-container-highest text-on-background px-4 py-2 rounded-full shadow-lg flex items-center gap-2 hover:bg-surface-container-high transition-soft">
+<span class="material-symbols-outlined">calendar_today</span> Add New Day
+            </button>
+</div>
+<!-- Main FAB -->
+<button class="w-16 h-16 bg-on-background text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all duration-200" onclick="toggleFAB()">
+<span class="material-symbols-outlined text-4xl transition-transform duration-300" id="fab-icon">add</span>
+</button>
+</div>
+<!-- Bottom Nav Shell (Responsive Pivot) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center h-20 bg-surface dark:bg-surface-container border-t border-surface-container-highest dark:border-outline-variant z-50">
+<a href="/builder" class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="text-[10px] font-semibold mt-1">Builder</span>
+</a>
+<a href="/editor" class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="text-[10px] font-semibold mt-1">Editor</span>
+</a>
+<a href="/" class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-semibold mt-1">Dashboard</span>
+</a>
+<a href="/trip" class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">map</span>
+<span class="text-[10px] font-semibold mt-1">Trip</span>
+</a>
+</nav>
+<!-- Edit Block Drawer Modal -->
+<div id="edit-modal" class="fixed inset-0 z-50 flex items-center justify-end hidden">
+  <!-- Backdrop -->
+  <div class="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity" onclick="closeEditModal()"></div>
+  <!-- Drawer content -->
+  <div class="relative w-full max-w-md h-full bg-white dark:bg-surface-container shadow-2xl p-8 flex flex-col gap-6 transform transition-transform duration-300">
+    <div class="flex justify-between items-center border-b pb-4 dark:border-outline-variant">
+      <h3 class="font-headline-sm text-headline-sm text-primary dark:text-inverse-primary">Edit Schedule Block</h3>
+      <button class="material-symbols-outlined hover:text-error" onclick="closeEditModal()">close</button>
+    </div>
+    <!-- Form Fields -->
+    <div class="flex-1 space-y-6">
+      <div>
+        <label class="block font-label-md text-label-md text-on-surface-variant mb-2">Time / Subtitle</label>
+        <input type="text" id="edit-time" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-surface-container-high dark:border-outline-variant dark:text-white">
+      </div>
+      <div>
+        <label class="block font-label-md text-label-md text-on-surface-variant mb-2">Event Title</label>
+        <input type="text" id="edit-title" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-surface-container-high dark:border-outline-variant dark:text-white">
+      </div>
+      <div>
+        <label class="block font-label-md text-label-md text-on-surface-variant mb-2">Details / Description</label>
+        <textarea id="edit-description" rows="4" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-surface-container-high dark:border-outline-variant dark:text-white"></textarea>
+      </div>
+    </div>
+    <!-- Actions -->
+    <div class="flex gap-4 border-t pt-4 dark:border-outline-variant">
+      <button class="flex-1 py-3 border rounded-xl hover:bg-surface-container-high dark:border-outline-variant transition-soft" onclick="closeEditModal()">Cancel</button>
+      <button class="flex-1 py-3 bg-primary text-white rounded-xl hover:opacity-90 transition-soft dark:bg-primary-fixed dark:text-on-primary-fixed" onclick="saveBlockUpdates()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<script>
+        function toggleFAB() {
+            const menu = document.getElementById('fab-menu');
+            const icon = document.getElementById('fab-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.style.transform = 'rotate(45deg)';
+            } else {
+                menu.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Close FAB when clicking outside
+        document.addEventListener('click', function(event) {
+            const fab = document.getElementById('fab-menu');
+            const fabBtn = document.querySelector('.bg-on-background');
+            if (fabBtn && !fabBtn.contains(event.target) && fab && !fab.contains(event.target)) {
+                fab.classList.add('hidden');
+                document.getElementById('fab-icon').style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // --- Toggle Day Sections Accordion ---
+        function toggleDaySection(header) {
+          const section = header.parentElement;
+          const blocksContainer = section.querySelector('.day-blocks-container');
+          const arrow = header.querySelector('.material-symbols-outlined');
+
+          if (blocksContainer.classList.contains('hidden')) {
+            // Collapse other sections for a clean accordion effect
+            document.querySelectorAll('.day-blocks-container').forEach(c => {
+              c.classList.add('hidden');
+              const a = c.parentElement.querySelector('span.material-symbols-outlined');
+              if (a) a.style.transform = 'rotate(0deg)';
+            });
+
+            // Expand clicked section
+            blocksContainer.classList.remove('hidden');
+            arrow.style.transform = 'rotate(180deg)';
+          } else {
+            blocksContainer.classList.add('hidden');
+            arrow.style.transform = 'rotate(0deg)';
+          }
+        }
+
+        function getActiveDayBlocksContainer() {
+          const containers = document.querySelectorAll('.day-blocks-container');
+          for (let container of containers) {
+            if (!container.classList.contains('hidden')) {
+              return container;
+            }
+          }
+          return document.getElementById('day-1-blocks');
+        }
+
+        // --- Dynamic Editor Actions ---
+
+        let activeEditBlock = null;
+
+        function openEditModal(btn) {
+          const card = btn.closest('.luxury-card');
+          activeEditBlock = card;
+
+          const timeText = card.querySelector('p.font-label-md').innerText;
+          const titleText = card.querySelector('h4.font-headline-sm').innerText;
+          
+          const descElement = card.querySelector('.mt-4, .flex-1 p');
+          const descText = descElement ? descElement.innerText.trim() : '';
+
+          document.getElementById('edit-time').value = timeText;
+          document.getElementById('edit-title').value = titleText;
+          document.getElementById('edit-description').value = descText;
+
+          document.getElementById('edit-modal').classList.remove('hidden');
+        }
+
+        function closeEditModal() {
+          document.getElementById('edit-modal').classList.add('hidden');
+          activeEditBlock = null;
+        }
+
+        function saveBlockUpdates() {
+          if (!activeEditBlock) return;
+
+          const newTime = document.getElementById('edit-time').value;
+          const newTitle = document.getElementById('edit-title').value;
+          const newDescription = document.getElementById('edit-description').value;
+
+          activeEditBlock.querySelector('p.font-label-md').innerText = newTime;
+          activeEditBlock.querySelector('h4.font-headline-sm').innerText = newTitle;
+          
+          const descElement = activeEditBlock.querySelector('.mt-4, .flex-1 p');
+          if (descElement) {
+            descElement.innerText = newDescription;
+          }
+
+          closeEditModal();
+        }
+
+        function deleteBlock(btn) {
+          const card = btn.closest('.luxury-card');
+          if (card) {
+            card.classList.add('opacity-0', 'scale-95', 'transition-all', 'duration-300');
+            setTimeout(() => {
+              card.remove();
+            }, 300);
+          }
+        }
+
+        function addNewBlock(type) {
+          let timeStr = "12:00 PM";
+          let titleStr = "New Travel Event";
+          let descStr = "Provide a description for this event.";
+          let accentBar = "";
+          let iconName = "event";
+          let iconBg = "bg-surface-container-high";
+          let iconText = "text-primary";
+
+          if (type === 'transport') {
+            timeStr = "Transport • 12:00 PM";
+            titleStr = "Private Transit Ride";
+            descStr = "Private chauffeur pick-up and transfer.";
+            accentBar = "bg-primary-container";
+            iconName = "airport_shuttle";
+          } else if (type === 'stay') {
+            timeStr = "Stay • Check-in";
+            titleStr = "Hotel / Accommodation";
+            descStr = "Check in to your reserved suite.";
+            accentBar = "";
+            iconName = "hotel";
+            iconBg = "bg-secondary-fixed";
+            iconText = "text-secondary";
+          } else if (type === 'dining') {
+            timeStr = "Dining • 01:00 PM";
+            titleStr = "Lunch / Dinner Reservation";
+            descStr = "Table reserved under Passport Raahi.";
+            accentBar = "bg-tertiary";
+            iconName = "restaurant";
+            iconBg = "bg-tertiary-fixed";
+            iconText = "text-tertiary";
+          } else if (type === 'activity') {
+            timeStr = "Activity • 03:00 PM";
+            titleStr = "Sightseeing Tour";
+            descStr = "Guided city tour with entrance tickets.";
+            accentBar = "";
+            iconName = "local_activity";
+            iconBg = "bg-surface-container-high";
+            iconText = "text-primary";
+          }
+
+          const newCard = document.createElement('div');
+          newCard.className = `luxury-card ambient-shadow bg-surface-container-lowest dark:bg-surface-container-low rounded-xl p-6 border border-surface-container-low dark:border-outline-variant transition-soft group relative overflow-hidden opacity-0 scale-95 translate-y-4`;
+          
+          let borderBarHtml = accentBar ? `<div class="absolute left-0 top-0 bottom-0 w-1.5 ${accentBar}"></div>` : '';
+          
+          newCard.innerHTML = `
+            ${borderBarHtml}
+            <div class="flex justify-between items-start">
+              <div class="flex items-center gap-4">
+                <span class="material-symbols-outlined drag-handle text-outline-variant hover:text-primary cursor-grab">drag_indicator</span>
+                <div class="w-12 h-12 ${iconBg} rounded-full flex items-center justify-center">
+                  <span class="material-symbols-outlined ${iconText}">${iconName}</span>
+                </div>
+                <div>
+                  <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">${timeStr}</p>
+                  <h4 class="font-headline-sm text-headline-sm">${titleStr}</h4>
+                </div>
+              </div>
+              <div class="flex gap-2">
+                <button onclick="openEditModal(this)" class="material-symbols-outlined text-outline-variant hover:text-primary p-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-soft">edit</button>
+                <button onclick="deleteBlock(this)" class="material-symbols-outlined text-outline-variant hover:text-error p-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-soft">delete</button>
+              </div>
+            </div>
+            <div class="mt-4 ml-16 text-on-surface-variant max-w-xl">
+              ${descStr}
+            </div>
+          `;
+
+          const container = getActiveDayBlocksContainer();
+          const placeholder = container.querySelector('.border-dashed');
+          container.insertBefore(newCard, placeholder);
+          
+          setupDragAndDrop(newCard);
+
+          setTimeout(() => {
+            newCard.classList.remove('opacity-0', 'scale-95', 'translate-y-4');
+            newCard.classList.add('opacity-100', 'scale-100', 'translate-y-0');
+          }, 50);
+        }
+
+        // --- HTML5 Drag and Drop Sorting ---
+        let draggedElement = null;
+
+        function setupDragAndDrop(el) {
+          el.setAttribute('draggable', 'true');
+          
+          el.addEventListener('dragstart', (e) => {
+            draggedElement = el;
+            el.classList.add('opacity-50');
+          });
+
+          el.addEventListener('dragend', () => {
+            el.classList.remove('opacity-50');
+            draggedElement = null;
+          });
+
+          el.addEventListener('dragover', (e) => {
+            e.preventDefault();
+          });
+
+          el.addEventListener('drop', (e) => {
+            e.preventDefault();
+            if (draggedElement && draggedElement !== el) {
+              const container = el.closest('.day-blocks-container');
+              if (container) {
+                const children = Array.from(container.children);
+                const draggedIndex = children.indexOf(draggedElement);
+                const targetIndex = children.indexOf(el);
+
+                if (draggedIndex < targetIndex) {
+                  container.insertBefore(draggedElement, el.nextSibling);
+                } else {
+                  container.insertBefore(draggedElement, el);
+                }
+              }
+            }
+          });
+        }
+
+        // --- Database Loader & Saver ---
+
+        async function loadItineraryFromDatabase() {
+          const response = await fetch('/api/itinerary');
+          if (!response.ok) {
+            window.location.href = '/login';
+            return;
+          }
+          const itinerary = await response.json();
+          renderItinerary(itinerary);
+        }
+
+        function renderItinerary(itinerary) {
+          const workspace = document.getElementById('itinerary-workspace');
+          workspace.innerHTML = ''; 
+
+          itinerary.forEach((dayData, index) => {
+            const isFirst = index === 0;
+            const daySec = document.createElement('div');
+            daySec.className = 'day-section space-y-6';
+
+            const dayBlocksId = `day-${dayData.day}-blocks`;
+            const hiddenClass = isFirst ? '' : 'hidden';
+            const rotateClass = isFirst ? 'rotate-180' : '';
+
+            daySec.innerHTML = `
+              <div onclick="toggleDaySection(this)" class="flex items-center justify-between group cursor-pointer border-b pb-4 dark:border-outline-variant">
+                <div class="flex items-center gap-6">
+                  <div class="w-12 h-12 bg-on-background text-on-primary flex items-center justify-center rounded-full font-headline-sm text-headline-sm shadow-lg">${dayData.day}</div>
+                  <div>
+                    <h3 class="font-headline-md text-headline-md">${dayData.title}</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">${dayData.description}</p>
+                  </div>
+                </div>
+                <span class="material-symbols-outlined transform ${rotateClass} transition-transform duration-300">expand_more</span>
+              </div>
+              <div id="${dayBlocksId}" class="day-blocks-container ml-6 border-l-2 border-outline-variant pl-12 space-y-8 relative ${hiddenClass}">
+                <!-- Blocks will go here -->
+              </div>
+            `;
+
+            const blocksContainer = daySec.querySelector('.day-blocks-container');
+
+            dayData.blocks.forEach(block => {
+              let iconName = "event";
+              let iconBg = "bg-surface-container-high";
+              let iconText = "text-primary";
+              let accentBar = "";
+
+              if (block.type === 'transport') {
+                iconName = "airport_shuttle";
+                accentBar = "bg-primary-container";
+              } else if (block.type === 'stay') {
+                iconName = "hotel";
+                iconBg = "bg-secondary-fixed";
+                iconText = "text-secondary";
+              } else if (block.type === 'dining') {
+                iconName = "restaurant";
+                iconBg = "bg-tertiary-fixed";
+                iconText = "text-tertiary";
+                accentBar = "bg-tertiary";
+              } else if (block.type === 'activity') {
+                iconName = "local_activity";
+              }
+
+              const card = document.createElement('div');
+              card.className = 'luxury-card ambient-shadow bg-surface-container-lowest dark:bg-surface-container-low rounded-xl p-6 border border-surface-container-low dark:border-outline-variant transition-soft group relative overflow-hidden';
+              card.setAttribute('draggable', 'true');
+              setupDragAndDrop(card);
+
+              let borderBarHtml = accentBar ? `<div class="absolute left-0 top-0 bottom-0 w-1.5 ${accentBar}"></div>` : '';
+
+              card.innerHTML = `
+                ${borderBarHtml}
+                <div class="flex justify-between items-start">
+                  <div class="flex items-center gap-4">
+                    <span class="material-symbols-outlined drag-handle text-outline-variant hover:text-primary cursor-grab">drag_indicator</span>
+                    <div class="w-12 h-12 ${iconBg} rounded-full flex items-center justify-center">
+                      <span class="material-symbols-outlined ${iconText}">${iconName}</span>
+                    </div>
+                    <div>
+                      <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">${block.time}</p>
+                      <h4 class="font-headline-sm text-headline-sm">${block.title}</h4>
+                    </div>
+                  </div>
+                  <div class="flex gap-2">
+                    <button onclick="openEditModal(this)" class="material-symbols-outlined text-outline-variant hover:text-primary p-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-soft">edit</button>
+                    <button onclick="deleteBlock(this)" class="material-symbols-outlined text-outline-variant hover:text-error p-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-soft">delete</button>
+                  </div>
+                </div>
+                <div class="mt-4 ml-16 text-on-surface-variant max-w-xl">
+                  ${block.description}
+                </div>
+              `;
+
+              blocksContainer.appendChild(card);
+            });
+
+            // Add Placeholder at the end
+            const placeholder = document.createElement('div');
+            placeholder.onclick = () => addNewBlock('activity');
+            placeholder.className = 'ml-16 border-2 border-dashed border-outline-variant rounded-xl h-24 flex items-center justify-center text-outline-variant hover:border-secondary hover:text-secondary transition-soft cursor-pointer';
+            placeholder.innerHTML = `
+              <span class="material-symbols-outlined mr-2">add_circle</span>
+              <span class="font-label-md text-label-md">Click to add a new activity block</span>
+            `;
+            blocksContainer.appendChild(placeholder);
+
+            workspace.appendChild(daySec);
+          });
+        }
+
+        async function saveItineraryToDatabase() {
+          const itineraryData = [];
+          const daySections = document.querySelectorAll('.day-section');
+          
+          daySections.forEach(daySec => {
+            const dayNum = parseInt(daySec.querySelector('.w-12.h-12').innerText);
+            const dayTitle = daySec.querySelector('h3.font-headline-md').innerText;
+            const dayDesc = daySec.querySelector('p.font-body-md').innerText;
+            
+            const blocks = [];
+            const blockCards = daySec.querySelectorAll('.luxury-card');
+            
+            blockCards.forEach(card => {
+              const iconText = card.querySelector('.material-symbols-outlined:not(.drag-handle)').innerText;
+              let type = "activity";
+              if (iconText === 'airport_shuttle') type = 'transport';
+              else if (iconText === 'hotel') type = 'stay';
+              else if (iconText === 'restaurant') type = 'dining';
+              else if (iconText === 'local_activity') type = 'activity';
+              
+              const timeStr = card.querySelector('p.font-label-md').innerText;
+              const titleStr = card.querySelector('h4.font-headline-sm').innerText;
+              
+              const descElement = card.querySelector('.mt-4, .flex-1 p');
+              const descStr = descElement ? descElement.innerText.trim() : '';
+              
+              blocks.push({
+                type: type,
+                time: timeStr,
+                title: titleStr,
+                description: descStr
+              });
+            });
+            
+            itineraryData.push({
+              day: dayNum,
+              title: dayTitle,
+              description: dayDesc,
+              blocks: blocks
+            });
+          });
+
+          const response = await fetch('/api/itinerary', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(itineraryData)
+          });
+
+          if (response.ok) {
+            alert("Itinerary changes saved successfully to database!");
+          } else {
+            alert("Error saving itinerary to database.");
+          }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+          loadItineraryFromDatabase();
+        });
+    </script>
+</body></html>

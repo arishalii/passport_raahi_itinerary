@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Login | Passport Raahi</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#0F172A", // Deep Slate / Navy
+            "secondary": "#B45309", // Warm Amber / Gold Accent
+            "background": "#F8FAFC",
+            "surface": "#FFFFFF"
+          },
+          fontFamily: {
+            "display": ["Playfair Display"],
+            "body": ["Geist"]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background: radial-gradient(circle at 10% 20%, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 1) 90%);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(16px);
+      border: 1px border rgba(255, 255, 255, 0.08);
+    }
+  </style>
+</head>
+<body class="font-body text-white min-h-screen flex items-center justify-center p-4">
+  <div class="w-full max-w-md">
+    <!-- Brand Logo and Header -->
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/30 mb-4 shadow-xl shadow-amber-500/5">
+        <span class="material-symbols-outlined text-amber-500 text-3xl">explore</span>
+      </div>
+      <h1 class="font-display text-4xl font-bold tracking-tight text-white mb-2">Passport Raahi</h1>
+      <p class="text-slate-400 text-sm">Luxury Travel Designer &amp; Itinerary System</p>
+    </div>
+
+    <!-- Login Container -->
+    <div class="glass-card rounded-2xl p-8 shadow-2xl relative overflow-hidden">
+      <!-- Ambient Glow decoration -->
+      <div class="absolute -top-24 -left-24 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl"></div>
+
+      <h2 class="text-xl font-semibold text-white mb-6 text-center">Sign In</h2>
+      
+      <!-- Error Alert -->
+      <div id="error-alert" class="hidden bg-red-500/10 border border-red-500/30 text-red-200 p-4 rounded-xl text-sm mb-6 flex items-start gap-2">
+        <span class="material-symbols-outlined text-red-400 text-lg">error</span>
+        <span id="error-message">Invalid username or password.</span>
+      </div>
+
+      <!-- Login Form -->
+      <form onsubmit="handleLogin(event)" class="space-y-6">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Email Address</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-3 text-slate-400 text-lg">person</span>
+            <input type="text" id="username" required placeholder="Enter your email"
+              class="w-full pl-10 pr-4 py-3 bg-slate-900/50 border border-slate-700/50 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all text-sm" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Password</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-3 text-slate-400 text-lg">lock</span>
+            <input type="password" id="password" required placeholder="Enter password"
+              class="w-full pl-10 pr-4 py-3 bg-slate-900/50 border border-slate-700/50 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all text-sm" />
+          </div>
+        </div>
+
+        <button type="submit"
+          class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-semibold rounded-xl transition-all duration-200 transform active:scale-[0.98] shadow-lg shadow-amber-500/10 flex items-center justify-center gap-2">
+          <span>Access System</span>
+          <span class="material-symbols-outlined text-lg">arrow_forward</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    async function handleLogin(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      const response = await fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+
+      if (response.ok) {
+        // Redirect to dashboard (role-based redirection is handled by server on '/')
+        window.location.href = '/';
+      } else {
+        const errText = await response.text();
+        document.getElementById('error-message').innerText = errText || "Login failed.";
+        document.getElementById('error-alert').classList.remove('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

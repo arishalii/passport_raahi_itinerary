@@ -1,0 +1,1366 @@
+{
+  "users": {
+    "arishali1674@gmail.com": {
+      "password": "ArishAli",
+      "role": "editor",
+      "name": "Sarisha Ali (Designer)"
+    },
+    "customer": {
+      "password": "123",
+      "role": "customer",
+      "name": "Aditya & Family (Traveler)"
+    },
+    "ankurgupta@gmail.com": {
+      "password": "Ankurgupta",
+      "role": "customer",
+      "name": "Ankur Gupta"
+    }
+  },
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Day 1: Arrival & Welcome (Kuala Lumpur)",
+      "description": "Arrive at KLIA, check-in to KLCC Platinum Suites, and enjoy your first evening in Kuala Lumpur.",
+      "blocks": [
+        {
+          "type": "stay",
+          "time": "08:00 AM",
+          "title": "Check-in & Rest at KLCC Platinum Suites",
+          "description": "Check-in at Jalan Sultan Ismail. Relax at the rooftop infinity pool (depth 1.2m) with views of the Petronas Twin Towers. Request a high floor facing Petronas Towers.",
+          "details": {
+            "address": "Jalan Sultan Ismail, Kuala Lumpur",
+            "metro_stations": [
+              {
+                "name": "Bukit Nanas",
+                "line": "Monorail",
+                "walk": "5 mins",
+                "best_for": "Bukit Bintang, Chinatown"
+              },
+              {
+                "name": "Dang Wangi",
+                "line": "LRT Kelana Jaya",
+                "walk": "7 mins",
+                "best_for": "KLCC, Petronas Towers"
+              }
+            ],
+            "highlights": [
+              {
+                "name": "Rooftop Pool",
+                "benefit": "Infinity pool on 51st floor with Twin Towers views"
+              },
+              {
+                "name": "Family Suites",
+                "benefit": "Cooktop, kitchenette and laundry facilities"
+              }
+            ],
+            "must_do": "Request a high floor facing the Petronas Towers – the sunrise view is magical."
+          }
+        },
+        {
+          "type": "dining",
+          "time": "10:00 AM",
+          "title": "Middle Lane Coffee",
+          "description": "Brunch at 29, Jalan Riong. Eggs Benedict Salmon (RM 28), berry pancakes (RM 22), and chocolate milkshake (RM 16). Do Not Miss: The burnt cheesecake - order it when you arrive (limited).",
+          "details": {
+            "address": "29, Jalan Riong, Kuala Lumpur",
+            "transport": [
+              {
+                "mode": "Grab",
+                "route": "Direct",
+                "time": "10 min",
+                "cost": "RM 12"
+              },
+              {
+                "mode": "Metro",
+                "route": "Bukit Nanas → Raja Chulan (Monorail) + 7 min walk",
+                "time": "20 min",
+                "cost": "RM 8",
+                "recommended": true
+              }
+            ],
+            "dishes": [
+              {
+                "name": "Eggs Benedict (Salmon)",
+                "price": "RM 28",
+                "kids": "15 yo choice"
+              },
+              {
+                "name": "Pancakes with berries",
+                "price": "RM 22",
+                "kids": "⭐⭐ Both kids"
+              },
+              {
+                "name": "Truffle Fries",
+                "price": "RM 18",
+                "kids": "⭐⭐ Both kids"
+              },
+              {
+                "name": "Iced Latte",
+                "price": "RM 14",
+                "kids": "Parents choice"
+              },
+              {
+                "name": "Chocolate Milkshake",
+                "price": "RM 16",
+                "kids": "⭐⭐ Both kids"
+              }
+            ],
+            "must_do": "The burnt cheesecake – order it when you arrive (limited)."
+          }
+        },
+        {
+          "type": "activity",
+          "time": "11:30 AM",
+          "title": "KLCC Park Splash & Play",
+          "description": "Explore the giant slides and splash pool. Watch the Musical Fountain show at 12:00 PM. Bring swimsuits for the kids - the splash zone is free and fun.",
+          "details": {
+            "location_hint": "Behind Suria KLCC Mall",
+            "transport": [
+              {
+                "mode": "Grab",
+                "route": "Direct from cafe",
+                "time": "5 min",
+                "cost": "RM 9",
+                "recommended": true
+              },
+              {
+                "mode": "Metro",
+                "route": "Raja Chulan → Bukit Nanas + 10 min walk",
+                "time": "15 min",
+                "cost": "RM 8"
+              }
+            ],
+            "highlights": [
+              {
+                "name": "Playground (2-12 yrs)",
+                "benefit": "Slides, climbing nets, splash pool",
+                "time": "11:30 AM (less crowded)"
+              },
+              {
+                "name": "Musical Fountain",
+                "benefit": "Water dances to music",
+                "time": "12:00 PM show (every 30 mins)"
+              },
+              {
+                "name": "Viewpoint bridge",
+                "benefit": "Perfect family photo with Towers",
+                "time": "Midday sun (no shadow)"
+              }
+            ],
+            "must_do": "Bring swimsuits for the kids – the splash zone is free and fun."
+          }
+        },
+        {
+          "type": "activity",
+          "time": "12:30 PM",
+          "title": "Petronas Twin Towers Skybridge",
+          "description": "Visit the skybridge (41st floor) and observation deck (86th floor). Pre-book tickets online 2 weeks ahead (RM 80/adult, RM 33/child under 12).",
+          "details": {
+            "location_hint": "Access via Concourse level, Suria KLCC",
+            "transport": [
+              {
+                "mode": "Walk",
+                "route": "From KLCC Park path",
+                "time": "2 min",
+                "cost": "Free",
+                "recommended": true
+              }
+            ],
+            "tickets": [
+              {
+                "type": "Skybridge + Observation",
+                "price": "RM 80 / RM 33",
+                "info": "41st & 86th floors (Pre-book online)"
+              },
+              {
+                "type": "Observation Deck Only",
+                "price": "RM 60 / RM 25",
+                "info": "86th floor only (Walk-in possible)"
+              }
+            ],
+            "timeline": [
+              {
+                "time": "12:30 PM",
+                "event": "Security & high-speed elevator entry"
+              },
+              {
+                "time": "01:00 PM",
+                "event": "Walk the Skybridge (41st floor)"
+              },
+              {
+                "time": "01:20 PM",
+                "event": "Observation Deck (86th floor)"
+              },
+              {
+                "time": "01:50 PM",
+                "event": "Exit to Suria KLCC Mall"
+              }
+            ],
+            "must_do": "Do Not Miss booking 2 weeks before your trip – sells out."
+          }
+        },
+        {
+          "type": "dining",
+          "time": "02:00 PM",
+          "title": "Lunch at Suria KLCC",
+          "description": "Head inside the mall for lunch. Try Madam Kwan's Nasi Lemak (RM 22) or Din Tai Fung dumplings (RM 18). Do Not Miss Madam Kwan's Nasi Lemak with fried chicken.",
+          "details": {
+            "address": "Suria KLCC, Levels 2 & 3",
+            "options": [
+              {
+                "name": "Madam Kwan's",
+                "cuisine": "Malaysian",
+                "dish": "Nasi Lemak (RM 22)",
+                "family_cost": "RM 80",
+                "kids": "✅ High chairs available"
+              },
+              {
+                "name": "Din Tai Fung",
+                "cuisine": "Chinese",
+                "dish": "Pork Dumplings (RM 18/6pcs)",
+                "family_cost": "RM 90",
+                "kids": "✅ Kids love watching them make"
+              },
+              {
+                "name": "Nando's",
+                "cuisine": "Portuguese",
+                "dish": "Peri Peri Chicken (RM 35)",
+                "family_cost": "RM 70",
+                "kids": "✅ Mild spice available"
+              }
+            ],
+            "must_do": "Madam Kwan's Nasi Lemak with fried chicken – the national dish done right!"
+          }
+        },
+        {
+          "type": "transport",
+          "time": "07:15 PM",
+          "title": "Hop On Hop Off Bus Night Tour",
+          "description": "Board the open-top double-decker bus at Sungai Wang Plaza (Bukit Bintang). Enjoy the 2-hour night lights loop showing Merdeka Square, KL Tower, and the lit-up Petronas Towers.",
+          "details": {
+            "boarding_point": "Sungai Wang Plaza (Bukit Bintang)",
+            "transport": [
+              {
+                "mode": "Metro",
+                "route": "Bukit Nanas → Bukit Bintang",
+                "time": "10 min",
+                "cost": "RM 8",
+                "recommended": true
+              },
+              {
+                "mode": "Grab",
+                "route": "Direct from hotel",
+                "time": "10 min",
+                "cost": "RM 14"
+              }
+            ],
+            "pricing": [
+              {
+                "type": "Adult Ticket",
+                "cost": "RM 45"
+              },
+              {
+                "type": "Child Ticket (4-12)",
+                "cost": "RM 24"
+              },
+              {
+                "type": "Family total",
+                "cost": "RM 138 (Includes free audio guide)"
+              }
+            ],
+            "must_do": "Last boarding is at 8:00 PM for the 2-hour night lights loop."
+          }
+        },
+        {
+          "type": "dining",
+          "time": "10:00 PM",
+          "title": "Midnight Dinner at Bukit Bintang",
+          "description": "Enjoy Syrian Damascus Shawarma platter (RM 80) or Al Habib Indian biryani. Do Not Miss Damascus Mixed Grill Platter - feeds 3 people easily.",
+          "details": {
+            "address": "Bukit Bintang, Kuala Lumpur",
+            "options": [
+              {
+                "name": "Damascus Shawarma",
+                "cuisine": "Syrian",
+                "dish": "Mixed Grill Platter (RM 55)",
+                "hours": "Open till 2:00 AM"
+              },
+              {
+                "name": "Al Habib Restaurant",
+                "cuisine": "Indian/Arabic",
+                "dish": "Chicken Biryani (RM 18)",
+                "hours": "Open till 1:00 AM"
+              },
+              {
+                "name": "Jalan Alor Hawkers",
+                "cuisine": "Malaysian",
+                "dish": "Satay, grilled fish",
+                "hours": "Open till late"
+              }
+            ],
+            "must_do": "Damascus Mixed Grill Platter – feeds 3 people easily. Pair with cheese naan from Al Habib."
+          }
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Day 2: Genting Highlands Day Trip",
+      "description": "Take a day trip to the cooler Genting Highlands for theme parks and cloud-shrouded views.",
+      "blocks": [
+        {
+          "type": "transport",
+          "time": "08:15 AM",
+          "title": "Genting Highlands Private Grab Transfer",
+          "description": "Private Grab from hotel lobby directly to Awana SkyCentral (approx 45 mins, RM 30). Book Grab at 8:00 AM sharp for the lowest pre-peak rates.",
+          "details": {
+            "route": "Hotel Lobby → Awana SkyCentral",
+            "transport": [
+              {
+                "mode": "Grab Taxi",
+                "time": "45 min",
+                "cost": "RM 30",
+                "recommended": true,
+                "note": "Direct, cheaper than 4 bus/MRT tickets"
+              },
+              {
+                "mode": "LRT + Bus",
+                "time": "90 min",
+                "cost": "RM 80",
+                "note": "Transfer at KL Sentral, lot of walking"
+              }
+            ],
+            "must_do": "Book Grab at 8:00 AM sharp – rates double after 9:00 AM due to office traffic."
+          }
+        },
+        {
+          "type": "activity",
+          "time": "09:15 AM",
+          "title": "Awana Skyway Cable Car",
+          "description": "Enjoy a 10-minute gondola ride through the jungle mist. Request the glass floor gondola at the counter. Return fare: RM 18/adult, RM 12/child.",
+          "details": {
+            "duration": "10 minutes",
+            "pricing": [
+              {
+                "type": "Adult return",
+                "cost": "RM 18"
+              },
+              {
+                "type": "Child return (4-12)",
+                "cost": "RM 12"
+              }
+            ],
+            "must_do": "Request the glass floor gondola at the boarding gate (same ticket price, amazing photo opportunity)."
+          }
+        },
+        {
+          "type": "activity",
+          "time": "10:30 AM",
+          "title": "Genting SkyWorlds & Snow World",
+          "description": "Explore the theme park's rides. Kids love Night at the Museum, while teens will enjoy Mad Ramp Peak. Visit Snow World (RM 90, jackets/boots rental included) - bring socks.",
+          "details": {
+            "highlights": [
+              {
+                "name": "Mad Ramp Peak",
+                "type": "Rollercoaster",
+                "suitability": "Teens (15 yo) & Parents"
+              },
+              {
+                "name": "Night at the Museum",
+                "type": "Interactive dark ride",
+                "suitability": "Kids (8 yo) & Parents"
+              },
+              {
+                "name": "Snow World",
+                "type": "15°C Indoor snow play",
+                "suitability": "All family (jackets included)"
+              }
+            ],
+            "must_do": "Snow World requires socks – bring your own to avoid buying expensive pairs at the counter."
+          }
+        },
+        {
+          "type": "activity",
+          "time": "09:00 PM",
+          "title": "Lake Symphony Light & Sound Show",
+          "description": "After resting at the hotel, watch the free rainbow fountain water display at the KLCC park lake. Best viewed from near the floating stage.",
+          "details": {
+            "show_times": "8:00 PM, 9:00 PM (10 mins duration)",
+            "cost": "FREE",
+            "must_do": "Best viewing spot is on the bridge near the floating stage, directly opposite the Suria KLCC entrance."
+          }
+        },
+        {
+          "type": "dining",
+          "time": "09:30 PM",
+          "title": "Dinner at Envi Skydining",
+          "description": "Bespoke dinner at Menara TA, 22nd floor. Enjoy Ribeye Steak (RM 89) and Truffle Mushroom Pizza. Request table 22 facing Petronas Towers. Book 3 days ahead.",
+          "details": {
+            "address": "Menara TA, 22nd floor, Jalan Tun Razak",
+            "dishes": [
+              {
+                "name": "Ribeye Steak (250g)",
+                "price": "RM 89"
+              },
+              {
+                "name": "Truffle Mushroom Pizza",
+                "price": "RM 42"
+              },
+              {
+                "name": "Seafood Pasta",
+                "price": "RM 48"
+              }
+            ],
+            "must_do": "Request Table 22 (corner window facing Petronas Towers) when booking. Dress code is smart casual."
+          }
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Day 3: Aquaria & Chinatown Exploration",
+      "description": "Spend the day visiting the oceanarium, Chinatown street markets, and shopping in Bukit Bintang.",
+      "blocks": [
+        {
+          "type": "dining",
+          "time": "09:00 AM",
+          "title": "Breakfast at Suria KLCC",
+          "description": "Enjoy breakfast croissants at Coffee Bean & Tea Leaf or a breakfast sandwich at San Francisco Coffee (approx RM 50 for family).",
+          "details": {
+            "address": "Suria KLCC, Level Concourse",
+            "options": [
+              {
+                "name": "Coffee Bean & Tea Leaf",
+                "cuisine": "Cafe",
+                "dish": "Croissants & Chocolate chip cookie",
+                "family_cost": "RM 55"
+              },
+              {
+                "name": "San Francisco Coffee",
+                "cuisine": "Cafe",
+                "dish": "Breakfast sandwiches & Latte",
+                "family_cost": "RM 50"
+              }
+            ],
+            "must_do": "Perfect quick morning bite with a view of the KLCC park before Aquaria opens."
+          }
+        },
+        {
+          "type": "activity",
+          "time": "10:00 AM",
+          "title": "Aquaria KLCC Oceanarium",
+          "description": "Walk the 90m underwater tunnel. Catch the live shark and stingray feeding show at 11:00 AM. Kids can touch starfish at the Touch Pool. Online tickets: RM 176.",
+          "details": {
+            "location_hint": "Concourse level, KL Convention Centre",
+            "tickets": [
+              {
+                "type": "Family Ticket (2+2)",
+                "price": "RM 176 (Online)"
+              },
+              {
+                "type": "Gate Price (Adult/Child)",
+                "price": "RM 59 / RM 49"
+              }
+            ],
+            "highlights": [
+              {
+                "name": "Underwater Tunnel",
+                "benefit": "90m walk under rays and sharks",
+                "time": "10:15 AM"
+              },
+              {
+                "name": "Feeding Session",
+                "benefit": "Live diver feeds sharks & talks on mic",
+                "time": "11:00 AM sharp"
+              },
+              {
+                "name": "Touch Pool",
+                "benefit": "Kids touch starfish & small sharks",
+                "time": "11:45 AM"
+              }
+            ],
+            "must_do": "Do Not Miss the 11:00 AM Live Shark feeding session – gather early."
+          }
+        },
+        {
+          "type": "dining",
+          "time": "12:30 PM",
+          "title": "Lunch at Samira by Asian Terrace",
+          "description": "Lakeside dining at Jalan Mesui. Try their mild Butter Chicken (RM 28) and sweet Mango Lassi (RM 10) for the kids.",
+          "details": {
+            "address": "23, Jalan Mesui, Bukit Bintang",
+            "transport": [
+              {
+                "mode": "Grab Taxi",
+                "route": "Direct from Aquaria",
+                "time": "10 min",
+                "cost": "RM 12",
+                "recommended": true
+              },
+              {
+                "mode": "Metro",
+                "route": "KLCC → Bukit Bintang (MRT)",
+                "time": "20 min",
+                "cost": "RM 8"
+              }
+            ],
+            "dishes": [
+              {
+                "name": "Butter Chicken",
+                "price": "RM 28",
+                "kids": "⭐⭐ Kids favorite (mild)"
+              },
+              {
+                "name": "Garlic Naan",
+                "price": "RM 6"
+              },
+              {
+                "name": "Tandoori Chicken (half)",
+                "price": "RM 32"
+              },
+              {
+                "name": "Mango Lassi",
+                "price": "RM 10",
+                "kids": "⭐⭐ Very sweet & cooling"
+              }
+            ],
+            "must_do": "Lakeside tables are the coolest in the midday heat."
+          }
+        },
+        {
+          "type": "activity",
+          "time": "02:30 PM",
+          "title": "Chinatown & Petaling Street Market",
+          "description": "Bargain for fridge magnets (5 for RM 10), keychains, and bags. Try the coconut ice cream served in a real coconut shell (RM 8) and warm egg tarts.",
+          "details": {
+            "address": "Petaling Street, Chinatown",
+            "transport": [
+              {
+                "mode": "Metro",
+                "route": "Bukit Bintang → Pasar Seni (MRT Kajang)",
+                "time": "12 min",
+                "cost": "RM 8",
+                "recommended": true
+              },
+              {
+                "mode": "Grab",
+                "route": "Direct",
+                "time": "10 min",
+                "cost": "RM 14"
+              }
+            ],
+            "shopping": [
+              {
+                "item": "Fridge magnets",
+                "price": "5 for RM 10"
+              },
+              {
+                "item": "Keychains",
+                "price": "RM 2 each"
+              },
+              {
+                "item": "Fake bags/shoes",
+                "price": "RM 50 - 150 (Bargaining is key)"
+              }
+            ],
+            "must_do": "Do Not Miss the coconut ice cream scoop in real coconut shell (RM 8) sold at the market midpoint."
+          }
+        },
+        {
+          "type": "activity",
+          "time": "05:30 PM",
+          "title": "Bukit Bintang Shopping & Satay Dinner",
+          "description": "Window shop at Pavilion KL mall, then head to Jalan Alor for street food. Try the grilled satay and Wong Ah Wah chicken wings (RM 15).",
+          "details": {
+            "location": "Jalan Alor & Pavilion Mall, Bukit Bintang",
+            "options": [
+              {
+                "name": "Wong Ah Wah (Jalan Alor)",
+                "dish": "Famous BBQ Chicken Wings",
+                "cost": "RM 15 / 10 pcs"
+              },
+              {
+                "name": "Lot 10 Hutong",
+                "dish": "Traditional Wantan Mee",
+                "cost": "RM 12 per bowl"
+              },
+              {
+                "name": "Pavilion Food Republic",
+                "dish": "Multi-cuisine food court",
+                "cost": "RM 80 for family"
+              }
+            ],
+            "must_do": "Wong Ah Wah's BBQ wings are legendary. jalan Alor is crowded but kid friendly."
+          }
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Day 4: Travel to Singapore",
+      "description": "Take a luxury cross-border bus to Singapore, check-in to your hotel, and visit Merlion Park.",
+      "blocks": [
+        {
+          "type": "transport",
+          "time": "08:00 AM",
+          "title": "Aeroline Bus to Singapore",
+          "description": "Board the luxury double-decker bus from TBS terminal to Singapore Boon Lay. Enjoy leather reclining seats and meals served on board (RM 80/person).",
+          "details": {
+            "departure": "TBS Bus Terminal (Bandar Tasik Selatan)",
+            "transport": [
+              {
+                "mode": "Grab Taxi to TBS",
+                "time": "20 min",
+                "cost": "RM 25",
+                "recommended": true
+              }
+            ],
+            "info": [
+              {
+                "item": "Bus operator",
+                "detail": "Aeroline Luxury Coach"
+              },
+              {
+                "item": "Ticket Cost",
+                "detail": "RM 80 / person (Pre-booked online)"
+              },
+              {
+                "item": "Amenities",
+                "detail": "Leather lounge seats, dynamic entertainment, hot meals served"
+              }
+            ],
+            "must_do": "Book bus tickets at least 2 weeks ahead of travel. KKKL or Aeroline are best for families."
+          }
+        },
+        {
+          "type": "stay",
+          "time": "04:00 PM",
+          "title": "Check-in at ibis budget Singapore Crystal",
+          "description": "Check-in to your family room in Geylang (SGD 120/night). Aljunied MRT station is a short covered walk away.",
+          "details": {
+            "address": "20 Lorong 18 Geylang, Singapore",
+            "metro_stations": [
+              {
+                "name": "Aljunied MRT",
+                "line": "East-West (Green)",
+                "walk": "8 mins (covered path)"
+              }
+            ],
+            "pros_cons": [
+              {
+                "name": "Pros",
+                "benefit": "Budget-friendly (SGD 120/night), kopitiam coffee shop open 24h downstairs"
+              },
+              {
+                "name": "Cons",
+                "benefit": "Red light district nearby (safe in day, hotel is on main road)"
+              }
+            ],
+            "must_do": "Purchase EZ-Link transit cards (SGD 10 each) at Aljunied station for convenient train rides."
+          }
+        },
+        {
+          "type": "activity",
+          "time": "05:45 PM",
+          "title": "Merlion Park & Golden Hour Photos",
+          "description": "Take photos with the iconic Merlion statue. View the Marina Bay Sands skyline from Jubilee Bridge. Sunset golden hour is best for photos.",
+          "details": {
+            "address": "One Fullerton, Singapore",
+            "transport": [
+              {
+                "mode": "MRT",
+                "route": "Aljunied → Raffles Place",
+                "time": "20 min",
+                "cost": "SGD 6",
+                "recommended": true
+              },
+              {
+                "mode": "Grab",
+                "route": "Direct",
+                "time": "15 min",
+                "cost": "SGD 13"
+              }
+            ],
+            "timeline": [
+              {
+                "time": "05:45 PM",
+                "event": "Arrive, take water-spouting Merlion photos (stand right)"
+              },
+              {
+                "time": "06:15 PM",
+                "event": "Walk across Jubilee Bridge to Esplanade"
+              },
+              {
+                "time": "06:30 PM",
+                "event": "Golden Hour views of Marina Bay Sands skyline"
+              }
+            ]
+          }
+        },
+        {
+          "type": "dining",
+          "time": "07:00 PM",
+          "title": "Dinner at Arab Street Zam Zam",
+          "description": "Dine at the legendary Singapore Zam Zam. Order the Chicken Murtabak (SGD 8, feeds 2) and Beef Biryani. Explore Haji Lane's murals after dinner.",
+          "details": {
+            "address": "Arab Street, Bugis (Opposite Sultan Mosque)",
+            "transport": [
+              {
+                "mode": "MRT",
+                "route": "Raffles Place → Bugis",
+                "time": "10 min",
+                "cost": "SGD 4",
+                "recommended": true
+              }
+            ],
+            "dishes": [
+              {
+                "name": "Chicken Murtabak",
+                "price": "SGD 8",
+                "kids": "⭐⭐⭐ Legendary (feeds 2)"
+              },
+              {
+                "name": "Beef Beryani",
+                "price": "SGD 9",
+                "kids": "⭐⭐ Spiced rice"
+              },
+              {
+                "name": "Paper Thosai",
+                "price": "SGD 4",
+                "kids": "⭐⭐ Kids love the crispy size"
+              }
+            ],
+            "must_do": "Haji Lane murals (3 mins walk) are lit up beautifully at night. Boutiques close at 10 PM."
+          }
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "title": "Day 5: Ice Cream Museum & Gardens by the Bay",
+      "description": "Jump in a pool of sprinkles, explore Singapore by open-top bus, and see the giant Supertrees glow.",
+      "blocks": [
+        {
+          "type": "activity",
+          "time": "10:00 AM",
+          "title": "Museum of Ice Cream Singapore",
+          "description": "Visit Loewen Road in Dempsey Hill. Swim in the sprinkle pool, solve the banana maze, and enjoy unlimited ice cream (Family ticket: SGD 148).",
+          "details": {
+            "address": "100 Loewen Road, Dempsey Hill",
+            "transport": [
+              {
+                "mode": "Grab",
+                "route": "Direct",
+                "time": "15 min",
+                "cost": "SGD 12",
+                "recommended": true
+              },
+              {
+                "mode": "MRT + Bus",
+                "route": "Aljunied → Orchard (MRT) + Bus",
+                "time": "40 min",
+                "cost": "SGD 8"
+              }
+            ],
+            "highlights": [
+              {
+                "name": "Sprinkle Pool",
+                "benefit": "Dive and swim in plastic sprinkles (Supervised)",
+                "time": "10:30 AM"
+              },
+              {
+                "name": "Banana Maze",
+                "benefit": "Find your way through pink arches",
+                "time": "11:15 AM"
+              },
+              {
+                "name": "Unlimited Treats",
+                "benefit": "Unlimited cones/cups (20+ flavors)",
+                "time": "All duration"
+              }
+            ],
+            "must_do": "Pre-book tickets online to secure morning slots (Adult SGD 42, Child SGD 32)."
+          }
+        },
+        {
+          "type": "activity",
+          "time": "02:00 PM",
+          "title": "Big Bus Hop-On Hop-Off Tour",
+          "description": "Board the open-top double-decker bus at Suntec City. Take the Yellow Line through Marina Bay Sands, Chinatown, and Little India (SGD 140 family ticket).",
+          "details": {
+            "boarding_point": "Suntec City Tour Hub",
+            "transport": [
+              {
+                "mode": "Grab",
+                "route": "Direct from MOIC",
+                "time": "10 min",
+                "cost": "SGD 10",
+                "recommended": true
+              }
+            ],
+            "info": [
+              {
+                "item": "Duration",
+                "detail": "2 Hour full loop"
+              },
+              {
+                "item": "Family Ticket",
+                "detail": "SGD 140 (Free audio guide included)"
+              },
+              {
+                "item": "Best Route",
+                "detail": "Yellow Line (Marina Bay Sands, Chinatown, Botanic Gardens)"
+              }
+            ],
+            "must_do": "Stay on the top deck for the full loop - kids love the open-air city views."
+          }
+        },
+        {
+          "type": "activity",
+          "time": "06:30 PM",
+          "title": "Gardens by the Bay & Skyway",
+          "description": "Explore the Avatar Cloud Forest and Flower Dome domes. Walk the OCBC Skyway suspension bridge among the glowing Supertree grove (SGD 90/adult combo).",
+          "details": {
+            "location": "Bayfront, Marina Bay",
+            "tickets": [
+              {
+                "type": "Family Combo (Cloud + Flower + Skyway)",
+                "price": "Adult SGD 90, Child SGD 60"
+              }
+            ],
+            "highlights": [
+              {
+                "name": "Cloud Forest Dome",
+                "benefit": "Avatar-themed indoor waterfall & mist"
+              },
+              {
+                "name": "OCBC Skyway",
+                "benefit": "Walk 22m high between giant Supertrees"
+              }
+            ],
+            "must_do": "OCBC Skyway walk is less crowded between 6:30 - 7:00 PM before the light show starts."
+          }
+        },
+        {
+          "type": "activity",
+          "time": "07:45 PM",
+          "title": "Garden Rhapsody Light Show",
+          "description": "Watch the free synchronized music and light show under the giant Supertrees. Best viewed lying down directly under the tree trunks.",
+          "details": {
+            "show_times": "7:45 PM and 8:45 PM (15 mins)",
+            "cost": "FREE",
+            "must_do": "Find a spot on the grass directly under the main Supertree trunk and look straight up."
+          }
+        },
+        {
+          "type": "dining",
+          "time": "08:10 PM",
+          "title": "Bugis Junction & Bugis Street Market",
+          "description": "Shop in the air-conditioned Bugis Junction, then visit the outdoor market. Try local satay sticks (10 for SGD 8) or ice cream sandwiches (SGD 1.50).",
+          "details": {
+            "address": "Bugis MRT Hub",
+            "transport": [
+              {
+                "mode": "MRT",
+                "route": "Bayfront → Bugis",
+                "time": "8 min",
+                "cost": "SGD 4",
+                "recommended": true
+              }
+            ],
+            "options": [
+              {
+                "name": "Bugis Street Market",
+                "dish": "Satay sticks (10 for SGD 8), wafer ice cream (SGD 1.50)"
+              },
+              {
+                "name": "Bugis Junction",
+                "dish": "Uniqlo, Cotton On, food court outlets"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "title": "Day 6: Sentosa Island Attractions",
+      "description": "A full day on Sentosa Island visiting Universal Studios, Harry Potter experience, and Madame Tussauds.",
+      "blocks": [
+        {
+          "type": "activity",
+          "time": "09:30 AM",
+          "title": "Harry Potter: Visions of Magic",
+          "description": "Explore Resorts World Sentosa's newest interactive rooms: Chamber of Secrets, Hall of Prophecy, and Knockturn Alley. Order a frozen Butterbeer (SGD 12).",
+          "details": {
+            "location": "Resorts World Sentosa",
+            "transport": [
+              {
+                "mode": "Grab",
+                "route": "Direct from hotel",
+                "time": "20 min",
+                "cost": "SGD 18",
+                "recommended": true
+              },
+              {
+                "mode": "MRT",
+                "route": "Aljunied → HarbourFront + Sentosa Express",
+                "time": "45 min",
+                "cost": "SGD 16"
+              }
+            ],
+            "tickets": [
+              {
+                "type": "Admission Tickets",
+                "price": "Adult SGD 49, Child SGD 39 (Book online)"
+              }
+            ],
+            "highlights": [
+              {
+                "name": "Chamber of Secrets",
+                "benefit": "Parseltongue audio interactions"
+              },
+              {
+                "name": "Hall of Prophecy",
+                "benefit": "Mirror room with glowing orbs"
+              },
+              {
+                "name": "Butterbeer Tavern",
+                "benefit": "Famous wizarding drinks (SGD 12)"
+              }
+            ],
+            "must_do": "Try the frozen Butterbeer – it is sweet, non-alcoholic, and kids love it."
+          }
+        },
+        {
+          "type": "activity",
+          "time": "12:00 PM",
+          "title": "Universal Studios Singapore",
+          "description": "Ride Transformers 3D, Jurassic Park Rapids, and Revenge of the Mummy. Catch the WaterWorld stunt show. Family ticket: SGD 328.",
+          "details": {
+            "location": "Sentosa (Resorts World)",
+            "tickets": [
+              {
+                "type": "Family Entry (2+2)",
+                "price": "SGD 328"
+              }
+            ],
+            "rides": [
+              {
+                "name": "Transformers 3D",
+                "min_height": "102 cm",
+                "thrill": "⭐⭐⭐ (Best for 15 yo)"
+              },
+              {
+                "name": "Revenge of the Mummy",
+                "min_height": "122 cm",
+                "thrill": "⭐⭐⭐⭐ (Teens / Parents)"
+              },
+              {
+                "name": "Jurassic Park Rapids",
+                "min_height": "107 cm",
+                "thrill": "⭐⭐⭐ (Expect to get wet)"
+              },
+              {
+                "name": "Puss in Boots Coaster",
+                "min_height": "92 cm",
+                "thrill": "⭐ (Kids 8 yo favorite)"
+              }
+            ],
+            "must_do": "Pack light ponchos for Jurassic Park Rapids - buying them inside is SGD 5 each."
+          }
+        },
+        {
+          "type": "activity",
+          "time": "05:00 PM",
+          "title": "Madame Tussauds & Marvel 4D",
+          "description": "Enjoy the Spirit of Singapore boat ride, Bollywood wax figures, and the special Marvel 4D Cinema experience with water/wind effects.",
+          "details": {
+            "location": "Imbiah Lookout, Sentosa (5 min walk from USS)",
+            "tickets": [
+              {
+                "type": "Family Combo (Marvel 4D + Boat)",
+                "price": "SGD 120"
+              }
+            ],
+            "highlights": [
+              {
+                "name": "Marvel 4D Cinema",
+                "benefit": "15 min show with custom wind, water, and shake effects"
+              },
+              {
+                "name": "Spirit of Singapore Boat",
+                "benefit": "Scenic indoor boat cruise showing history"
+              },
+              {
+                "name": "Bollywood / Hollywood Zone",
+                "benefit": "Wax figures of Shah Rukh Khan & Taylor Swift"
+              }
+            ]
+          }
+        },
+        {
+          "type": "dining",
+          "time": "07:00 PM",
+          "title": "Dinner at Malaysian Food Street",
+          "description": "Enjoy hawker food at Resorts World (SGD 40 family cost) or waterfront dining at VivoCity Food Republic after taking the monorail back.",
+          "details": {
+            "location": "Resorts World Sentosa / VivoCity",
+            "options": [
+              {
+                "name": "Malaysian Food Street",
+                "cuisine": "Hawker style",
+                "dish": "Claypot chicken, Hokkien mee",
+                "cost": "SGD 40 family"
+              },
+              {
+                "name": "Din Tai Fung Sentosa",
+                "cuisine": "Dumplings",
+                "dish": "Xiao Long Bao",
+                "cost": "SGD 60"
+              },
+              {
+                "name": "VivoCity Food Republic",
+                "cuisine": "Hawker mall",
+                "dish": "Chicken Rice, Char Kway Teow",
+                "cost": "SGD 45 family"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "title": "Day 7: Premium Shopping & River Cruise",
+      "description": "Shop at IMM outlet malls, explore Orchard Road, and enjoy a scenic river boat cruise.",
+      "blocks": [
+        {
+          "type": "activity",
+          "time": "10:00 AM",
+          "title": "Orchard Road Mall Shopping",
+          "description": "Explore ION Orchard, Ngee Ann City, and Paragon. Get a free bird's-eye view of Singapore from ION Sky on the 56th floor.",
+          "details": {
+            "address": "Orchard Road, Singapore",
+            "transport": [
+              {
+                "mode": "MRT",
+                "route": "Aljunied → City Hall → Orchard",
+                "time": "20 min",
+                "cost": "SGD 6",
+                "recommended": true
+              },
+              {
+                "mode": "Grab",
+                "route": "Direct",
+                "time": "15 min",
+                "cost": "SGD 14"
+              }
+            ],
+            "malls": [
+              {
+                "name": "ION Orchard",
+                "best_for": "Luxury shopping, ION Sky observatory"
+              },
+              {
+                "name": "Ngee Ann City",
+                "best_for": "Kinokuniya books, Takashimaya store"
+              },
+              {
+                "name": "Paragon",
+                "best_for": "Kids designer brands, Toys 'R' Us"
+              }
+            ],
+            "must_do": "ION Sky observation deck (56th floor) is FREE and provides panoramic city views. Kid friendly."
+          }
+        },
+        {
+          "type": "activity",
+          "time": "01:00 PM",
+          "title": "IMM Outlet Mall Deals",
+          "description": "Shop real discounts of 30-70% at Nike, Adidas, Skechers, and Puma outlets. Have lunch at the IMM food court (approx SGD 40 for family).",
+          "details": {
+            "address": "Jurong East Street 21, Singapore",
+            "transport": [
+              {
+                "mode": "MRT",
+                "route": "Orchard → Jurong East",
+                "time": "35 min",
+                "cost": "SGD 8"
+              },
+              {
+                "mode": "Grab",
+                "route": "Direct",
+                "time": "20 min",
+                "cost": "SGD 20",
+                "recommended": true
+              }
+            ],
+            "discounts": [
+              {
+                "store": "Nike Outlet",
+                "off": "30-70% (Shoes SGD 40-80)"
+              },
+              {
+                "store": "Adidas / Puma",
+                "off": "40-60% (Apparel & kids sizes)"
+              },
+              {
+                "store": "Skechers Outlet",
+                "off": "Buy 1 Get 1 50% off (Great for kids)"
+              }
+            ],
+            "must_do": "Allow at least 2 hours to walk the outlet floors. Quick lunch at Level 3 Food Court (SGD 40)."
+          }
+        },
+        {
+          "type": "activity",
+          "time": "05:00 PM",
+          "title": "Singapore River Cruise",
+          "description": "Board a traditional bumboat at Clarke Quay jetty for a 40-minute sunset cruise. See Marina Bay Sands, Fullerton Hotel, and Boat Quay (SGD 70 family).",
+          "details": {
+            "boarding_point": "Clarke Quay Jetty (opposite Hooters)",
+            "transport": [
+              {
+                "mode": "Grab",
+                "route": "IMM → Clarke Quay",
+                "time": "20 min",
+                "cost": "SGD 16",
+                "recommended": true
+              },
+              {
+                "mode": "MRT",
+                "route": "Jurong East → Clarke Quay",
+                "time": "30 min",
+                "cost": "SGD 8"
+              }
+            ],
+            "pricing": [
+              {
+                "type": "Family ticket",
+                "cost": "SGD 70 (40 mins duration)"
+              }
+            ],
+            "must_do": "The sunset cruise at 6:30 PM offers beautiful lighting as MBS and skyline start to light up."
+          }
+        },
+        {
+          "type": "dining",
+          "time": "07:00 PM",
+          "title": "Waterfront Dinner at Clarke Quay",
+          "description": "Dine waterfront at Jumbo Seafood for local Chili Crab (SGD 80) or Song Fa Bak Kut Teh pork rib soup. Enjoy Clarke Quay's evening lights.",
+          "details": {
+            "location": "Clarke Quay Waterfront",
+            "options": [
+              {
+                "name": "Jumbo Seafood",
+                "dish": "Chili Crab (approx SGD 80)",
+                "kids": "Messy but delicious"
+              },
+              {
+                "name": "Song Fa Bak Kut Teh",
+                "dish": "Pork Rib Soup (approx SGD 15)",
+                "kids": "✅ Kids love the peppery soup"
+              },
+              {
+                "name": "Din Tai Fung",
+                "dish": "Fried Rice & Wontons (approx SGD 18)",
+                "kids": "✅ Very kid friendly"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "day": 8,
+      "title": "Day 8: Jewel Changi & Departure",
+      "description": "Visit Changi Airport early to tour the indoor waterfall, canopy park, and Pokemon Centre before departure.",
+      "blocks": [
+        {
+          "type": "activity",
+          "time": "11:15 AM",
+          "title": "Jewel Changi Rain Vortex & Canopy Park",
+          "description": "Check in luggage, then visit the 40m tall Rain Vortex indoor waterfall. Head to Canopy Park on Level 5 for slides and walking nets.",
+          "details": {
+            "location": "Jewel Changi Airport (T1 access)",
+            "transport": [
+              {
+                "mode": "Grab Taxi",
+                "time": "20 min",
+                "cost": "SGD 18",
+                "recommended": true
+              },
+              {
+                "mode": "MRT",
+                "time": "40 min",
+                "cost": "SGD 8"
+              }
+            ],
+            "highlights": [
+              {
+                "name": "Rain Vortex",
+                "benefit": "40m indoor waterfall (FREE)",
+                "time": "11:15 AM"
+              },
+              {
+                "name": "Canopy Park (Level 5)",
+                "benefit": "Slides, bouncing nets, glass bridge",
+                "time": "12:30 PM (SGD 20/adult, SGD 15/child)"
+              }
+            ]
+          }
+        },
+        {
+          "type": "dining",
+          "time": "12:00 PM",
+          "title": "Lunch & Pokemon Centre Changi",
+          "description": "Visit the official Pokemon Centre. Have lunch at Jewel: Shake Shack, A&W (Root Beer Floats!), or Din Tai Fung. Board flight from Terminal 4 by 4:00 PM.",
+          "details": {
+            "location": "Jewel Changi & Terminal 3/4",
+            "options": [
+              {
+                "name": "Shake Shack Jewel",
+                "dish": "Shack Burgers & Fries",
+                "cost": "SGD 40 family"
+              },
+              {
+                "name": "A&W Restaurant",
+                "dish": "Coney Dogs & Root Beer Floats",
+                "cost": "SGD 30 family"
+              },
+              {
+                "name": "Din Tai Fung Jewel",
+                "dish": "Pork Chop Fried Rice",
+                "cost": "SGD 50"
+              }
+            ],
+            "must_do": "Make sure to check-in early. Terminal 4 requires boarding by 4:00 PM for the 6:55 PM departure."
+          }
+        }
+      ]
+    }
+  ],
+  "destinationGuides": {
+    "Kuala Lumpur": {
+      "hotel": "KLCC Platinum Suites",
+      "address": "Jalan Sultan Ismail, Kuala Lumpur City Centre",
+      "why_stay": [
+        "Direct skybridge connection to KLCC",
+        "Rooftop infinity pool with Twin Towers view",
+        "Family suites with kitchenette"
+      ],
+      "metro_stations": [
+        {
+          "station": "Bukit Nanas",
+          "line": "Monorail",
+          "walk": "5 mins",
+          "best_for": "Bukit Bintang, Chinatown"
+        },
+        {
+          "station": "Dang Wangi",
+          "line": "LRT Kelana Jaya",
+          "walk": "7 mins",
+          "best_for": "KLCC, Petronas, Masjid Jamek"
+        }
+      ],
+      "currency": "1 MYR ≈ ₹20",
+      "sim": "Buy at airport (RM 35 for 20GB) or use Airalo eSIM",
+      "transport_cheat_sheet": [
+        {
+          "from": "Hotel",
+          "to": "Bukit Bintang",
+          "mode": "Monorail",
+          "time": "10 min",
+          "cost": "RM 8",
+          "why": "Avoids traffic"
+        },
+        {
+          "from": "Hotel",
+          "to": "KLCC",
+          "mode": "Walk",
+          "time": "15 min",
+          "cost": "Free",
+          "why": "Park through skybridge"
+        },
+        {
+          "from": "Hotel",
+          "to": "Genting Highlands",
+          "mode": "Grab",
+          "time": "45 min",
+          "cost": "RM 30",
+          "why": "Direct & cheaper than 4 MRT tickets"
+        },
+        {
+          "from": "Bukit Bintang",
+          "to": "Chinatown",
+          "mode": "MRT",
+          "time": "10 min",
+          "cost": "RM 8",
+          "why": "Easy transfer at Pasar Seni"
+        }
+      ]
+    },
+    "Singapore": {
+      "hotel": "ibis budget Singapore Crystal",
+      "address": "20 Lorong 18 Geylang, Singapore",
+      "why_stay": [
+        "Budget-friendly (SGD 120/night family room)",
+        "Aljunied MRT 8 min walk (covered path)",
+        "24-hour kopitiam (coffee shop) downstairs"
+      ],
+      "metro_stations": [
+        {
+          "station": "Aljunied MRT",
+          "line": "East-West Line (Green)",
+          "walk": "8 mins",
+          "best_for": "10 min to Bugis, 15 min to Raffles Place"
+        }
+      ],
+      "currency": "1 SGD ≈ ₹65",
+      "sim": "EZ-Link (SGD 10) or SimplyGo with credit card",
+      "transport_cheat_sheet": [
+        {
+          "from": "Aljunied",
+          "to": "Raffles Place (Merlion)",
+          "mode": "East-West",
+          "time": "20 min",
+          "cost": "SGD 6",
+          "why": "No transfer"
+        },
+        {
+          "from": "Aljunied",
+          "to": "Bugis (Arab Street)",
+          "mode": "East-West",
+          "time": "10 min",
+          "cost": "SGD 4",
+          "why": "No transfer"
+        },
+        {
+          "from": "Aljunied",
+          "to": "HarbourFront (Sentosa)",
+          "mode": "East-West → North-East",
+          "time": "25 min",
+          "cost": "SGD 8",
+          "why": "1 transfer at Outram"
+        },
+        {
+          "from": "Aljunied",
+          "to": "Orchard",
+          "mode": "East-West → North-South",
+          "time": "20 min",
+          "cost": "SGD 6",
+          "why": "1 transfer at City Hall"
+        },
+        {
+          "from": "Aljunied",
+          "to": "Changi Airport",
+          "mode": "East-West",
+          "time": "40 min",
+          "cost": "SGD 8",
+          "why": "Change at Tanah Merah"
+        }
+      ]
+    }
+  }
+}
