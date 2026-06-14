@@ -57,6 +57,22 @@
       <nav class="flex items-center gap-8">
         <a class="font-semibold text-sm hover:text-secondary-container transition-colors text-secondary-container" href="/dashboard">Dashboard</a>
         <a class="font-semibold text-sm hover:text-secondary-container transition-colors text-slate-300" href="/trip">My Trip</a>
+        
+        <!-- Notifications Bell -->
+        <div class="relative" id="notifications-dropdown-container">
+          <button id="btn-notifications" class="material-symbols-outlined p-2 hover:bg-slate-800 rounded-full transition-colors text-slate-300 relative flex items-center justify-center">
+            mail
+            <span id="unread-badge" class="hidden absolute top-0 right-0 bg-red-500 text-white text-[9px] font-bold px-1 rounded-full">0</span>
+          </button>
+          <!-- Dropdown Menu -->
+          <div id="notifications-menu" class="hidden absolute right-0 mt-2 w-80 bg-white border border-outline-variant rounded-2xl shadow-xl z-50 p-4 space-y-3 text-left">
+            <h4 class="font-display text-sm font-bold text-primary border-b border-outline-variant/40 pb-2">Travel Concierge Updates</h4>
+            <div id="notifications-list" class="max-h-60 overflow-y-auto space-y-3 text-xs">
+              <p class="text-on-surface-variant italic text-center py-4">No new message updates from concierge.</p>
+            </div>
+          </div>
+        </div>
+
         <a class="font-semibold text-sm hover:text-secondary-container transition-colors text-slate-300" href="/logout">Logout</a>
       </nav>
     </div>
@@ -129,7 +145,63 @@
         console.error("Failed to load profile", err);
       }
     }
+
+    // Fetch message updates / replies from concierge
+    async function checkNotifications() {
+      try {
+        const res = await fetch('/api/comments/replies');
+        if (res.ok) {
+          const comments = await res.json();
+          const listEl = document.getElementById('notifications-list');
+          const badgeEl = document.getElementById('unread-badge');
+          
+          if (comments && comments.length > 0) {
+            badgeEl.textContent = comments.length;
+            badgeEl.classList.remove('hidden');
+            
+            listEl.innerHTML = comments.map(c => {
+              const commentDate = new Date(c.created_at).toLocaleDateString(undefined, {month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'});
+              const blockTitle = c.block_title || c.blockTitle || '';
+              return `
+                <a href="/trip?day=${c.day}&highlight=${encodeURIComponent(blockTitle)}" class="block p-2 rounded-xl hover:bg-slate-50 border border-slate-100 transition-colors">
+                  <div class="flex justify-between font-semibold text-primary mb-1">
+                    <span>Day ${c.day} - ${blockTitle}</span>
+                    <span class="text-[10px] text-on-surface-variant font-normal">${commentDate}</span>
+                  </div>
+                  <p class="text-on-surface-variant line-clamp-2 italic">"${c.comment}"</p>
+                  <span class="text-[10px] text-secondary font-bold mt-1 block">- ${c.name || c.username} (Travel Expert)</span>
+                </a>
+              `;
+            }).join('');
+          } else {
+            badgeEl.classList.add('hidden');
+            listEl.innerHTML = '<p class="text-on-surface-variant italic text-center py-4">No new message updates from concierge.</p>';
+          }
+        }
+      } catch (err) {
+        console.error("Notifications fetch error:", err);
+      }
+    }
+
+    // Dropdown toggle logic
+    const btnNotif = document.getElementById('btn-notifications');
+    const menuNotif = document.getElementById('notifications-menu');
+    
+    if (btnNotif && menuNotif) {
+      btnNotif.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menuNotif.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!menuNotif.classList.contains('hidden') && !menuNotif.contains(e.target) && e.target !== btnNotif) {
+          menuNotif.classList.add('hidden');
+        }
+      });
+    }
+
     loadProfile();
+    checkNotifications();
   </script>
 </body>
 

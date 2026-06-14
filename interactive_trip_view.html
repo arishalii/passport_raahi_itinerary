@@ -140,6 +140,16 @@
       background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(10px);
     }
+    @keyframes highlightPulse {
+      0% { box-shadow: 0 0 0 0px rgba(197, 155, 39, 0.5); border-color: rgba(197, 155, 39, 1); }
+      50% { box-shadow: 0 0 0 12px rgba(197, 155, 39, 0.25); border-color: rgba(197, 155, 39, 1); }
+      100% { box-shadow: 0 0 0 0px rgba(197, 155, 39, 0); border-color: rgba(197, 155, 39, 0.1); }
+    }
+    .highlight-pulse {
+      animation: highlightPulse 2s ease-in-out 3;
+      border-width: 2px !important;
+      z-index: 10;
+    }
   </style>
   <style>
     body {
@@ -166,6 +176,22 @@
         <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors"
           href="/">Dashboard</a>
         <a class="font-label-md text-label-md text-primary font-bold" href="/trip">Trip</a>
+
+        <!-- Notifications Bell -->
+        <div class="relative" id="notifications-dropdown-container">
+          <button id="btn-notifications" class="material-symbols-outlined p-2 hover:bg-surface-container-high rounded-full transition-colors text-on-surface-variant relative flex items-center justify-center">
+            mail
+            <span id="unread-badge" class="hidden absolute top-1 right-1 bg-error text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full">0</span>
+          </button>
+          <!-- Dropdown Menu -->
+          <div id="notifications-menu" class="hidden absolute right-0 mt-2 w-80 bg-white border border-outline-variant rounded-2xl shadow-xl z-50 p-4 space-y-3 text-left">
+            <h4 class="font-display-lg text-sm font-bold text-primary border-b border-outline-variant/40 pb-2">Travel Concierge Updates</h4>
+            <div id="notifications-list" class="max-h-60 overflow-y-auto space-y-3 text-xs">
+              <p class="text-on-surface-variant italic text-center py-4">No new message updates from concierge.</p>
+            </div>
+          </div>
+        </div>
+
         <a class="font-label-md text-label-md text-on-surface-variant hover:text-error transition-colors ml-4"
           href="/logout">Logout</a>
       </nav>
@@ -355,6 +381,54 @@
       
       renderItinerary(itineraryArray);
       renderDestinationGuides(destinationGuides);
+      checkAndHighlightCommentBlock();
+    }
+
+    function checkAndHighlightCommentBlock() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const day = urlParams.get('day');
+      const highlightTitle = urlParams.get('highlight');
+      
+      if (!day || !highlightTitle) return;
+      
+      const dayNum = parseInt(day);
+      
+      // 1. Switch to correct day tab
+      switchDay(dayNum);
+      
+      // 2. Find the index of the block with highlightTitle on the screen
+      const dayData = window.activeItinerary.find(d => d.day === dayNum);
+      if (!dayData) return;
+      
+      const blockIdx = dayData.blocks.findIndex(b => b.title.trim() === highlightTitle.trim());
+      if (blockIdx === -1) return;
+      
+      // 3. Highlight and scroll the event card
+      setTimeout(() => {
+        const dayContent = document.getElementById(`day-content-${dayNum}`);
+        if (dayContent) {
+          const cards = dayContent.querySelectorAll('.luxury-card');
+          let targetCard = null;
+          cards.forEach(card => {
+            const h4 = card.querySelector('h4.font-headline-sm');
+            if (h4 && h4.innerText.trim() === highlightTitle.trim()) {
+              targetCard = card;
+            }
+          });
+          
+          if (targetCard) {
+            targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            targetCard.classList.add('highlight-pulse');
+            
+            // 4. Open the event detail drawer containing comments
+            showEventDetail(dayNum, blockIdx);
+            
+            setTimeout(() => {
+              targetCard.classList.remove('highlight-pulse');
+            }, 6000);
+          }
+        }
+      }, 300);
     }
 
     function renderDestinationGuides(guides) {
@@ -950,9 +1024,76 @@
       }
     }
 
+    // Fetch concierge updates
+    async function checkNotifications() {
+      try {
+        const res = await fetch('/api/comments/replies');
+        if (res.ok) {
+          const comments = await res.json();
+          const listEl = document.getElementById('notifications-list');
+          const badgeEl = document.getElementById('unread-badge');
+          
+          if (comments && comments.length > 0) {
+            badgeEl.textContent = comments.length;
+            badgeEl.classList.remove('hidden');
+            
+            listEl.innerHTML = comments.map(c => {
+              const commentDate = new Date(c.created_at).toLocaleDateString(undefined, {month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'});
+              const blockTitle = c.block_title || c.blockTitle || '';
+              return `
+                <a href="/trip?day=${c.day}&highlight=${encodeURIComponent(blockTitle)}" 
+                   onclick="handleNotificationClick(event, ${c.day}, '${blockTitle.replace(/'/g, "\\'")}')"
+                   class="block p-2 rounded-xl hover:bg-slate-50 border border-slate-100 transition-colors">
+                  <div class="flex justify-between font-semibold text-primary mb-1">
+                    <span>Day ${c.day} - ${blockTitle}</span>
+                    <span class="text-[10px] text-on-surface-variant font-normal">${commentDate}</span>
+                  </div>
+                  <p class="text-on-surface-variant line-clamp-2 italic">"${c.comment}"</p>
+                  <span class="text-[10px] text-secondary font-bold mt-1 block">- ${c.name || c.username} (Travel Expert)</span>
+                </a>
+              `;
+            }).join('');
+          } else {
+            badgeEl.classList.add('hidden');
+            listEl.innerHTML = '<p class="text-on-surface-variant italic text-center py-4">No new message updates.</p>';
+          }
+        }
+      } catch (err) {
+        console.error("Notifications fetch error:", err);
+      }
+    }
+
+    // Intercept dropdown click for same-page highlighting
+    window.handleNotificationClick = function(e, day, highlightTitle) {
+      e.preventDefault();
+      const newUrl = `/trip?day=${day}&highlight=${encodeURIComponent(highlightTitle)}`;
+      window.history.pushState({ path: newUrl }, '', newUrl);
+      checkAndHighlightCommentBlock();
+      // Close dropdown
+      document.getElementById('notifications-menu')?.classList.add('hidden');
+    };
+
+    // Dropdown toggle logic
+    const btnNotif = document.getElementById('btn-notifications');
+    const menuNotif = document.getElementById('notifications-menu');
+    
+    if (btnNotif && menuNotif) {
+      btnNotif.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menuNotif.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!menuNotif.classList.contains('hidden') && !menuNotif.contains(e.target) && e.target !== btnNotif) {
+          menuNotif.classList.add('hidden');
+        }
+      });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       loadProfileAndSetupNav();
       loadItineraryFromDatabase();
+      checkNotifications();
     });
   </script>
 </body>

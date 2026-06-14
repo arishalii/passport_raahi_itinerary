@@ -240,7 +240,8 @@ module.exports = {
       try {
         const { data, error } = await supabase
           .from('comments')
-          .select('id, day, block_title, username, name, comment, created_at')
+          .select('id, day, block_title, username, name, comment, created_at, users!inner(role)')
+          .neq('users.role', 'editor')
           .order('id', { ascending: false });
         if (error) throw error;
         return data || [];
@@ -251,7 +252,11 @@ module.exports = {
     if (pool) {
       try {
         const res = await pool.query(
-          'SELECT id, day, block_title, username, name, comment, created_at FROM comments ORDER BY id DESC'
+          `SELECT c.id, c.day, c.block_title, c.username, c.name, c.comment, c.created_at 
+           FROM comments c
+           JOIN users u ON c.username = u.username
+           WHERE u.role != 'editor'
+           ORDER BY c.id DESC`
         );
         return res.rows;
       } catch (err) {
@@ -261,7 +266,49 @@ module.exports = {
     // Fallback local file
     const db = readLocalDb();
     const comments = db.comments || [];
-    return [...comments].reverse();
+    const customerComments = comments.filter(c => {
+      const user = db.users[c.username];
+      return !user || user.role !== 'editor';
+    });
+    return [...customerComments].reverse();
+  },
+
+  getEditorReplies: async () => {
+    if (supabase) {
+      try {
+        const { data, error } = await supabase
+          .from('comments')
+          .select('id, day, block_title, username, name, comment, created_at, users!inner(role)')
+          .eq('users.role', 'editor')
+          .order('id', { ascending: false });
+        if (error) throw error;
+        return data || [];
+      } catch (err) {
+        console.error("Supabase API getEditorReplies error:", err);
+      }
+    }
+    if (pool) {
+      try {
+        const res = await pool.query(
+          `SELECT c.id, c.day, c.block_title, c.username, c.name, c.comment, c.created_at 
+           FROM comments c 
+           JOIN users u ON c.username = u.username 
+           WHERE u.role = 'editor' 
+           ORDER BY c.id DESC`
+        );
+        return res.rows;
+      } catch (err) {
+        console.error("Postgres getEditorReplies error:", err);
+      }
+    }
+    // Fallback local file
+    const db = readLocalDb();
+    const comments = db.comments || [];
+    const editorReplies = comments.filter(c => {
+      const user = db.users[c.username];
+      return user && user.role === 'editor';
+    });
+    return [...editorReplies].reverse();
   },
 
   saveComment: async (day, blockTitle, username, name, comment) => {

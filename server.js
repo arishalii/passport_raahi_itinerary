@@ -138,6 +138,16 @@ app.get('/api/comments/all', requireEditor, async (req, res) => {
   }
 });
 
+app.get('/api/comments/replies', requireAuth, async (req, res) => {
+  try {
+    const replies = await db.getEditorReplies();
+    res.json(replies);
+  } catch (err) {
+    console.error("Failed to get replies:", err);
+    res.status(500).json({ error: 'Failed to retrieve replies' });
+  }
+});
+
 app.post('/api/comments', requireAuth, async (req, res) => {
   try {
     const { day, blockTitle, comment } = req.body;
