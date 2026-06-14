@@ -91,14 +91,19 @@ module.exports = {
       try {
         const { data: check, error: checkErr } = await supabase
           .from('itineraries')
-          .select('id')
+          .select('id, data')
           .limit(1);
         if (checkErr) throw checkErr;
 
         if (check && check.length > 0) {
+          let finalData = itinerary;
+          const existingData = check[0].data;
+          if (existingData && typeof existingData === 'object' && !Array.isArray(existingData) && existingData.itinerary) {
+            finalData = { ...existingData, itinerary: itinerary };
+          }
           const { error } = await supabase
             .from('itineraries')
-            .update({ data: itinerary, updated_at: new Date() })
+            .update({ data: finalData, updated_at: new Date() })
             .eq('id', check[0].id);
           if (error) throw error;
         } else {
@@ -115,9 +120,14 @@ module.exports = {
     // B. Use direct Postgres pool
     if (pool) {
       try {
-        const check = await pool.query('SELECT id FROM itineraries LIMIT 1');
+        const check = await pool.query('SELECT id, data FROM itineraries LIMIT 1');
         if (check.rows.length > 0) {
-          await pool.query('UPDATE itineraries SET data = $1, updated_at = NOW() WHERE id = $2', [JSON.stringify(itinerary), check.rows[0].id]);
+          let finalData = itinerary;
+          const existingData = check.rows[0].data;
+          if (existingData && typeof existingData === 'object' && !Array.isArray(existingData) && existingData.itinerary) {
+            finalData = { ...existingData, itinerary: itinerary };
+          }
+          await pool.query('UPDATE itineraries SET data = $1, updated_at = NOW() WHERE id = $2', [JSON.stringify(finalData), check.rows[0].id]);
         } else {
           await pool.query('INSERT INTO itineraries (title, data) VALUES ($1, $2)', ['Kuala Lumpur Family Escape', JSON.stringify(itinerary)]);
         }

@@ -493,8 +493,14 @@
             window.location.href = '/login';
             return;
           }
-          const itinerary = await response.json();
-          renderItinerary(itinerary);
+          const data = await response.json();
+          let itineraryArray = [];
+          if (Array.isArray(data)) {
+            itineraryArray = data;
+          } else if (data && data.itinerary) {
+            itineraryArray = data.itinerary;
+          }
+          renderItinerary(itineraryArray);
           checkAndHighlightCommentBlock();
         }
 
