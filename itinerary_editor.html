@@ -110,6 +110,16 @@
         .timeline-line { width: 2px; background: #0b1c30; }
         .gold-accent { border-top: 2px solid #fea619; }
         .transition-soft { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        @keyframes highlightPulse {
+          0% { box-shadow: 0 0 0 0px rgba(197, 155, 39, 0.5); border-color: rgba(197, 155, 39, 1); }
+          50% { box-shadow: 0 0 0 12px rgba(197, 155, 39, 0.25); border-color: rgba(197, 155, 39, 1); }
+          100% { box-shadow: 0 0 0 0px rgba(197, 155, 39, 0); border-color: rgba(197, 155, 39, 0.1); }
+        }
+        .highlight-pulse {
+          animation: highlightPulse 2s ease-in-out 3;
+          border-width: 2px !important;
+          z-index: 10;
+        }
     </style>
 <style>
     body {
@@ -129,7 +139,6 @@
   <a class="font-label-md text-label-md text-primary dark:text-primary-fixed font-bold" href="/editor">Editor</a>
   <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary dark:text-on-primary-container dark:hover:text-white transition-colors" href="/">Dashboard</a>
   <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary dark:text-on-primary-container dark:hover:text-white transition-colors" href="/trip">Trip</a>
-  <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary dark:text-on-primary-container dark:hover:text-white transition-colors" href="/contact">Contact</a>
   <a class="font-label-md text-label-md text-on-surface-variant hover:text-error transition-colors ml-4" href="/logout">Logout</a>
 </nav>
 </div>
@@ -486,6 +495,67 @@
           }
           const itinerary = await response.json();
           renderItinerary(itinerary);
+          checkAndHighlightCommentBlock();
+        }
+
+        function checkAndHighlightCommentBlock() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const day = urlParams.get('day');
+          const highlightTitle = urlParams.get('highlight');
+          
+          if (!day || !highlightTitle) return;
+          
+          // 1. Find the day section and expand it if it's hidden
+          const daySecs = document.querySelectorAll('.day-section');
+          let targetDaySec = null;
+          daySecs.forEach(sec => {
+            const numEl = sec.querySelector('.w-12.h-12');
+            if (numEl && parseInt(numEl.innerText) === parseInt(day)) {
+              targetDaySec = sec;
+            }
+          });
+          
+          if (targetDaySec) {
+            const container = targetDaySec.querySelector('.day-blocks-container');
+            if (container && container.classList.contains('hidden')) {
+              const header = targetDaySec.querySelector('.cursor-pointer');
+              if (header) {
+                toggleDaySection(header);
+              }
+            }
+            
+            // 2. Find the card and highlight/scroll it
+            setTimeout(() => {
+              const cards = targetDaySec.querySelectorAll('.luxury-card');
+              let targetCard = null;
+              cards.forEach(card => {
+                const titleEl = card.querySelector('h4.font-headline-sm');
+                if (titleEl && titleEl.innerText.trim() === highlightTitle.trim()) {
+                  targetCard = card;
+                }
+              });
+              
+              if (targetCard) {
+                // Scroll into view
+                targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Add class for pulse animation
+                targetCard.classList.add('highlight-pulse');
+                
+                // Expand the details accordion
+                const details = targetCard.querySelector('details');
+                if (details) {
+                  details.open = true;
+                  details.dispatchEvent(new Event('toggle', { bubbles: true }));
+                }
+                
+                // Clean up highlight pulse class after 6 seconds
+                setTimeout(() => {
+                  targetCard.classList.remove('highlight-pulse');
+                }, 6000);
+              }
+            }, 300);
+          }
         }
 
         function renderItinerary(itinerary) {

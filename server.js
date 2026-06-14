@@ -128,6 +128,16 @@ app.get('/api/comments', requireAuth, async (req, res) => {
   }
 });
 
+app.get('/api/comments/all', requireEditor, async (req, res) => {
+  try {
+    const comments = await db.getAllComments();
+    res.json(comments);
+  } catch (err) {
+    console.error("Failed to get all comments:", err);
+    res.status(500).json({ error: 'Failed to retrieve all comments' });
+  }
+});
+
 app.post('/api/comments', requireAuth, async (req, res) => {
   try {
     const { day, blockTitle, comment } = req.body;

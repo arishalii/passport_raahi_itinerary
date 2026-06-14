@@ -235,6 +235,35 @@ module.exports = {
     return comments.filter(c => c.day === parseInt(day) && c.blockTitle === blockTitle);
   },
 
+  getAllComments: async () => {
+    if (supabase) {
+      try {
+        const { data, error } = await supabase
+          .from('comments')
+          .select('id, day, block_title, username, name, comment, created_at')
+          .order('id', { ascending: false });
+        if (error) throw error;
+        return data || [];
+      } catch (err) {
+        console.error("Supabase API getAllComments error:", err);
+      }
+    }
+    if (pool) {
+      try {
+        const res = await pool.query(
+          'SELECT id, day, block_title, username, name, comment, created_at FROM comments ORDER BY id DESC'
+        );
+        return res.rows;
+      } catch (err) {
+        console.error("Supabase direct SQL getAllComments error:", err);
+      }
+    }
+    // Fallback local file
+    const db = readLocalDb();
+    const comments = db.comments || [];
+    return [...comments].reverse();
+  },
+
   saveComment: async (day, blockTitle, username, name, comment) => {
     if (supabase) {
       try {

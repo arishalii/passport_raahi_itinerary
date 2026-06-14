@@ -147,18 +147,32 @@
       <a class="font-label-md text-label-md text-primary font-bold" href="/">Dashboard</a>
       <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors"
         href="/trip">Trip</a>
-      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors"
-        href="/contact">Contact</a>
       <a class="font-label-md text-label-md text-on-surface-variant hover:text-error transition-colors ml-4"
         href="/logout">Logout</a>
     </nav>
     <div class="flex items-center gap-4">
       <button
         class="material-symbols-outlined p-2 hover:bg-surface-container-high rounded-full transition-colors text-on-surface-variant">search</button>
+      
+      <!-- Notifications Bell -->
+      <div class="relative" id="notifications-dropdown-container">
+        <button id="btn-notifications" class="material-symbols-outlined p-2 hover:bg-surface-container-high rounded-full transition-colors text-on-surface-variant relative">
+          mail
+          <span id="unread-badge" class="hidden absolute -top-1 -right-1 bg-error text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full">0</span>
+        </button>
+        <!-- Dropdown Menu -->
+        <div id="notifications-menu" class="hidden absolute right-0 mt-2 w-80 bg-white border border-outline-variant rounded-2xl shadow-xl z-50 p-4 space-y-3">
+          <h4 class="font-display-lg text-sm font-bold text-primary border-b border-outline-variant/40 pb-2">Recent Customer Feedback</h4>
+          <div id="notifications-list" class="max-h-60 overflow-y-auto space-y-3 text-xs">
+            <p class="text-on-surface-variant italic">No new feedback comments received.</p>
+          </div>
+        </div>
+      </div>
+
       <div class="w-10 h-10 rounded-full border-2 border-secondary-container p-0.5 overflow-hidden">
         <img alt="User Profile" class="w-full h-full object-cover rounded-full"
           data-alt="A professional headshot of a stylish traveler in their late 30s, featuring soft studio lighting and a clean background. The individual is wearing a sophisticated linen shirt, reflecting a luxury travel lifestyle. The overall mood is approachable, refined, and consistent with a premium concierge service aesthetic. High-quality resolution with natural skin tones and a warm, inviting atmosphere."
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYfyFl8LHmiFN1VZ5o8uFks39QlxZ5wobhmJmEuYqLj8OQ9JGMQZpnbT1-kE58HwtOSW9dRReblsdWfmT-c9KOKy9V9_RVr7o--qmKi2_-sQpShZFHNPMfrVtqAIteCLCAFyiUV_YQZXDtpjX2o8x2UI-SkMq5sX1dpwxIXUHzSTTnRGo-l98DBRWUlTda5A8I5uTRLQdlTCI4A2PybDj-0sQzuulDxbwszGEHDtE8Ka7-0RAqezsknQ" />
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBfyFl8LHmiFN1VZ5o8uFks39QlxZ5wobhmJmEuYqLj8OQ9JGMQZpnbT1-kE58HwtOSW9dRReblsdWfmT-c9KOKy9V9_RVr7o--qmKi2_-sQpShZFHNPMfrVtqAIteCLCAFyiUV_YQZXDtpjX2o8x2UI-SkMq5sX1dpwxIXUHzSTTnRGo-l98DBRWUlTda5A8I5uTRLQdlTCI4A2PybDj-0sQzuulDxbwszGEHDtE8Ka7-0RAqezsknQ" />
       </div>
     </div>
   </header>
@@ -339,11 +353,13 @@
     </div>
     <div class="flex gap-8">
       <a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors"
-        href="#">Privacy Policy</a>
+        href="/privacy">Privacy Policy</a>
       <a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors"
-        href="#">Terms of Service</a>
+        href="/terms">Terms of Service</a>
       <a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors"
-        href="#">Support</a>
+        href="/contact">Contact</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors"
+        href="/support">Support</a>
     </div>
   </footer>
   <!-- Micro-interactions Script -->
@@ -369,6 +385,59 @@
         card.addEventListener('mouseleave', () => {
           card.style.transform = 'translateY(0)';
         });
+      });
+
+      // Fetch feedback notifications / comments
+      async function checkNotifications() {
+        try {
+          const res = await fetch('/api/comments/all');
+          if (res.ok) {
+            const comments = await res.json();
+            const listEl = document.getElementById('notifications-list');
+            const badgeEl = document.getElementById('unread-badge');
+            
+            if (comments && comments.length > 0) {
+              badgeEl.textContent = comments.length;
+              badgeEl.classList.remove('hidden');
+              
+              listEl.innerHTML = comments.map(c => {
+                const commentDate = new Date(c.created_at).toLocaleDateString(undefined, {month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'});
+                return `
+                  <a href="/editor?day=${c.day}&highlight=${encodeURIComponent(c.block_title)}" class="block p-2 rounded-xl hover:bg-slate-50 border border-slate-100 transition-colors">
+                    <div class="flex justify-between font-semibold text-primary mb-1">
+                      <span>Day ${c.day} - ${c.block_title}</span>
+                      <span class="text-[10px] text-on-surface-variant font-normal">${commentDate}</span>
+                    </div>
+                    <p class="text-on-surface-variant line-clamp-2 italic">"${c.comment}"</p>
+                    <span class="text-[10px] text-secondary font-bold mt-1 block">- ${c.name || c.username}</span>
+                  </a>
+                `;
+              }).join('');
+            } else {
+              badgeEl.classList.add('hidden');
+              listEl.innerHTML = '<p class="text-on-surface-variant italic text-center py-4">No feedback comments received.</p>';
+            }
+          }
+        } catch (err) {
+          console.error("Notifications fetch error:", err);
+        }
+      }
+
+      checkNotifications();
+
+      // Dropdown toggle logic
+      const btnNotif = document.getElementById('btn-notifications');
+      const menuNotif = document.getElementById('notifications-menu');
+      
+      btnNotif.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menuNotif.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!menuNotif.classList.contains('hidden') && !menuNotif.contains(e.target) && e.target !== btnNotif) {
+          menuNotif.classList.add('hidden');
+        }
       });
     });
   </script>
