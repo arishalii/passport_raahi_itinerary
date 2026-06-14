@@ -409,8 +409,8 @@
           const cards = dayContent.querySelectorAll('.luxury-card');
           let targetCard = null;
           cards.forEach(card => {
-            const h4 = card.querySelector('h4.font-headline-sm');
-            if (h4 && h4.innerText.trim() === highlightTitle.trim()) {
+            const h3 = card.querySelector('h3.font-headline-sm');
+            if (h3 && h3.innerText.trim() === highlightTitle.trim()) {
               targetCard = card;
             }
           });
