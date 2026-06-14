@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Our Team | Passport Raahi</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+  <!-- Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+  <!-- Scripts -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-container": "#0B132A",
+            "background": "#F7F5F0",
+            "primary": "#0B132A",
+            "secondary": "#C59B27",
+            "surface": "#ffffff",
+            "surface-variant": "#E5E2DA",
+            "on-surface": "#0B132A",
+            "on-surface-variant": "#5A5B63",
+            "outline-variant": "#D1CDC4",
+            "luxury-cream": "#F7F5F0",
+            "luxury-gold": "#C59B27"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "display-lg": ["Playfair Display"],
+            "body-md": ["Geist"],
+            "label-md": ["Geist"]
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    .luxury-shadow {
+      box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+    }
+    .luxury-shadow-hover:hover {
+      box-shadow: 0px 8px 30px rgba(15, 23, 42, 0.08);
+      transform: translateY(-2px);
+    }
+    .profile-img-container:hover .upload-overlay {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body class="bg-luxury-cream text-on-surface font-body-md min-h-screen flex flex-col justify-between selection:bg-luxury-gold/30">
+  <!-- TopAppBar -->
+  <header class="sticky top-0 z-50 bg-surface/80 backdrop-blur-md shadow-sm h-16 w-full flex justify-between items-center px-6 md:px-16">
+    <div class="flex items-center gap-4">
+      <span class="material-symbols-outlined text-primary cursor-pointer hover:bg-slate-100 p-2 rounded-full transition-colors">menu</span>
+      <h1 class="font-display-lg text-xl md:text-2xl text-primary tracking-tight font-bold">Passport Raahi</h1>
+    </div>
+    <div class="flex items-center gap-6">
+      <nav class="hidden md:flex gap-8 items-center">
+        <a id="nav-builder" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="/builder">Builder</a>
+        <a id="nav-editor" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="/editor">Editor</a>
+        <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="/">Dashboard</a>
+        <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="/trip">Trip</a>
+        <a class="font-label-md text-label-md text-secondary font-bold" href="/contact">Contact</a>
+        <a class="font-label-md text-label-md text-on-surface-variant hover:text-error transition-colors ml-4" href="/logout">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 py-16 flex-1 w-full">
+    <!-- Hero Header -->
+    <section class="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <span class="font-label-md text-label-md text-secondary tracking-widest uppercase mb-3 block">Bespoke Travel Curators</span>
+      <h2 class="font-display-lg text-4xl md:text-5xl text-primary font-bold mb-4">Meet Our Team</h2>
+      <p class="text-on-surface-variant max-w-xl mx-auto text-sm leading-relaxed">
+        The designers, technologists, and specialists crafting seamless luxury itineraries for your global escapes.
+      </p>
+    </section>
+
+    <!-- Team Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="team-grid">
+      <!-- Member 1: Syed Arish Ali -->
+      <div class="bg-white rounded-3xl p-8 border border-outline-variant/60 luxury-shadow luxury-shadow-hover transition-all duration-300 flex flex-col items-center text-center">
+        <div class="relative w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-luxury-cream shadow-inner profile-img-container bg-slate-100 flex items-center justify-center">
+          <img id="img-arish" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300" alt="Syed Arish Ali" class="w-full h-full object-cover hidden" />
+          <span id="placeholder-arish" class="material-symbols-outlined text-4xl text-slate-400">person</span>
+          
+          <!-- Upload Overlay -->
+          <div class="upload-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-200 flex flex-col items-center justify-center cursor-pointer text-white" onclick="triggerUpload('arish')">
+            <span class="material-symbols-outlined text-2xl">photo_camera</span>
+            <span class="text-[9px] mt-1 font-bold tracking-wider uppercase">Upload</span>
+          </div>
+          <!-- Hidden Input -->
+          <input type="file" id="file-arish" class="hidden" accept="image/*" onchange="handleFileChange(event, 'arish')" />
+        </div>
+        <h3 class="font-display-lg text-xl font-bold text-primary mb-1">Syed Arish Ali</h3>
+        <span class="text-xs font-semibold text-secondary uppercase tracking-wider mb-4">CTO [Chief Technical Officer]</span>
+        <p class="text-xs text-on-surface-variant leading-relaxed">
+          Architecting premium digital travel platforms and custom algorithms to curate hyper-personalized itineraries.
+        </p>
+      </div>
+
+      <!-- Member 2: Tayyaba Nagrmi -->
+      <div class="bg-white rounded-3xl p-8 border border-outline-variant/60 luxury-shadow luxury-shadow-hover transition-all duration-300 flex flex-col items-center text-center">
+        <div class="relative w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-luxury-cream shadow-inner profile-img-container bg-slate-100 flex items-center justify-center">
+          <img id="img-tayyaba" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300" alt="Tayyaba Nagrmi" class="w-full h-full object-cover hidden" />
+          <span id="placeholder-tayyaba" class="material-symbols-outlined text-4xl text-slate-400">person</span>
+          
+          <!-- Upload Overlay -->
+          <div class="upload-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-200 flex flex-col items-center justify-center cursor-pointer text-white" onclick="triggerUpload('tayyaba')">
+            <span class="material-symbols-outlined text-2xl">photo_camera</span>
+            <span class="text-[9px] mt-1 font-bold tracking-wider uppercase">Upload</span>
+          </div>
+          <!-- Hidden Input -->
+          <input type="file" id="file-tayyaba" class="hidden" accept="image/*" onchange="handleFileChange(event, 'tayyaba')" />
+        </div>
+        <h3 class="font-display-lg text-xl font-bold text-primary mb-1">Tayyaba Nagrmi</h3>
+        <span class="text-xs font-semibold text-secondary uppercase tracking-wider mb-4">Managing Sales Director</span>
+        <p class="text-xs text-on-surface-variant leading-relaxed">
+          Orchestrating worldwide custom operations, luxury partner connections, and premium customer service pipelines.
+        </p>
+      </div>
+
+      <!-- Member 3: Tanu Arora -->
+      <div class="bg-white rounded-3xl p-8 border border-outline-variant/60 luxury-shadow luxury-shadow-hover transition-all duration-300 flex flex-col items-center text-center">
+        <div class="relative w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-luxury-cream shadow-inner profile-img-container bg-slate-100 flex items-center justify-center">
+          <img id="img-tanu" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300" alt="Tanu Arora" class="w-full h-full object-cover hidden" />
+          <span id="placeholder-tanu" class="material-symbols-outlined text-4xl text-slate-400">person</span>
+          
+          <!-- Upload Overlay -->
+          <div class="upload-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-200 flex flex-col items-center justify-center cursor-pointer text-white" onclick="triggerUpload('tanu')">
+            <span class="material-symbols-outlined text-2xl">photo_camera</span>
+            <span class="text-[9px] mt-1 font-bold tracking-wider uppercase">Upload</span>
+          </div>
+          <!-- Hidden Input -->
+          <input type="file" id="file-tanu" class="hidden" accept="image/*" onchange="handleFileChange(event, 'tanu')" />
+        </div>
+        <h3 class="font-display-lg text-xl font-bold text-primary mb-1">Tanu Arora</h3>
+        <span class="text-xs font-semibold text-secondary uppercase tracking-wider mb-4">AVP Trip Advisor [Ex MakeMyTrip]</span>
+        <p class="text-xs text-on-surface-variant leading-relaxed">
+          Bringing years of veteran advisory expertise from MakeMyTrip to craft high-end bespoke adventures.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full py-8 px-6 md:px-16 bg-surface-variant flex flex-col md:flex-row justify-between items-center gap-4 border-t border-outline-variant/30">
+    <p class="font-label-md text-xs text-on-surface-variant">© 2024 Passport Raahi. All rights reserved.</p>
+    <div class="flex gap-6 text-xs text-on-surface-variant">
+      <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+      <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+      <a class="hover:text-primary transition-colors" href="#">Support</a>
+    </div>
+  </footer>
+
+  <script>
+    async function loadProfileAndSetupNav() {
+      try {
+        const response = await fetch('/api/profile');
+        if (response.ok) {
+          const profile = await response.json();
+          
+          // Setup menu options visibility
+          if (profile.role === 'customer') {
+            document.getElementById('nav-builder')?.classList.add('hidden');
+            document.getElementById('nav-editor')?.classList.add('hidden');
+            
+            // Hide upload capabilities for customers
+            document.querySelectorAll('.upload-overlay').forEach(overlay => {
+              overlay.classList.add('hidden');
+              overlay.parentElement.classList.remove('profile-img-container');
+            });
+          }
+        }
+      } catch (err) {
+        console.error("Failed to load profile", err);
+      }
+    }
+
+    async function loadTeamData() {
+      try {
+        const response = await fetch('/api/team');
+        if (response.ok) {
+          const team = await response.json();
+          team.forEach(member => {
+            const img = document.getElementById(`img-${member.id}`);
+            const placeholder = document.getElementById(`placeholder-${member.id}`);
+            
+            if (member.photo) {
+              img.src = member.photo;
+              img.classList.remove('hidden');
+              placeholder.classList.add('hidden');
+            } else {
+              img.classList.add('hidden');
+              placeholder.classList.remove('hidden');
+            }
+          });
+        }
+      } catch (err) {
+        console.error("Failed to load team data", err);
+      }
+    }
+
+    function triggerUpload(memberId) {
+      document.getElementById(`file-${memberId}`).click();
+    }
+
+    async function handleFileChange(event, memberId) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      // Ensure it's an image
+      if (!file.type.startsWith('image/')) {
+        alert('Please choose an image file.');
+        return;
+      }
+
+      // Convert to base64
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        const base64Data = e.target.result;
+        
+        // Show loading state locally immediately (optimistic UI)
+        const img = document.getElementById(`img-${memberId}`);
+        const placeholder = document.getElementById(`placeholder-${memberId}`);
+        img.src = base64Data;
+        img.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+
+        try {
+          const response = await fetch('/api/team/photo', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: memberId, photo: base64Data })
+          });
+          
+          if (!response.ok) {
+            throw new Error('Upload failed');
+          }
+        } catch (err) {
+          console.error(err);
+          alert('Failed to save team photo to database. Reverting image.');
+          loadTeamData(); // Reload original
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProfileAndSetupNav();
+      loadTeamData();
+    });
+  </script>
+</body>
+</html>

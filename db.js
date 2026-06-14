@@ -276,6 +276,107 @@ module.exports = {
       created_at: new Date().toISOString()
     });
     writeLocalDb(db);
+  },
+
+  getTeam: async () => {
+    const defaultTeam = [
+      { id: "arish", name: "Syed Arish Ali", role: "CTO [Chief Technical Officer]", photo: "" },
+      { id: "tayyaba", name: "Tayyaba Nagrmi", role: "Managing Sales Director", photo: "" },
+      { id: "tanu", name: "Tanu Arora", role: "AVP Trip Advisor [Ex MakeMyTrip]", photo: "" }
+    ];
+
+    if (supabase) {
+      try {
+        const { data, error } = await supabase
+          .from('team')
+          .select('id, name, role, photo');
+        if (error) throw error;
+        if (data && data.length > 0) return data;
+      } catch (err) {
+        console.error("Supabase getTeam error, returning default:", err);
+      }
+    }
+    if (pool) {
+      try {
+        const res = await pool.query('SELECT id, name, role, photo FROM team');
+        if (res.rows.length > 0) return res.rows;
+      } catch (err) {
+        console.error("Postgres getTeam error, returning default:", err);
+      }
+    }
+    // Local fallback
+    const db = readLocalDb();
+    if (db.team && db.team.length > 0) return db.team;
+    return defaultTeam;
+  },
+
+  saveTeamPhoto: async (id, photo) => {
+    if (supabase) {
+      try {
+        const { data, error: checkErr } = await supabase
+          .from('team')
+          .select('id')
+          .eq('id', id);
+        if (checkErr) throw checkErr;
+        
+        if (data && data.length > 0) {
+          const { error } = await supabase
+            .from('team')
+            .update({ photo })
+            .eq('id', id);
+          if (error) throw error;
+        } else {
+          const defaults = {
+            arish: { name: "Syed Arish Ali", role: "CTO [Chief Technical Officer]" },
+            tayyaba: { name: "Tayyaba Nagrmi", role: "Managing Sales Director" },
+            tanu: { name: "Tanu Arora", role: "AVP Trip Advisor [Ex MakeMyTrip]" }
+          };
+          const info = defaults[id] || { name: "Team Member", role: "Specialist" };
+          const { error } = await supabase
+            .from('team')
+            .insert({ id, name: info.name, role: info.role, photo });
+          if (error) throw error;
+        }
+        return;
+      } catch (err) {
+        console.error("Supabase saveTeamPhoto error:", err);
+      }
+    }
+    if (pool) {
+      try {
+        const res = await pool.query('SELECT id FROM team WHERE id = $1', [id]);
+        if (res.rows.length > 0) {
+          await pool.query('UPDATE team SET photo = $2 WHERE id = $1', [id, photo]);
+        } else {
+          const defaults = {
+            arish: { name: "Syed Arish Ali", role: "CTO [Chief Technical Officer]" },
+            tayyaba: { name: "Tayyaba Nagrmi", role: "Managing Sales Director" },
+            tanu: { name: "Tanu Arora", role: "AVP Trip Advisor [Ex MakeMyTrip]" }
+          };
+          const info = defaults[id] || { name: "Team Member", role: "Specialist" };
+          await pool.query('INSERT INTO team (id, name, role, photo) VALUES ($1, $2, $3, $4)', [id, info.name, info.role, photo]);
+        }
+        return;
+      } catch (err) {
+        console.error("Postgres saveTeamPhoto error:", err);
+      }
+    }
+    // Local fallback
+    const db = readLocalDb();
+    if (!db.team) {
+      db.team = [
+        { id: "arish", name: "Syed Arish Ali", role: "CTO [Chief Technical Officer]", photo: "" },
+        { id: "tayyaba", name: "Tayyaba Nagrmi", role: "Managing Sales Director", photo: "" },
+        { id: "tanu", name: "Tanu Arora", role: "AVP Trip Advisor [Ex MakeMyTrip]", photo: "" }
+      ];
+    }
+    const member = db.team.find(m => m.id === id);
+    if (member) {
+      member.photo = photo;
+    } else {
+      db.team.push({ id, name: "Team Member", role: "Specialist", photo });
+    }
+    writeLocalDb(db);
   }
 };
 

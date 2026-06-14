@@ -142,6 +142,28 @@ app.post('/api/comments', requireAuth, async (req, res) => {
   }
 });
 
+app.get('/api/team', requireAuth, async (req, res) => {
+  try {
+    const team = await db.getTeam();
+    res.json(team);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to retrieve team members' });
+  }
+});
+
+app.post('/api/team/photo', requireAuth, async (req, res) => {
+  try {
+    const { id, photo } = req.body;
+    if (!id || !photo) {
+      return res.status(400).json({ error: 'Missing id or photo' });
+    }
+    await db.saveTeamPhoto(id, photo);
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to save team photo' });
+  }
+});
+
 // Gemini AI Itinerary Builder API endpoints
 const gemini = require('./gemini');
 
@@ -206,6 +228,10 @@ app.get('/trip', requireAuth, (req, res) => {
 
 app.get('/review', requireAuth, (req, res) => {
   res.sendFile(path.join(__dirname, 'interactive_trip_view.html'));
+});
+
+app.get('/contact', requireAuth, (req, res) => {
+  res.sendFile(path.join(__dirname, 'contact.html'));
 });
 
 // Fallback error handler
