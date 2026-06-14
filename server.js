@@ -234,6 +234,18 @@ app.get('/contact', requireAuth, (req, res) => {
   res.sendFile(path.join(__dirname, 'contact.html'));
 });
 
+app.get('/privacy', requireAuth, (req, res) => {
+  res.sendFile(path.join(__dirname, 'privacy.html'));
+});
+
+app.get('/terms', requireAuth, (req, res) => {
+  res.sendFile(path.join(__dirname, 'terms.html'));
+});
+
+app.get('/support', requireAuth, (req, res) => {
+  res.sendFile(path.join(__dirname, 'support.html'));
+});
+
 // Fallback error handler
 app.use((req, res) => {
   res.status(404).send('Page not found');

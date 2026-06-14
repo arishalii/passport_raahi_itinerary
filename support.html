@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Support & Help | Passport Raahi</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+  <!-- Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+  <!-- Scripts -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-container": "#0B132A",
+            "background": "#F7F5F0",
+            "primary": "#0B132A",
+            "secondary": "#C59B27",
+            "surface": "#ffffff",
+            "surface-variant": "#E5E2DA",
+            "on-surface": "#0B132A",
+            "on-surface-variant": "#5A5B63",
+            "outline-variant": "#D1CDC4",
+            "luxury-cream": "#F7F5F0",
+            "luxury-gold": "#C59B27"
+          },
+          "fontFamily": {
+            "display-lg": ["Playfair Display"],
+            "body-md": ["Geist"],
+            "label-md": ["Geist"]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+
+<body class="bg-luxury-cream text-on-surface font-body-md min-h-screen flex flex-col justify-between selection:bg-luxury-gold/30">
+  <!-- TopAppBar -->
+  <header class="sticky top-0 z-50 bg-surface/80 backdrop-blur-md shadow-sm h-16 w-full flex justify-between items-center px-6 md:px-16">
+    <div class="flex items-center gap-4">
+      <span class="material-symbols-outlined text-primary cursor-pointer hover:bg-slate-100 p-2 rounded-full transition-colors">menu</span>
+      <h1 class="font-display-lg text-xl md:text-2xl text-primary tracking-tight font-bold">Passport Raahi</h1>
+    </div>
+    <div class="flex items-center gap-6">
+      <nav class="hidden md:flex gap-8 items-center">
+        <a id="nav-builder" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="/builder">Builder</a>
+        <a id="nav-editor" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="/editor">Editor</a>
+        <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="/">Dashboard</a>
+        <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="/trip">Trip</a>
+        <a class="font-label-md text-label-md text-on-surface-variant hover:text-error transition-colors ml-4" href="/logout">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-6 py-16 flex-1 w-full">
+    <!-- Hero Header -->
+    <section class="text-center mb-12">
+      <span class="font-label-md text-label-md text-secondary tracking-widest uppercase mb-3 block">Travel Concierge Desk</span>
+      <h2 class="font-display-lg text-3xl md:text-4xl text-primary font-bold mb-4">How Can We Help You?</h2>
+      <p class="text-on-surface-variant max-w-xl mx-auto text-sm leading-relaxed">
+        Reach out to our premium support team or check our frequently asked questions.
+      </p>
+    </section>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- FAQ Accordion -->
+      <div class="bg-white rounded-3xl p-8 border border-outline-variant/60 shadow-sm space-y-6">
+        <h3 class="font-display-lg text-xl font-bold text-primary mb-4">Frequently Asked Questions</h3>
+        
+        <div class="space-y-4">
+          <details class="group border-b border-outline-variant/40 pb-4 cursor-pointer">
+            <summary class="flex justify-between items-center font-bold text-sm text-primary group-hover:text-secondary transition-colors list-none">
+              <span>How do I modify my active itinerary?</span>
+              <span class="material-symbols-outlined text-sm group-open:rotate-180 transition-transform">expand_more</span>
+            </summary>
+            <p class="text-xs text-on-surface-variant mt-2 leading-relaxed">
+              If your trip is active, you can write feedback comments directly on specific itinerary blocks. Our editors are notified in real-time and will adjust details immediately.
+            </p>
+          </details>
+
+          <details class="group border-b border-outline-variant/40 pb-4 cursor-pointer">
+            <summary class="flex justify-between items-center font-bold text-sm text-primary group-hover:text-secondary transition-colors list-none">
+              <span>Why is my trip status still 'payment_pending'?</span>
+              <span class="material-symbols-outlined text-sm group-open:rotate-180 transition-transform">expand_more</span>
+            </summary>
+            <p class="text-xs text-on-surface-variant mt-2 leading-relaxed">
+              Our reservations require manual transaction validation. It usually takes 2–4 hours for our finance desk to update your status to active.
+            </p>
+          </details>
+
+          <details class="group pb-4 cursor-pointer">
+            <summary class="flex justify-between items-center font-bold text-sm text-primary group-hover:text-secondary transition-colors list-none">
+              <span>Can I request a custom flight transfer?</span>
+              <span class="material-symbols-outlined text-sm group-open:rotate-180 transition-transform">expand_more</span>
+            </summary>
+            <p class="text-xs text-on-surface-variant mt-2 leading-relaxed">
+              Yes, write an inquiry inside the concierge contact form on this page, or mention it directly in your trip dashboard comments drawer.
+            </p>
+          </details>
+        </div>
+      </div>
+
+      <!-- Support Contact Form -->
+      <div class="bg-white rounded-3xl p-8 border border-outline-variant/60 shadow-sm">
+        <h3 class="font-display-lg text-xl font-bold text-primary mb-4">Concierge Inquiry Form</h3>
+        <form class="space-y-4" onsubmit="event.preventDefault(); alert('Your inquiry has been sent to our concierge desk!'); this.reset();">
+          <div>
+            <label class="block text-xs font-semibold text-primary mb-2">Subject</label>
+            <input type="text" required class="w-full p-3 border border-outline-variant rounded-xl focus:ring-1 focus:ring-secondary focus:border-secondary outline-none text-sm text-primary bg-luxury-cream/30" placeholder="e.g. Flight Transfer Amendment">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-primary mb-2">Message</label>
+            <textarea required class="w-full h-32 p-3 border border-outline-variant rounded-xl focus:ring-1 focus:ring-secondary focus:border-secondary outline-none text-sm text-primary bg-luxury-cream/30" placeholder="Describe how our advisors can assist you..."></textarea>
+          </div>
+          <button type="submit" class="w-full bg-primary hover:bg-primary-container text-white py-3 rounded-xl font-bold transition-all text-xs tracking-wider uppercase">
+            Submit Inquiry
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full py-8 px-6 md:px-16 bg-surface-variant flex flex-col md:flex-row justify-between items-center gap-4 border-t border-outline-variant/30">
+    <p class="font-label-md text-xs text-on-surface-variant">© 2024 Passport Raahi. All rights reserved.</p>
+    <div class="flex gap-6 text-xs text-on-surface-variant">
+      <a class="hover:text-primary transition-colors" href="/privacy">Privacy Policy</a>
+      <a class="hover:text-primary transition-colors" href="/terms">Terms of Service</a>
+      <a class="hover:text-primary transition-colors" href="/contact">Contact</a>
+      <a class="hover:text-primary transition-colors font-bold text-primary" href="/support">Support</a>
+    </div>
+  </footer>
+
+  <script>
+    async function loadProfileAndSetupNav() {
+      try {
+        const response = await fetch('/api/profile');
+        if (response.ok) {
+          const profile = await response.json();
+          if (profile.role === 'customer') {
+            document.getElementById('nav-builder')?.classList.add('hidden');
+            document.getElementById('nav-editor')?.classList.add('hidden');
+          }
+        }
+      } catch (err) {
+        console.error("Failed to load profile", err);
+      }
+    }
+    document.addEventListener('DOMContentLoaded', loadProfileAndSetupNav);
+  </script>
+</body>
+</html>
