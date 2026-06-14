@@ -243,13 +243,36 @@ module.exports = {
   getAllComments: async () => {
     if (supabase) {
       try {
-        const { data, error } = await supabase
+        const { data: comments, error: commentsError } = await supabase
           .from('comments')
-          .select('id, day, block_title, username, name, comment, created_at, users!inner(role)')
-          .neq('users.role', 'editor')
+          .select('id, day, block_title, username, name, comment, created_at')
           .order('id', { ascending: false });
-        if (error) throw error;
-        return data || [];
+        if (commentsError) throw commentsError;
+
+        const { data: users, error: usersError } = await supabase
+          .from('users')
+          .select('username, role');
+        if (usersError) throw usersError;
+
+        const userRoleMap = {};
+        if (users) {
+          users.forEach(u => {
+            userRoleMap[u.username] = u.role;
+          });
+        }
+
+        const mappedComments = (comments || []).map(c => ({
+          id: c.id,
+          day: c.day,
+          blockTitle: c.block_title,
+          block_title: c.block_title,
+          username: c.username,
+          name: c.name,
+          comment: c.comment,
+          created_at: c.created_at
+        }));
+
+        return mappedComments.filter(c => userRoleMap[c.username] !== 'editor');
       } catch (err) {
         console.error("Supabase API getAllComments error:", err);
       }
@@ -287,13 +310,36 @@ module.exports = {
   getEditorReplies: async () => {
     if (supabase) {
       try {
-        const { data, error } = await supabase
+        const { data: comments, error: commentsError } = await supabase
           .from('comments')
-          .select('id, day, block_title, username, name, comment, created_at, users!inner(role)')
-          .eq('users.role', 'editor')
+          .select('id, day, block_title, username, name, comment, created_at')
           .order('id', { ascending: false });
-        if (error) throw error;
-        return data || [];
+        if (commentsError) throw commentsError;
+
+        const { data: users, error: usersError } = await supabase
+          .from('users')
+          .select('username, role');
+        if (usersError) throw usersError;
+
+        const userRoleMap = {};
+        if (users) {
+          users.forEach(u => {
+            userRoleMap[u.username] = u.role;
+          });
+        }
+
+        const mappedComments = (comments || []).map(c => ({
+          id: c.id,
+          day: c.day,
+          blockTitle: c.block_title,
+          block_title: c.block_title,
+          username: c.username,
+          name: c.name,
+          comment: c.comment,
+          created_at: c.created_at
+        }));
+
+        return mappedComments.filter(c => userRoleMap[c.username] === 'editor');
       } catch (err) {
         console.error("Supabase API getEditorReplies error:", err);
       }
