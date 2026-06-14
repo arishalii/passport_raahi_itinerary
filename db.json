@@ -3,7 +3,7 @@
     "arishali1674@gmail.com": {
       "password": "ArishAli",
       "role": "editor",
-      "name": "Sarisha Ali (Designer)"
+      "name": "Arish Ali (Designer)"
     },
     "customer": {
       "password": "123",
@@ -1374,9 +1374,16 @@
     {
       "day": 1,
       "blockTitle": "Midnight Dinner at Bukit Bintang",
-      "name": "Sarisha Ali (Designer)",
+      "name": "Arish Ali (Designer)",
       "comment": "okay will get it chekced",
       "created_at": "2026-06-14T12:38:39.879Z"
+    },
+    {
+      "day": 1,
+      "blockTitle": "Midnight Dinner at Bukit Bintang",
+      "name": "Arish Ali (Designer)",
+      "comment": "ok",
+      "created_at": "2026-06-14T12:43:12.753Z"
     }
   ]
 }

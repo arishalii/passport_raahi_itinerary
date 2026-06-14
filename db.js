@@ -200,7 +200,11 @@ module.exports = {
       }
     }
     // C. Local file fallback
-    return readLocalDb().users[username];
+    const user = readLocalDb().users[username];
+    if (user) {
+      return { username, ...user };
+    }
+    return null;
   },
 
   getComments: async (day, blockTitle) => {
@@ -267,7 +271,13 @@ module.exports = {
     const db = readLocalDb();
     const comments = db.comments || [];
     const customerComments = comments.filter(c => {
-      const user = db.users[c.username];
+      let user = db.users[c.username];
+      if (!user && c.name) {
+        const foundUsername = Object.keys(db.users).find(k => db.users[k].name === c.name);
+        if (foundUsername) {
+          user = db.users[foundUsername];
+        }
+      }
       return !user || user.role !== 'editor';
     });
     return [...customerComments].reverse();
@@ -305,7 +315,13 @@ module.exports = {
     const db = readLocalDb();
     const comments = db.comments || [];
     const editorReplies = comments.filter(c => {
-      const user = db.users[c.username];
+      let user = db.users[c.username];
+      if (!user && c.name) {
+        const foundUsername = Object.keys(db.users).find(k => db.users[k].name === c.name);
+        if (foundUsername) {
+          user = db.users[foundUsername];
+        }
+      }
       return user && user.role === 'editor';
     });
     return [...editorReplies].reverse();
