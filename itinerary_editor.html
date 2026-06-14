@@ -568,6 +568,23 @@
                 <div class="mt-4 ml-16 text-on-surface-variant max-w-xl">
                   ${block.description}
                 </div>
+                <!-- Comments list for the editor -->
+                <div class="mt-4 ml-16 pt-3 border-t border-slate-100 dark:border-outline-variant">
+                  <details class="group">
+                    <summary class="list-none flex items-center gap-1.5 text-xs text-secondary hover:text-primary cursor-pointer font-bold select-none">
+                      <span class="material-symbols-outlined text-sm">chat_bubble</span>
+                      <span class="comments-toggle-label" data-day="${dayData.day}" data-title="${block.title.replace(/'/g, "\\'")}">View Client Notes</span>
+                      <span class="material-symbols-outlined text-xs transition-transform group-open:rotate-180">expand_more</span>
+                    </summary>
+                    <div class="editor-comments-list mt-3 space-y-3 pl-2 max-h-48 overflow-y-auto pr-1" data-day="${dayData.day}" data-title="${block.title.replace(/'/g, "\\'")}">
+                      <p class="text-[11px] text-slate-400 italic">No notes loaded.</p>
+                    </div>
+                    <div class="flex gap-2 mt-3 pl-2">
+                      <input type="text" placeholder="Reply to client..." class="editor-comment-input flex-1 text-xs p-2 border border-slate-200 rounded-lg dark:bg-surface-container-high dark:border-outline-variant dark:text-white" data-day="${dayData.day}" data-title="${block.title.replace(/'/g, "\\'")}">
+                      <button onclick="submitEditorComment(this, ${dayData.day}, '${block.title.replace(/'/g, "\\'")}')" class="bg-secondary text-white text-xs font-bold py-1.5 px-3 rounded-lg hover:bg-opacity-90 active:scale-95">Reply</button>
+                    </div>
+                  </details>
+                </div>
               `;
 
               blocksContainer.appendChild(card);
@@ -639,6 +656,90 @@
             alert("Itinerary changes saved successfully to database!");
           } else {
             alert("Error saving itinerary to database.");
+          }
+        }
+
+        // Handle loading comments on expanding details
+        document.addEventListener('toggle', async (event) => {
+          if (event.target.tagName === 'DETAILS' && event.target.open) {
+            const label = event.target.querySelector('.comments-toggle-label');
+            const list = event.target.querySelector('.editor-comments-list');
+            if (label && list) {
+              const day = label.getAttribute('data-day');
+              const title = label.getAttribute('data-title');
+              label.innerText = 'Loading Notes...';
+              
+              try {
+                const res = await fetch(`/api/comments?day=${day}&blockTitle=${encodeURIComponent(title)}`);
+                if (!res.ok) throw new Error();
+                const comments = await res.json();
+                
+                label.innerText = `Notes (${comments.length})`;
+                
+                if (comments.length === 0) {
+                  list.innerHTML = `<p class="text-[11px] text-slate-400 italic">No notes yet.</p>`;
+                  return;
+                }
+                
+                list.innerHTML = comments.map(c => {
+                  const name = c.name || c.username;
+                  const date = new Date(c.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+                  return `
+                    <div class="bg-slate-50 dark:bg-surface-container-high/50 p-2.5 rounded-lg border border-slate-100 dark:border-outline-variant/30 text-xs text-slate-800">
+                      <div class="flex justify-between items-center mb-0.5">
+                        <span class="font-bold text-primary dark:text-white">${name}</span>
+                        <span class="text-[9px] text-slate-400">${date}</span>
+                      </div>
+                      <p class="text-on-surface-variant dark:text-slate-300 leading-relaxed">${c.comment}</p>
+                    </div>
+                  `;
+                }).join('');
+              } catch (e) {
+                label.innerText = 'Error loading notes';
+                list.innerHTML = `<p class="text-[11px] text-error">Could not load notes.</p>`;
+              }
+            }
+          }
+        }, true);
+
+        async function submitEditorComment(btn, day, blockTitle) {
+          const details = btn.closest('details');
+          const input = details.querySelector('.editor-comment-input');
+          const comment = input.value.trim();
+          if (!comment) return;
+          
+          try {
+            const res = await fetch('/api/comments', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ day, blockTitle, comment })
+            });
+            if (!res.ok) throw new Error();
+            input.value = '';
+            
+            // Refresh comments
+            const label = details.querySelector('.comments-toggle-label');
+            const list = details.querySelector('.editor-comments-list');
+            label.innerText = 'Refreshing...';
+            const commentsRes = await fetch(`/api/comments?day=${day}&blockTitle=${encodeURIComponent(blockTitle)}`);
+            const comments = await commentsRes.json();
+            label.innerText = `Notes (${comments.length})`;
+            
+            list.innerHTML = comments.map(c => {
+              const name = c.name || c.username;
+              const date = new Date(c.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+              return `
+                <div class="bg-slate-50 dark:bg-surface-container-high/50 p-2.5 rounded-lg border border-slate-100 dark:border-outline-variant/30 text-xs text-slate-800">
+                  <div class="flex justify-between items-center mb-0.5">
+                    <span class="font-bold text-primary dark:text-white">${name}</span>
+                    <span class="text-[9px] text-slate-400">${date}</span>
+                  </div>
+                  <p class="text-on-surface-variant dark:text-slate-300 leading-relaxed">${c.comment}</p>
+                </div>
+              `;
+            }).join('');
+          } catch (err) {
+            alert("Could not save comment. Please try again.");
           }
         }
 

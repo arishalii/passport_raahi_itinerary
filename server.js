@@ -114,6 +114,34 @@ app.post('/api/itinerary', requireEditor, async (req, res) => {
   }
 });
 
+app.get('/api/comments', requireAuth, async (req, res) => {
+  try {
+    const { day, blockTitle } = req.query;
+    if (!day || !blockTitle) {
+      return res.status(400).json({ error: 'Missing day or blockTitle query parameters' });
+    }
+    const comments = await db.getComments(day, blockTitle);
+    res.json(comments);
+  } catch (err) {
+    console.error("Failed to get comments:", err);
+    res.status(500).json({ error: 'Failed to retrieve comments' });
+  }
+});
+
+app.post('/api/comments', requireAuth, async (req, res) => {
+  try {
+    const { day, blockTitle, comment } = req.body;
+    if (!day || !blockTitle || !comment) {
+      return res.status(400).json({ error: 'Missing day, blockTitle, or comment' });
+    }
+    await db.saveComment(day, blockTitle, req.user.username, req.user.name, comment);
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Failed to save comment:", err);
+    res.status(500).json({ error: 'Failed to save comment' });
+  }
+});
+
 // Gemini AI Itinerary Builder API endpoints
 const gemini = require('./gemini');
 

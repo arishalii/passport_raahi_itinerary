@@ -729,27 +729,86 @@
             </div>
           `;
         }
-      } else {
-        // Fallback description
-        detailsHtml += `
-          <p class="text-sm text-on-surface-variant leading-relaxed mb-6">${block.description}</p>
-          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-xs text-on-surface-variant flex items-center gap-2">
-            <span class="material-symbols-outlined text-slate-400">info</span>
-            <span>Refer to timeline card for basic overview.</span>
-          </div>
-        `;
       }
       
+      // Add comments HTML
       detailsHtml += `
+          <!-- Comments Section -->
+          <div class="mt-8 pt-8 border-t border-slate-100">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-secondary mb-4 flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">chat_bubble</span>
+              <span>Client & Designer Notes</span>
+            </h4>
+            <div id="comments-list" class="space-y-3 mb-4 max-h-60 overflow-y-auto pr-1">
+              <p class="text-xs text-on-surface-variant italic">Loading comments...</p>
+            </div>
+            
+            <div class="flex flex-col gap-2 mt-3">
+              <textarea id="new-comment-textarea" placeholder="Add your feedback or questions..." class="w-full text-xs p-2.5 border border-slate-200 rounded-xl focus:ring-1 focus:ring-secondary focus:border-transparent resize-none h-16 dark:bg-slate-50 dark:text-slate-900"></textarea>
+              <button onclick="submitComment(${day}, '${block.title.replace(/'/g, "\\'")}')" class="bg-secondary text-white text-xs font-bold py-2 px-4 rounded-xl hover:bg-opacity-90 transition-all self-end active:scale-95">Send Note</button>
+            </div>
+          </div>
         </div>
       `;
       
       detailSidebar.innerHTML = detailsHtml;
+      loadCommentsForBlock(day, block.title);
     }
 
     function closeEventDetail() {
       document.getElementById('default-sidebar-content').classList.remove('hidden');
       document.getElementById('detail-sidebar-content').classList.add('hidden');
+    }
+
+    async function loadCommentsForBlock(day, blockTitle) {
+      const container = document.getElementById('comments-list');
+      if (!container) return;
+      try {
+        const res = await fetch(`/api/comments?day=${day}&blockTitle=${encodeURIComponent(blockTitle)}`);
+        if (!res.ok) throw new Error("Failed to fetch comments");
+        const comments = await res.json();
+        
+        if (comments.length === 0) {
+          container.innerHTML = `<p class="text-xs text-slate-400 italic">No comments yet. Leave the first note below!</p>`;
+          return;
+        }
+        
+        container.innerHTML = comments.map(c => {
+          const name = c.name || c.username;
+          const date = new Date(c.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+          return `
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100/50 text-xs text-slate-800">
+              <div class="flex justify-between items-center mb-1">
+                <span class="font-bold text-primary">${name}</span>
+                <span class="text-[9px] text-slate-400 font-medium">${date}</span>
+              </div>
+              <p class="text-on-surface-variant leading-relaxed">${c.comment}</p>
+            </div>
+          `;
+        }).join('');
+      } catch (err) {
+        console.error(err);
+        container.innerHTML = `<p class="text-xs text-error">Error loading comments.</p>`;
+      }
+    }
+
+    async function submitComment(day, blockTitle) {
+      const textarea = document.getElementById('new-comment-textarea');
+      const comment = textarea.value.trim();
+      if (!comment) return;
+      
+      try {
+        const res = await fetch('/api/comments', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ day, blockTitle, comment })
+        });
+        if (!res.ok) throw new Error("Failed to post comment");
+        textarea.value = '';
+        await loadCommentsForBlock(day, blockTitle);
+      } catch (err) {
+        alert("Could not post comment. Please try again.");
+      }
     }
 
     function renderItinerary(itinerary) {

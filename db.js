@@ -201,5 +201,81 @@ module.exports = {
     }
     // C. Local file fallback
     return readLocalDb().users[username];
+  },
+
+  getComments: async (day, blockTitle) => {
+    if (supabase) {
+      try {
+        const { data, error } = await supabase
+          .from('comments')
+          .select('username, name, comment, created_at')
+          .eq('day', day)
+          .eq('block_title', blockTitle)
+          .order('id', { ascending: true });
+        if (error) throw error;
+        return data || [];
+      } catch (err) {
+        console.error("Supabase API getComments error:", err);
+      }
+    }
+    if (pool) {
+      try {
+        const res = await pool.query(
+          'SELECT username, name, comment, created_at FROM comments WHERE day = $1 AND block_title = $2 ORDER BY id ASC',
+          [day, blockTitle]
+        );
+        return res.rows;
+      } catch (err) {
+        console.error("Supabase direct SQL getComments error:", err);
+      }
+    }
+    // Fallback local file
+    const db = readLocalDb();
+    const comments = db.comments || [];
+    return comments.filter(c => c.day === parseInt(day) && c.blockTitle === blockTitle);
+  },
+
+  saveComment: async (day, blockTitle, username, name, comment) => {
+    if (supabase) {
+      try {
+        const { error } = await supabase
+          .from('comments')
+          .insert({
+            day: parseInt(day),
+            block_title: blockTitle,
+            username,
+            name,
+            comment
+          });
+        if (error) throw error;
+        return;
+      } catch (err) {
+        console.error("Supabase API saveComment error:", err);
+      }
+    }
+    if (pool) {
+      try {
+        await pool.query(
+          'INSERT INTO comments (day, block_title, username, name, comment) VALUES ($1, $2, $3, $4, $5)',
+          [parseInt(day), blockTitle, username, name, comment]
+        );
+        return;
+      } catch (err) {
+        console.error("Supabase direct SQL saveComment error:", err);
+      }
+    }
+    // Fallback local file
+    const db = readLocalDb();
+    if (!db.comments) db.comments = [];
+    db.comments.push({
+      day: parseInt(day),
+      blockTitle,
+      username,
+      name,
+      comment,
+      created_at: new Date().toISOString()
+    });
+    writeLocalDb(db);
   }
 };
+
