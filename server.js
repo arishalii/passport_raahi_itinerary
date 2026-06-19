@@ -6,6 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(express.static(__dirname));
 
 // Custom cookie parsing middleware
 app.use((req, res, next) => {
@@ -98,7 +99,7 @@ app.get('/api/profile', requireAuth, (req, res) => {
   });
 });
 
-app.get('/api/itinerary', requireAuth, async (req, res) => {
+app.get('/api/itinerary', async (req, res) => {
   try {
     res.json(await db.getItinerary());
   } catch (err) {
@@ -251,11 +252,11 @@ app.get('/review', requireAuth, (req, res) => {
   res.sendFile(path.join(__dirname, 'interactive_trip_view.html'));
 });
 
-app.get('/pdf', requireAuth, (req, res) => {
+app.get('/pdf', (req, res) => {
   res.sendFile(path.join(__dirname, 'pdf_export.html'));
 });
 
-app.get('/print', requireAuth, (req, res) => {
+app.get('/print', (req, res) => {
   res.sendFile(path.join(__dirname, 'pdf_export.html'));
 });
 
