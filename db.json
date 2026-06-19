@@ -1257,45 +1257,6 @@
       "blocks": [
         {
           "type": "activity",
-          "time": "10:00 AM",
-          "title": "Orchard Road Mall Shopping",
-          "description": "Explore ION Orchard, Ngee Ann City, and Paragon. Get a free bird's-eye view of Singapore from ION Sky on the 56th floor.",
-          "details": {
-            "address": "Orchard Road, Singapore",
-            "transport": [
-              {
-                "mode": "MRT",
-                "route": "Aljunied → City Hall → Orchard",
-                "time": "20 min",
-                "cost": "SGD 6",
-                "recommended": true
-              },
-              {
-                "mode": "Grab",
-                "route": "Direct",
-                "time": "15 min",
-                "cost": "SGD 14"
-              }
-            ],
-            "malls": [
-              {
-                "name": "ION Orchard",
-                "best_for": "Luxury shopping, ION Sky observatory"
-              },
-              {
-                "name": "Ngee Ann City",
-                "best_for": "Kinokuniya books, Takashimaya store"
-              },
-              {
-                "name": "Paragon",
-                "best_for": "Kids designer brands, Toys 'R' Us"
-              }
-            ],
-            "must_do": "ION Sky observation deck (56th floor) is FREE and provides panoramic city views. Kid friendly."
-          }
-        },
-        {
-          "type": "activity",
           "time": "01:00 PM",
           "title": "IMM Outlet Mall Deals",
           "description": "Shop real discounts of 30-70% at Nike, Adidas, Skechers, and Puma outlets. Have lunch at the IMM food court (approx SGD 40 for family).",
@@ -1428,18 +1389,11 @@
             "transport": [
               {
                 "from": "Hotel",
-                "to": "Orchard",
-                "mode": "MRT",
+                "to": "IMM Outlet",
+                "mode": "Grab",
                 "time": "20 min",
-                "cost": "SGD 6",
+                "cost": "SGD 18",
                 "recommended": true
-              },
-              {
-                "from": "Orchard",
-                "to": "IMM",
-                "mode": "MRT",
-                "time": "35 min",
-                "cost": "SGD 8"
               },
               {
                 "from": "IMM",
@@ -1477,7 +1431,46 @@
       "blocks": [
         {
           "type": "activity",
-          "time": "11:15 AM",
+          "time": "10:00 AM",
+          "title": "Orchard Road Mall Shopping",
+          "description": "Explore ION Orchard, Ngee Ann City, and Paragon. Get a free bird's-eye view of Singapore from ION Sky on the 56th floor.",
+          "details": {
+            "address": "Orchard Road, Singapore",
+            "transport": [
+              {
+                "mode": "MRT",
+                "route": "Aljunied → City Hall → Orchard",
+                "time": "20 min",
+                "cost": "SGD 6",
+                "recommended": true
+              },
+              {
+                "mode": "Grab",
+                "route": "Direct from hotel",
+                "time": "15 min",
+                "cost": "SGD 14"
+              }
+            ],
+            "malls": [
+              {
+                "name": "ION Orchard",
+                "best_for": "Luxury shopping, ION Sky observatory"
+              },
+              {
+                "name": "Ngee Ann City",
+                "best_for": "Kinokuniya books, Takashimaya store"
+              },
+              {
+                "name": "Paragon",
+                "best_for": "Kids designer brands, Toys 'R' Us"
+              }
+            ],
+            "must_do": "ION Sky observation deck (56th floor) is FREE and provides panoramic city views. Kid friendly."
+          }
+        },
+        {
+          "type": "activity",
+          "time": "12:30 PM",
           "title": "Jewel Changi Rain Vortex & Canopy Park",
           "description": "Check in luggage, then visit the 40m tall Rain Vortex indoor waterfall. Head to Canopy Park on Level 5 for slides and walking nets.",
           "details": {
@@ -1485,13 +1478,15 @@
             "transport": [
               {
                 "mode": "Grab Taxi",
-                "time": "20 min",
-                "cost": "SGD 18",
+                "route": "Orchard Road → Changi Airport",
+                "time": "25 min",
+                "cost": "SGD 22",
                 "recommended": true
               },
               {
                 "mode": "MRT",
-                "time": "40 min",
+                "route": "Orchard → City Hall → Tanah Merah → Changi",
+                "time": "45 min",
                 "cost": "SGD 8"
               }
             ],
@@ -1511,7 +1506,7 @@
         },
         {
           "type": "dining",
-          "time": "12:00 PM",
+          "time": "01:30 PM",
           "title": "Lunch & Pokemon Centre Changi",
           "description": "Visit the official Pokemon Centre. Have lunch at Jewel: Shake Shack, A&W (Root Beer Floats!), or Din Tai Fung. Board flight from Terminal 4 by 4:00 PM.",
           "details": {
@@ -1545,10 +1540,18 @@
             "transport": [
               {
                 "from": "Hotel",
-                "to": "Changi",
-                "mode": "Grab",
+                "to": "Orchard Road",
+                "mode": "MRT",
                 "time": "20 min",
-                "cost": "SGD 18",
+                "cost": "SGD 6",
+                "recommended": true
+              },
+              {
+                "from": "Orchard Road",
+                "to": "Changi Airport",
+                "mode": "Grab",
+                "time": "25 min",
+                "cost": "SGD 22",
                 "recommended": true
               }
             ],
