@@ -58,7 +58,7 @@
         },
         {
           "type": "activity",
-          "time": "11:30 AM",
+          "time": "12:00 PM",
           "title": "KLCC Park Splash & Play",
           "description": "Explore the giant slides and splash pool. Watch the Musical Fountain show at 12:00 PM. Bring swimsuits for the kids - the splash zone is free and fun.",
           "details": {
@@ -99,56 +99,10 @@
           }
         },
         {
-          "type": "activity",
-          "time": "12:30 PM",
-          "title": "Aquaria KLCC Oceanarium",
-          "description": "Walk the 90m underwater tunnel. Catch the live shark and stingray feeding show. Kids can touch starfish at the Touch Pool. Online tickets: RM 176.",
-          "details": {
-            "location_hint": "Concourse level, KL Convention Centre",
-            "transport": [
-              {
-                "mode": "Walk",
-                "route": "From KLCC Park path",
-                "time": "5 min",
-                "cost": "Free",
-                "recommended": true
-              }
-            ],
-            "tickets": [
-              {
-                "type": "Family Ticket (2+2)",
-                "price": "RM 176 (Online)"
-              },
-              {
-                "type": "Gate Price (Adult/Child)",
-                "price": "RM 59 / RM 49"
-              }
-            ],
-            "highlights": [
-              {
-                "name": "Underwater Tunnel",
-                "benefit": "90m walk under rays and sharks",
-                "time": "12:45 PM"
-              },
-              {
-                "name": "Feeding Session",
-                "benefit": "Live diver feeds sharks & talks on mic",
-                "time": "01:15 PM sharp"
-              },
-              {
-                "name": "Touch Pool",
-                "benefit": "Kids touch starfish & small sharks",
-                "time": "01:45 PM"
-              }
-            ],
-            "must_do": "Do Not Miss the Live Shark feeding session – gather early."
-          }
-        },
-        {
           "type": "dining",
-          "time": "02:00 PM",
+          "time": "01:00 PM",
           "title": "Lunch at Suria KLCC",
-          "description": "Head inside the mall for lunch. Try Madam Kwan's Nasi Lemak (RM 22) or Din Tai Fung dumplings (RM 18). Do Not Miss Madam Kwan's Nasi Lemak with fried chicken.",
+          "description": "Head inside the mall for lunch between 1:00 PM - 2:00 PM. Try Madam Kwan's Nasi Lemak (RM 22) or Din Tai Fung dumplings (RM 18). Do Not Miss Madam Kwan's Nasi Lemak with fried chicken.",
           "details": {
             "address": "Suria KLCC, Levels 2 & 3",
             "options": [
@@ -175,6 +129,77 @@
               }
             ],
             "must_do": "Madam Kwan's Nasi Lemak with fried chicken – the national dish done right!"
+          }
+        },
+        {
+          "type": "stay",
+          "time": "02:00 PM",
+          "title": "Afternoon Rest at KLCC Platinum Suites",
+          "description": "Head back to the hotel after lunch for a relaxing afternoon siesta out of the tropical heat. Unwind in your family suite or enjoy a quick dip in the rooftop infinity pool before heading to Aquaria.",
+          "details": {
+            "address": "Jalan Sultan Ismail, Kuala Lumpur",
+            "transport": [
+              {
+                "mode": "Grab",
+                "route": "Direct from Suria KLCC",
+                "time": "5 min",
+                "cost": "RM 9",
+                "recommended": true
+              }
+            ],
+            "must_do": "Great recharge window for the kids out of the midday tropical heat."
+          }
+        },
+        {
+          "type": "activity",
+          "time": "04:00 PM",
+          "title": "Aquaria KLCC Oceanarium",
+          "description": "Walk the 90m underwater tunnel. Catch the live shark and stingray feeding show. Kids can touch starfish at the Touch Pool. Online tickets: RM 176.",
+          "details": {
+            "location_hint": "Concourse level, KL Convention Centre",
+            "transport": [
+              {
+                "mode": "Walk",
+                "route": "From Hotel via covered walkway",
+                "time": "15 min",
+                "cost": "Free",
+                "recommended": true
+              },
+              {
+                "mode": "Grab",
+                "route": "Direct from hotel lobby",
+                "time": "5 min",
+                "cost": "RM 9"
+              }
+            ],
+            "tickets": [
+              {
+                "type": "Family Ticket (2+2)",
+                "price": "RM 176 (Online)"
+              },
+              {
+                "type": "Gate Price (Adult/Child)",
+                "price": "RM 59 / RM 49"
+              }
+            ],
+            "highlights": [
+              {
+                "name": "Underwater Tunnel",
+                "benefit": "90m walk under rays and sharks",
+                "time": "04:15 PM"
+              },
+              {
+                "name": "Feeding Session",
+                "benefit": "Live diver feeds sharks & talks on mic",
+                "time": "05:15 PM sharp"
+              },
+              {
+                "name": "Touch Pool",
+                "benefit": "Kids touch starfish & small sharks",
+                "time": "05:45 PM"
+              }
+            ],
+            "must_do": "Do Not Miss the 5:15 PM Live Shark feeding session – gather at the aqua theatre early."
           }
         },
         {
@@ -223,18 +248,26 @@
                 "recommended": true
               },
               {
-                "from": "KLCC",
-                "to": "Hotel",
+                "from": "Suria KLCC",
+                "to": "Hotel (Rest)",
                 "mode": "Grab",
                 "time": "5 min",
                 "cost": "RM 9"
               },
               {
                 "from": "Hotel",
+                "to": "Aquaria",
+                "mode": "Walk",
+                "time": "15 min",
+                "cost": "Free",
+                "recommended": true
+              },
+              {
+                "from": "Aquaria",
                 "to": "Bukit Bintang",
-                "mode": "Metro",
+                "mode": "Grab",
                 "time": "10 min",
-                "cost": "RM 8"
+                "cost": "RM 14"
               },
               {
                 "from": "Bukit Bintang",
