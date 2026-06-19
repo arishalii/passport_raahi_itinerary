@@ -488,7 +488,7 @@
           "type": "activity",
           "time": "10:00 AM",
           "title": "Petronas Twin Towers Skybridge",
-          "description": "Visit the skybridge (41st floor) and observation deck (86th floor). Pre-book tickets online 2 weeks ahead (RM 80/adult, RM 33/child under 12).",
+          "description": "Visit the skybridge (41st floor) and observation deck (86th floor). (Subject to availability due to high demand and repair work it might be closed). Pre-book tickets online 2 weeks ahead (RM 80/adult, RM 33/child under 12).",
           "details": {
             "location_hint": "Access via Concourse level, Suria KLCC",
             "transport": [
@@ -536,7 +536,7 @@
                 "event": "Exit to Suria KLCC Mall"
               }
             ],
-            "must_do": "Do Not Miss booking 2 weeks before your trip – sells out."
+            "must_do": "Subject to availability due to high demand and repair work it might be closed. Pre-book 2 weeks before trip."
           }
         },
         {
