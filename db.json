@@ -1257,24 +1257,24 @@
       "blocks": [
         {
           "type": "activity",
-          "time": "01:00 PM",
+          "time": "10:00 AM - 02:00 PM",
           "title": "IMM Outlet Mall Deals",
           "description": "Shop real discounts of 30-70% at Nike, Adidas, Skechers, and Puma outlets. Have lunch at the IMM food court (approx SGD 40 for family).",
           "details": {
             "address": "Jurong East Street 21, Singapore",
             "transport": [
               {
-                "mode": "MRT",
-                "route": "Orchard → Jurong East",
-                "time": "35 min",
-                "cost": "SGD 8"
+                "mode": "Grab Taxi",
+                "route": "Hotel Lobby → IMM Outlet Mall",
+                "time": "20 min",
+                "cost": "SGD 18",
+                "recommended": true
               },
               {
-                "mode": "Grab",
-                "route": "Direct",
-                "time": "20 min",
-                "cost": "SGD 20",
-                "recommended": true
+                "mode": "MRT",
+                "route": "Aljunied → City Hall → Jurong East",
+                "time": "35 min",
+                "cost": "SGD 8"
               }
             ],
             "discounts": [
@@ -1296,6 +1296,45 @@
         },
         {
           "type": "activity",
+          "time": "02:30 PM",
+          "title": "Chinatown Heritage & Temple Exploration",
+          "description": "Head to historic Chinatown after shopping. Visit the magnificent 4-story Buddha Tooth Relic Temple, browse vibrant souvenir stalls along Pagoda Street, and try traditional heritage egg tarts.",
+          "details": {
+            "address": "Pagoda Street & South Bridge Road, Chinatown",
+            "transport": [
+              {
+                "mode": "Grab Taxi",
+                "route": "IMM Outlet Mall → Chinatown",
+                "time": "25 min",
+                "cost": "SGD 18",
+                "recommended": true
+              },
+              {
+                "mode": "MRT",
+                "route": "Jurong East → Outram Park / Chinatown",
+                "time": "35 min",
+                "cost": "SGD 8"
+              }
+            ],
+            "highlights": [
+              {
+                "name": "Buddha Tooth Relic Temple",
+                "benefit": "Stunning Tang-style Buddhist temple & rooftop garden"
+              },
+              {
+                "name": "Pagoda Street Stalls",
+                "benefit": "Bargain souvenirs, silk pouches, and calligraphy fans"
+              },
+              {
+                "name": "Tong Heng Bakery",
+                "benefit": "Famous diamond-shaped traditional egg tarts"
+              }
+            ],
+            "must_do": "Explore the temple's peaceful rooftop orchid garden (FREE entry, dress modestly)."
+          }
+        },
+        {
+          "type": "activity",
           "time": "05:00 PM",
           "title": "Singapore River Cruise",
           "description": "Board a traditional bumboat at Clarke Quay jetty for a 40-minute sunset cruise. See Marina Bay Sands, Fullerton Hotel, and Boat Quay (SGD 70 family).",
@@ -1303,17 +1342,17 @@
             "boarding_point": "Clarke Quay Jetty (opposite Hooters)",
             "transport": [
               {
-                "mode": "Grab",
-                "route": "IMM → Clarke Quay",
-                "time": "20 min",
-                "cost": "SGD 16",
+                "mode": "MRT",
+                "route": "Chinatown → Clarke Quay (North-East Line)",
+                "time": "5 min",
+                "cost": "SGD 4",
                 "recommended": true
               },
               {
-                "mode": "MRT",
-                "route": "Jurong East → Clarke Quay",
-                "time": "30 min",
-                "cost": "SGD 8"
+                "mode": "Grab / Walk",
+                "route": "Direct from Pagoda St to Clarke Quay Jetty",
+                "time": "12 min",
+                "cost": "SGD 10"
               }
             ],
             "pricing": [
@@ -1389,18 +1428,27 @@
             "transport": [
               {
                 "from": "Hotel",
-                "to": "IMM Outlet",
+                "to": "IMM Outlet Mall",
                 "mode": "Grab",
                 "time": "20 min",
                 "cost": "SGD 18",
                 "recommended": true
               },
               {
-                "from": "IMM",
+                "from": "IMM Outlet",
+                "to": "Chinatown",
+                "mode": "Grab",
+                "time": "25 min",
+                "cost": "SGD 18",
+                "recommended": true
+              },
+              {
+                "from": "Chinatown",
                 "to": "Clarke Quay",
                 "mode": "MRT",
-                "time": "30 min",
-                "cost": "SGD 8"
+                "time": "5 min",
+                "cost": "SGD 4",
+                "recommended": true
               },
               {
                 "from": "Clarke Quay",
@@ -1419,7 +1467,7 @@
                 "recommended": true
               }
             ],
-            "must_do": "Comprehensive daily transport schedule for Day 7. Tap any row or route for details."
+            "must_do": "Total estimated family transport cost for Day 7: SGD 82."
           }
         }
       ]
