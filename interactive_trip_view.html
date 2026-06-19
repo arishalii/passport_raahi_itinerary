@@ -935,8 +935,8 @@
           : "day-btn snap-start flex-shrink-0 w-24 h-24 bg-surface text-on-surface-variant border border-outline-variant rounded-2xl flex flex-col items-center justify-center luxury-shadow-hover transition-all hover:-translate-y-1 hover:bg-surface-container-high";
         
         tabBtn.innerHTML = `
-          <span class="font-label-md text-label-md opacity-80 uppercase">Day</span>
-          <span class="font-display-lg-mobile text-display-lg-mobile leading-none">${formattedDay}</span>
+          <span class="text-[10px] uppercase font-extrabold tracking-widest opacity-75 leading-none">Day ${formattedDay}</span>
+          <span class="font-display text-sm font-bold mt-1.5 leading-none">${dayData.date || ''}</span>
         `;
         tabsContainer.appendChild(tabBtn);
 
@@ -945,7 +945,12 @@
         dayContentDiv.id = `day-content-${dayData.day}`;
         dayContentDiv.className = `day-content space-y-8 animate-in fade-in duration-300 ${isFirst ? '' : 'hidden'}`;
 
-        let dayContentHtml = '';
+        let dayContentHtml = `
+          <div class="px-2 pt-2 pb-4">
+            <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-primary tracking-tight">${dayData.title}</h2>
+            <p class="text-on-surface-variant text-sm mt-1 leading-relaxed">${dayData.description || ''}</p>
+          </div>
+        `;
 
         // Add daily blocks
         dayData.blocks.forEach((block, bIdx) => {

@@ -19,7 +19,7 @@
   "itinerary": [
     {
       "day": 1,
-      "title": "Day 1: Arrival & Welcome (Kuala Lumpur)",
+      "title": "Day 1 (20th Jun): Arrival & Welcome (Kuala Lumpur)",
       "description": "Arrive at KLIA, check-in to KLCC Platinum Suites, visit KLCC Park and Aquaria, and enjoy evening shopping and street food satay dinner in Bukit Bintang.",
       "blocks": [
         {
@@ -277,11 +277,12 @@
             "must_do": "Comprehensive daily transport schedule for Day 1. Tap any row or route for details."
           }
         }
-      ]
+      ],
+      "date": "20th Jun"
     },
     {
       "day": 2,
-      "title": "Day 2: Genting Highlands Day Trip",
+      "title": "Day 2 (21st Jun): Genting Highlands Day Trip",
       "description": "Take a day trip to the cooler Genting Highlands for theme parks and cloud-shrouded views.",
       "blocks": [
         {
@@ -423,11 +424,12 @@
             "must_do": "Comprehensive daily transport schedule for Day 2. Tap any row or route for details."
           }
         }
-      ]
+      ],
+      "date": "21st Jun"
     },
     {
       "day": 3,
-      "title": "Day 3: Petronas Twin Towers & Chinatown Exploration",
+      "title": "Day 3 (22nd Jun): Petronas Twin Towers & Chinatown Exploration",
       "description": "Start with brunch at Middle Lane Coffee, visit Petronas Twin Towers Skybridge, explore Chinatown markets, take the Hop On Hop Off night bus tour, and enjoy midnight shawarma in Bukit Bintang.",
       "blocks": [
         {
@@ -745,11 +747,12 @@
             "must_do": "Comprehensive daily transport schedule for Day 3. Tap any row or route for details."
           }
         }
-      ]
+      ],
+      "date": "22nd Jun"
     },
     {
       "day": 4,
-      "title": "Day 4: Travel to Singapore",
+      "title": "Day 4 (23rd Jun): Travel to Singapore",
       "description": "Take a luxury cross-border bus to Singapore, check-in to your hotel, and visit Merlion Park.",
       "blocks": [
         {
@@ -926,11 +929,12 @@
             "must_do": "Comprehensive daily transport schedule for Day 4. Tap any row or route for details."
           }
         }
-      ]
+      ],
+      "date": "23rd Jun"
     },
     {
       "day": 5,
-      "title": "Day 5: Ice Cream Museum & Gardens by the Bay",
+      "title": "Day 5 (24th Jun): Ice Cream Museum & Gardens by the Bay",
       "description": "Jump in a pool of sprinkles, explore Singapore by open-top bus, and see the giant Supertrees glow.",
       "blocks": [
         {
@@ -1106,11 +1110,12 @@
             "must_do": "Comprehensive daily transport schedule for Day 5. Tap any row or route for details."
           }
         }
-      ]
+      ],
+      "date": "24th Jun"
     },
     {
       "day": 6,
-      "title": "Day 6: Sentosa Island Attractions",
+      "title": "Day 6 (25th Jun): Sentosa Island Attractions",
       "description": "A full day on Sentosa Island visiting Universal Studios, Harry Potter experience, and Madame Tussauds.",
       "blocks": [
         {
@@ -1280,11 +1285,12 @@
             "must_do": "Comprehensive daily transport schedule for Day 6. Tap any row or route for details."
           }
         }
-      ]
+      ],
+      "date": "25th Jun"
     },
     {
       "day": 7,
-      "title": "Day 7: Premium Shopping & River Cruise",
+      "title": "Day 7 (26th Jun): Premium Shopping & River Cruise",
       "description": "Shop at IMM outlet malls, explore Orchard Road, and enjoy a scenic river boat cruise.",
       "blocks": [
         {
@@ -1502,11 +1508,12 @@
             "must_do": "Total estimated family transport cost for Day 7: SGD 82."
           }
         }
-      ]
+      ],
+      "date": "26th Jun"
     },
     {
       "day": 8,
-      "title": "Day 8: Coastal Hawkers, Jewel & Night Departure (27 June)",
+      "title": "Day 8 (27th Jun): Coastal Hawkers, Jewel & Night Departure",
       "description": "✈️ Flight: 11:45 PM • 🏨 Hotel: ibis Budget Singapore Crystal • 🧳 Check-out: 10:00 AM (Keep luggage at hotel). Explore Orchard Road, coastal hawker dining at East Coast Lagoon, breezy leisure at East Coast Park, and 3 immersive hours at Jewel Changi.",
       "blocks": [
         {
@@ -1789,7 +1796,8 @@
             "must_do": "Total estimated family transport cost for Day 8: ~SGD 48. Safe travels home!"
           }
         }
-      ]
+      ],
+      "date": "27th Jun"
     }
   ],
   "destinationGuides": {
