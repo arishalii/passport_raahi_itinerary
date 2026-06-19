@@ -20,7 +20,7 @@
     {
       "day": 1,
       "title": "Day 1: Arrival & Welcome (Kuala Lumpur)",
-      "description": "Arrive at KLIA, check-in to KLCC Platinum Suites, visit KLCC Park and Aquaria, and enjoy evening dinner in Bukit Bintang.",
+      "description": "Arrive at KLIA, check-in to KLCC Platinum Suites, visit KLCC Park and Aquaria, and enjoy evening shopping and street food satay dinner in Bukit Bintang.",
       "blocks": [
         {
           "type": "stay",
@@ -203,33 +203,30 @@
           }
         },
         {
-          "type": "dining",
-          "time": "10:00 PM",
-          "title": "Midnight Dinner at Bukit Bintang",
-          "description": "Enjoy Syrian Damascus Shawarma platter (RM 80) or Al Habib Indian biryani. Do Not Miss Damascus Mixed Grill Platter - feeds 3 people easily.",
+          "type": "activity",
+          "time": "07:30 PM",
+          "title": "Bukit Bintang Shopping & Satay Dinner",
+          "description": "Window shop at Pavilion KL mall, then head to Jalan Alor for street food. Try the grilled satay and Wong Ah Wah chicken wings (RM 15).",
           "details": {
-            "address": "Bukit Bintang, Kuala Lumpur",
+            "location": "Jalan Alor & Pavilion Mall, Bukit Bintang",
             "options": [
               {
-                "name": "Damascus Shawarma",
-                "cuisine": "Syrian",
-                "dish": "Mixed Grill Platter (RM 55)",
-                "hours": "Open till 2:00 AM"
+                "name": "Wong Ah Wah (Jalan Alor)",
+                "dish": "Famous BBQ Chicken Wings",
+                "cost": "RM 15 / 10 pcs"
               },
               {
-                "name": "Al Habib Restaurant",
-                "cuisine": "Indian/Arabic",
-                "dish": "Chicken Biryani (RM 18)",
-                "hours": "Open till 1:00 AM"
+                "name": "Lot 10 Hutong",
+                "dish": "Traditional Wantan Mee",
+                "cost": "RM 12 per bowl"
               },
               {
-                "name": "Jalan Alor Hawkers",
-                "cuisine": "Malaysian",
-                "dish": "Satay, grilled fish",
-                "hours": "Open till late"
+                "name": "Pavilion Food Republic",
+                "dish": "Multi-cuisine food court",
+                "cost": "RM 80 for family"
               }
             ],
-            "must_do": "Damascus Mixed Grill Platter – feeds 3 people easily. Pair with cheese naan from Al Habib."
+            "must_do": "Wong Ah Wah's BBQ wings are legendary. jalan Alor is crowded but kid friendly."
           }
         },
         {
@@ -431,7 +428,7 @@
     {
       "day": 3,
       "title": "Day 3: Petronas Twin Towers & Chinatown Exploration",
-      "description": "Start with brunch at Middle Lane Coffee, visit Petronas Twin Towers Skybridge, explore Chinatown markets, shop in Bukit Bintang, and take the Hop On Hop Off night bus tour.",
+      "description": "Start with brunch at Middle Lane Coffee, visit Petronas Twin Towers Skybridge, explore Chinatown markets, take the Hop On Hop Off night bus tour, and enjoy midnight shawarma in Bukit Bintang.",
       "blocks": [
         {
           "type": "dining",
@@ -625,33 +622,6 @@
           }
         },
         {
-          "type": "activity",
-          "time": "05:30 PM",
-          "title": "Bukit Bintang Shopping & Satay Dinner",
-          "description": "Window shop at Pavilion KL mall, then head to Jalan Alor for street food. Try the grilled satay and Wong Ah Wah chicken wings (RM 15).",
-          "details": {
-            "location": "Jalan Alor & Pavilion Mall, Bukit Bintang",
-            "options": [
-              {
-                "name": "Wong Ah Wah (Jalan Alor)",
-                "dish": "Famous BBQ Chicken Wings",
-                "cost": "RM 15 / 10 pcs"
-              },
-              {
-                "name": "Lot 10 Hutong",
-                "dish": "Traditional Wantan Mee",
-                "cost": "RM 12 per bowl"
-              },
-              {
-                "name": "Pavilion Food Republic",
-                "dish": "Multi-cuisine food court",
-                "cost": "RM 80 for family"
-              }
-            ],
-            "must_do": "Wong Ah Wah's BBQ wings are legendary. jalan Alor is crowded but kid friendly."
-          }
-        },
-        {
           "type": "transport",
           "time": "07:15 PM",
           "title": "Hop On Hop Off Bus Night Tour",
@@ -681,6 +651,36 @@
               }
             ],
             "must_do": "Last boarding is at 8:00 PM for the 2-hour night lights loop."
+          }
+        },
+        {
+          "type": "dining",
+          "time": "09:30 PM",
+          "title": "Midnight Dinner at Bukit Bintang",
+          "description": "Enjoy Syrian Damascus Shawarma platter (RM 80) or Al Habib Indian biryani. Do Not Miss Damascus Mixed Grill Platter - feeds 3 people easily.",
+          "details": {
+            "address": "Bukit Bintang, Kuala Lumpur",
+            "options": [
+              {
+                "name": "Damascus Shawarma",
+                "cuisine": "Syrian",
+                "dish": "Mixed Grill Platter (RM 55)",
+                "hours": "Open till 2:00 AM"
+              },
+              {
+                "name": "Al Habib Restaurant",
+                "cuisine": "Indian/Arabic",
+                "dish": "Chicken Biryani (RM 18)",
+                "hours": "Open till 1:00 AM"
+              },
+              {
+                "name": "Jalan Alor Hawkers",
+                "cuisine": "Malaysian",
+                "dish": "Satay, grilled fish",
+                "hours": "Open till late"
+              }
+            ],
+            "must_do": "Damascus Mixed Grill Platter – feeds 3 people easily. Pair with cheese naan from Al Habib."
           }
         },
         {
