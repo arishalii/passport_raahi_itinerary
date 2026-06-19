@@ -211,11 +211,11 @@
           <p class="text-on-surface-variant max-w-xl mt-4">A curated 8-day family journey through the highlights of Malaysia and Singapore, featuring Genting Highlands, Universal Studios, and Changi Jewel.</p>
         </div>
         <div class="flex gap-3">
-          <button
-            class="flex items-center gap-2 bg-surface luxury-shadow px-4 py-2 rounded-xl border border-outline-variant hover:bg-surface-container-high transition-all active:scale-95">
-            <span class="material-symbols-outlined text-[20px]">download</span>
-            <span class="font-label-md text-label-md">Download PDF</span>
-          </button>
+          <a href="/pdf" target="_blank"
+            class="flex items-center gap-2 bg-primary text-white luxury-shadow px-5 py-2.5 rounded-xl hover:bg-opacity-90 transition-all active:scale-95">
+            <span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+            <span class="font-label-md text-label-md font-semibold">Download Structured PDF</span>
+          </a>
           <button
             class="flex items-center gap-2 bg-surface luxury-shadow px-4 py-2 rounded-xl border border-outline-variant hover:bg-surface-container-high transition-all active:scale-95">
             <span class="material-symbols-outlined text-[20px]">share</span>
@@ -642,31 +642,60 @@
         
         // 2. Transport Info Table
         if (d.transport && d.transport.length > 0) {
+          const isSchedule = block.title.includes('Summary') || block.title.includes('Schedule') || block.title.includes('Travel');
+          const tableHeaderTitle = isSchedule ? '🗺️ Final Transport Summary Table' : `How to Reach from ${originName}`;
+          
+          let tableHeadersHtml = `
+            <th class="pb-2">Mode</th>
+            <th class="pb-2">Route / Connection</th>
+            <th class="pb-2">Time</th>
+            <th class="pb-2">Cost</th>
+          `;
+          if (isSchedule) {
+            tableHeadersHtml = `
+              <th class="pb-2">From</th>
+              <th class="pb-2">To</th>
+              <th class="pb-2">Best Mode</th>
+              <th class="pb-2">Time</th>
+              <th class="pb-2">Cost (family)</th>
+            `;
+          }
+
           detailsHtml += `
             <div class="mb-6 pb-6 border-b border-slate-100">
-              <h4 class="text-xs font-bold uppercase tracking-wider text-secondary mb-3">How to Reach from ${originName}</h4>
+              <h4 class="text-xs font-bold uppercase tracking-wider text-secondary mb-3">${tableHeaderTitle}</h4>
               <div class="overflow-x-auto">
                 <table class="w-full text-left text-xs border-collapse">
                   <thead>
                     <tr class="border-b border-slate-200 text-slate-500 font-semibold">
-                      <th class="pb-2">Mode</th>
-                      <th class="pb-2">Route / Connection</th>
-                      <th class="pb-2">Time</th>
-                      <th class="pb-2">Cost</th>
+                      ${tableHeadersHtml}
                     </tr>
                   </thead>
                   <tbody>
           `;
           d.transport.forEach(t => {
             const recBadge = t.recommended ? ' <span class="text-[9px] bg-secondary-container text-slate-900 px-1.5 py-0.5 rounded font-bold">⭐ Rec</span>' : '';
-            detailsHtml += `
-              <tr class="border-b border-slate-100 last:border-0 hover:bg-slate-50/50">
-                <td class="py-2.5 font-semibold text-primary">${t.mode}${recBadge}</td>
-                <td class="py-2.5 text-on-surface-variant">${t.route || 'Direct'}</td>
-                <td class="py-2.5 text-on-surface-variant">${t.time}</td>
-                <td class="py-2.5 text-on-surface-variant">${t.cost}</td>
-              </tr>
-            `;
+            if (isSchedule) {
+              detailsHtml += `
+                <tr class="border-b border-slate-100 last:border-0 hover:bg-slate-50/50">
+                  <td class="py-2.5 font-medium text-slate-700 dark:text-slate-300">${t.from || '-'}</td>
+                  <td class="py-2.5 font-medium text-slate-700 dark:text-slate-300">${t.to || '-'}</td>
+                  <td class="py-2.5 font-semibold text-primary">${t.mode}${recBadge}</td>
+                  <td class="py-2.5 text-on-surface-variant">${t.time}</td>
+                  <td class="py-2.5 font-bold text-secondary">${t.cost}</td>
+                </tr>
+              `;
+            } else {
+              const rText = (t.from && t.to) ? `${t.from} → ${t.to}` : (t.route || 'Direct');
+              detailsHtml += `
+                <tr class="border-b border-slate-100 last:border-0 hover:bg-slate-50/50">
+                  <td class="py-2.5 font-semibold text-primary">${t.mode}${recBadge}</td>
+                  <td class="py-2.5 text-on-surface-variant">${rText}</td>
+                  <td class="py-2.5 text-on-surface-variant">${t.time}</td>
+                  <td class="py-2.5 text-on-surface-variant">${t.cost}</td>
+                </tr>
+              `;
+            }
           });
           detailsHtml += `
                   </tbody>
@@ -925,8 +954,8 @@
           let blockTime = block.time || "All Day";
 
           if (block.type === 'transport') {
-            blockIcon = "airport_shuttle";
-            blockCategory = "Transport";
+            blockIcon = (block.title.includes('Summary') || block.title.includes('Schedule')) ? "map" : "airport_shuttle";
+            blockCategory = (block.title.includes('Summary') || block.title.includes('Schedule')) ? "Daily Schedule" : "Transport";
           } else if (block.type === 'stay') {
             blockIcon = "hotel";
             blockCategory = "Lodging";

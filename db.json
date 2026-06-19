@@ -300,6 +300,53 @@
             ],
             "must_do": "Damascus Mixed Grill Platter – feeds 3 people easily. Pair with cheese naan from Al Habib."
           }
+        },
+        {
+          "type": "transport",
+          "time": "End of Day",
+          "title": "🗺️ Day 1 Final Transport Summary Table",
+          "description": "Complete travel and transport summary for Day 1 covering all origins, destinations, best travel modes, trip durations, and family costs.",
+          "details": {
+            "transport": [
+              {
+                "from": "Hotel",
+                "to": "Middle Lane",
+                "mode": "Metro",
+                "time": "20 min",
+                "cost": "RM 8",
+                "recommended": true
+              },
+              {
+                "from": "Middle Lane",
+                "to": "KLCC Park",
+                "mode": "Grab",
+                "time": "5 min",
+                "cost": "RM 9"
+              },
+              {
+                "from": "KLCC",
+                "to": "Hotel",
+                "mode": "Grab",
+                "time": "5 min",
+                "cost": "RM 9"
+              },
+              {
+                "from": "Hotel",
+                "to": "HOHO bus",
+                "mode": "Metro",
+                "time": "10 min",
+                "cost": "RM 8"
+              },
+              {
+                "from": "Bukit Bintang",
+                "to": "Hotel",
+                "mode": "Metro",
+                "time": "10 min",
+                "cost": "RM 8"
+              }
+            ],
+            "must_do": "Comprehensive daily transport schedule for Day 1. Tap any row or route for details."
+          }
         }
       ]
     },
@@ -412,6 +459,39 @@
               }
             ],
             "must_do": "Request Table 22 (corner window facing Petronas Towers) when booking. Dress code is smart casual."
+          }
+        },
+        {
+          "type": "transport",
+          "time": "End of Day",
+          "title": "🗺️ Day 2 Final Transport Summary Table",
+          "description": "Complete travel and transport summary for Day 2 covering all origins, destinations, best travel modes, trip durations, and family costs.",
+          "details": {
+            "transport": [
+              {
+                "from": "Hotel",
+                "to": "Genting",
+                "mode": "Grab",
+                "time": "45 min",
+                "cost": "RM 30",
+                "recommended": true
+              },
+              {
+                "from": "Hotel",
+                "to": "Lake Symphony",
+                "mode": "Metro",
+                "time": "10 min",
+                "cost": "RM 8"
+              },
+              {
+                "from": "KLCC",
+                "to": "Envi",
+                "mode": "Grab",
+                "time": "10 min",
+                "cost": "RM 12"
+              }
+            ],
+            "must_do": "Comprehensive daily transport schedule for Day 2. Tap any row or route for details."
           }
         }
       ]
@@ -592,6 +672,46 @@
             ],
             "must_do": "Wong Ah Wah's BBQ wings are legendary. jalan Alor is crowded but kid friendly."
           }
+        },
+        {
+          "type": "transport",
+          "time": "End of Day",
+          "title": "🗺️ Day 3 Final Transport Summary Table",
+          "description": "Complete travel and transport summary for Day 3 covering all origins, destinations, best travel modes, trip durations, and family costs.",
+          "details": {
+            "transport": [
+              {
+                "from": "Hotel",
+                "to": "Aquaria",
+                "mode": "Walk",
+                "time": "18 min",
+                "cost": "Free",
+                "recommended": true
+              },
+              {
+                "from": "Aquaria",
+                "to": "Samira",
+                "mode": "Grab",
+                "time": "10 min",
+                "cost": "RM 12"
+              },
+              {
+                "from": "Samira",
+                "to": "Chinatown",
+                "mode": "Metro",
+                "time": "12 min",
+                "cost": "RM 8"
+              },
+              {
+                "from": "Chinatown",
+                "to": "Bukit Bintang",
+                "mode": "Metro",
+                "time": "10 min",
+                "cost": "RM 8"
+              }
+            ],
+            "must_do": "Comprehensive daily transport schedule for Day 3. Tap any row or route for details."
+          }
         }
       ]
     },
@@ -731,6 +851,47 @@
               }
             ],
             "must_do": "Haji Lane murals (3 mins walk) are lit up beautifully at night. Boutiques close at 10 PM."
+          }
+        },
+        {
+          "type": "transport",
+          "time": "End of Day",
+          "title": "🗺️ Day 4 Final Transport Summary Table",
+          "description": "Complete travel and transport summary for Day 4 covering all origins, destinations, best travel modes, trip durations, and family costs.",
+          "details": {
+            "transport": [
+              {
+                "from": "Hotel (KL)",
+                "to": "Bus terminal",
+                "mode": "Grab",
+                "time": "20 min",
+                "cost": "RM 25",
+                "recommended": true
+              },
+              {
+                "from": "Bus terminal (SG)",
+                "to": "Hotel",
+                "mode": "Grab",
+                "time": "15 min",
+                "cost": "SGD 12",
+                "recommended": true
+              },
+              {
+                "from": "Hotel",
+                "to": "Merlion",
+                "mode": "MRT",
+                "time": "20 min",
+                "cost": "SGD 6"
+              },
+              {
+                "from": "Merlion",
+                "to": "Arab St",
+                "mode": "MRT",
+                "time": "10 min",
+                "cost": "SGD 4"
+              }
+            ],
+            "must_do": "Comprehensive daily transport schedule for Day 4. Tap any row or route for details."
           }
         }
       ]
@@ -878,6 +1039,39 @@
                 "dish": "Uniqlo, Cotton On, food court outlets"
               }
             ]
+          }
+        },
+        {
+          "type": "transport",
+          "time": "End of Day",
+          "title": "🗺️ Day 5 Final Transport Summary Table",
+          "description": "Complete travel and transport summary for Day 5 covering all origins, destinations, best travel modes, trip durations, and family costs.",
+          "details": {
+            "transport": [
+              {
+                "from": "Hotel",
+                "to": "MOIC",
+                "mode": "Grab",
+                "time": "15 min",
+                "cost": "SGD 12",
+                "recommended": true
+              },
+              {
+                "from": "MOIC",
+                "to": "Big Bus",
+                "mode": "Grab",
+                "time": "10 min",
+                "cost": "SGD 10"
+              },
+              {
+                "from": "Gardens",
+                "to": "Bugis",
+                "mode": "MRT",
+                "time": "8 min",
+                "cost": "SGD 4"
+              }
+            ],
+            "must_do": "Comprehensive daily transport schedule for Day 5. Tap any row or route for details."
           }
         }
       ]
@@ -1027,6 +1221,32 @@
               }
             ]
           }
+        },
+        {
+          "type": "transport",
+          "time": "End of Day",
+          "title": "🗺️ Day 6 Final Transport Summary Table",
+          "description": "Complete travel and transport summary for Day 6 covering all origins, destinations, best travel modes, trip durations, and family costs.",
+          "details": {
+            "transport": [
+              {
+                "from": "Hotel",
+                "to": "Sentosa",
+                "mode": "Grab",
+                "time": "20 min",
+                "cost": "SGD 18",
+                "recommended": true
+              },
+              {
+                "from": "Sentosa",
+                "to": "Hotel",
+                "mode": "MRT",
+                "time": "25 min",
+                "cost": "SGD 8"
+              }
+            ],
+            "must_do": "Comprehensive daily transport schedule for Day 6. Tap any row or route for details."
+          }
         }
       ]
     },
@@ -1145,29 +1365,107 @@
           }
         },
         {
-          "type": "dining",
-          "time": "07:00 PM",
-          "title": "Waterfront Dinner at Clarke Quay",
-          "description": "Dine waterfront at Jumbo Seafood for local Chili Crab (SGD 80) or Song Fa Bak Kut Teh pork rib soup. Enjoy Clarke Quay's evening lights.",
+          "type": "activity",
+          "time": "08:00 PM",
+          "title": "Singapore Night Safari Adventure",
+          "description": "Explore the world's first nocturnal wildlife park. Reach around 8:00 PM, embark on the guided 40-minute Tram Ride through 6 geographical zones until 10:00 PM, and explore walking trails before heading home.",
           "details": {
-            "location": "Clarke Quay Waterfront",
-            "options": [
+            "address": "80 Mandai Lake Road, Singapore 729826",
+            "transport": [
               {
-                "name": "Jumbo Seafood",
-                "dish": "Chili Crab (approx SGD 80)",
-                "kids": "Messy but delicious"
+                "mode": "Grab",
+                "route": "Clarke Quay → Night Safari",
+                "time": "30 min",
+                "cost": "SGD 20",
+                "recommended": true
               },
               {
-                "name": "Song Fa Bak Kut Teh",
-                "dish": "Pork Rib Soup (approx SGD 15)",
-                "kids": "✅ Kids love the peppery soup"
-              },
-              {
-                "name": "Din Tai Fung",
-                "dish": "Fried Rice & Wontons (approx SGD 18)",
-                "kids": "✅ Very kid friendly"
+                "mode": "MRT + Shuttle",
+                "route": "Clarke Quay → Khatib MRT → Mandai Shuttle",
+                "time": "50 min",
+                "cost": "SGD 8"
               }
-            ]
+            ],
+            "tickets": [
+              {
+                "type": "Adult Admission + Tram",
+                "info": "Includes guided tram ride across park",
+                "price": "SGD 55"
+              },
+              {
+                "type": "Child Admission (Ages 3-12)",
+                "info": "Includes guided tram ride across park",
+                "price": "SGD 38"
+              }
+            ],
+            "timeline": [
+              {
+                "time": "08:00 PM",
+                "event": "Arrive at Mandai Night Safari park and enter gates"
+              },
+              {
+                "time": "08:15 PM",
+                "event": "Board the guided nocturnal Tram Ride across 6 world zones"
+              },
+              {
+                "time": "09:00 PM",
+                "event": "Explore Leopard Trail and watch Creatures of the Night show"
+              },
+              {
+                "time": "10:00 PM",
+                "event": "Conclude nocturnal wildlife tour and head home via Grab"
+              }
+            ],
+            "must_do": "Be sure to arrive around 8:00 PM to catch the tram ride and explore before 10:00 PM departure."
+          }
+        },
+        {
+          "type": "transport",
+          "time": "End of Day",
+          "title": "🗺️ Day 7 Final Transport Summary Table",
+          "description": "Complete travel and transport summary for Day 7 covering all origins, destinations, best travel modes, trip durations, and family costs.",
+          "details": {
+            "transport": [
+              {
+                "from": "Hotel",
+                "to": "Orchard",
+                "mode": "MRT",
+                "time": "20 min",
+                "cost": "SGD 6",
+                "recommended": true
+              },
+              {
+                "from": "Orchard",
+                "to": "IMM",
+                "mode": "MRT",
+                "time": "35 min",
+                "cost": "SGD 8"
+              },
+              {
+                "from": "IMM",
+                "to": "Clarke Quay",
+                "mode": "MRT",
+                "time": "30 min",
+                "cost": "SGD 8"
+              },
+              {
+                "from": "Clarke Quay",
+                "to": "Night Safari",
+                "mode": "Grab",
+                "time": "30 min",
+                "cost": "SGD 20",
+                "recommended": true
+              },
+              {
+                "from": "Night Safari",
+                "to": "Hotel",
+                "mode": "Grab",
+                "time": "25 min",
+                "cost": "SGD 22",
+                "recommended": true
+              }
+            ],
+            "must_do": "Comprehensive daily transport schedule for Day 7. Tap any row or route for details."
           }
         }
       ]
@@ -1236,6 +1534,25 @@
               }
             ],
             "must_do": "Make sure to check-in early. Terminal 4 requires boarding by 4:00 PM for the 6:55 PM departure."
+          }
+        },
+        {
+          "type": "transport",
+          "time": "End of Day",
+          "title": "🗺️ Day 8 Final Transport Summary Table",
+          "description": "Complete travel and transport summary for Day 8 covering all origins, destinations, best travel modes, trip durations, and family costs.",
+          "details": {
+            "transport": [
+              {
+                "from": "Hotel",
+                "to": "Changi",
+                "mode": "Grab",
+                "time": "20 min",
+                "cost": "SGD 18",
+                "recommended": true
+              }
+            ],
+            "must_do": "Comprehensive daily transport schedule for Day 8. Tap any row or route for details."
           }
         }
       ]

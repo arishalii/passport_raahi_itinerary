@@ -251,6 +251,14 @@ app.get('/review', requireAuth, (req, res) => {
   res.sendFile(path.join(__dirname, 'interactive_trip_view.html'));
 });
 
+app.get('/pdf', requireAuth, (req, res) => {
+  res.sendFile(path.join(__dirname, 'pdf_export.html'));
+});
+
+app.get('/print', requireAuth, (req, res) => {
+  res.sendFile(path.join(__dirname, 'pdf_export.html'));
+});
+
 app.get('/contact', requireAuth, (req, res) => {
   res.sendFile(path.join(__dirname, 'contact.html'));
 });
