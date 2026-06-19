@@ -153,50 +153,47 @@
         {
           "type": "activity",
           "time": "12:30 PM",
-          "title": "Petronas Twin Towers Skybridge",
-          "description": "Visit the skybridge (41st floor) and observation deck (86th floor). Pre-book tickets online 2 weeks ahead (RM 80/adult, RM 33/child under 12).",
+          "title": "Aquaria KLCC Oceanarium",
+          "description": "Walk the 90m underwater tunnel. Catch the live shark and stingray feeding show. Kids can touch starfish at the Touch Pool. Online tickets: RM 176.",
           "details": {
-            "location_hint": "Access via Concourse level, Suria KLCC",
+            "location_hint": "Concourse level, KL Convention Centre",
             "transport": [
               {
                 "mode": "Walk",
                 "route": "From KLCC Park path",
-                "time": "2 min",
+                "time": "5 min",
                 "cost": "Free",
                 "recommended": true
               }
             ],
             "tickets": [
               {
-                "type": "Skybridge + Observation",
-                "price": "RM 80 / RM 33",
-                "info": "41st & 86th floors (Pre-book online)"
+                "type": "Family Ticket (2+2)",
+                "price": "RM 176 (Online)"
               },
               {
-                "type": "Observation Deck Only",
-                "price": "RM 60 / RM 25",
-                "info": "86th floor only (Walk-in possible)"
+                "type": "Gate Price (Adult/Child)",
+                "price": "RM 59 / RM 49"
               }
             ],
-            "timeline": [
+            "highlights": [
               {
-                "time": "12:30 PM",
-                "event": "Security & high-speed elevator entry"
+                "name": "Underwater Tunnel",
+                "benefit": "90m walk under rays and sharks",
+                "time": "12:45 PM"
               },
               {
-                "time": "01:00 PM",
-                "event": "Walk the Skybridge (41st floor)"
+                "name": "Feeding Session",
+                "benefit": "Live diver feeds sharks & talks on mic",
+                "time": "01:15 PM sharp"
               },
               {
-                "time": "01:20 PM",
-                "event": "Observation Deck (86th floor)"
-              },
-              {
-                "time": "01:50 PM",
-                "event": "Exit to Suria KLCC Mall"
+                "name": "Touch Pool",
+                "benefit": "Kids touch starfish & small sharks",
+                "time": "01:45 PM"
               }
             ],
-            "must_do": "Do Not Miss booking 2 weeks before your trip – sells out."
+            "must_do": "Do Not Miss the Live Shark feeding session – gather early."
           }
         },
         {
@@ -498,8 +495,8 @@
     },
     {
       "day": 3,
-      "title": "Day 3: Aquaria & Chinatown Exploration",
-      "description": "Spend the day visiting the oceanarium, Chinatown street markets, and shopping in Bukit Bintang.",
+      "title": "Day 3: Petronas Twin Towers & Chinatown Exploration",
+      "description": "Spend the day visiting Petronas Twin Towers Skybridge, Chinatown street markets, and shopping in Bukit Bintang.",
       "blocks": [
         {
           "type": "dining",
@@ -522,44 +519,56 @@
                 "family_cost": "RM 50"
               }
             ],
-            "must_do": "Perfect quick morning bite with a view of the KLCC park before Aquaria opens."
+            "must_do": "Perfect quick morning bite with a view of the KLCC park before visiting Petronas Twin Towers Skybridge."
           }
         },
         {
           "type": "activity",
           "time": "10:00 AM",
-          "title": "Aquaria KLCC Oceanarium",
-          "description": "Walk the 90m underwater tunnel. Catch the live shark and stingray feeding show at 11:00 AM. Kids can touch starfish at the Touch Pool. Online tickets: RM 176.",
+          "title": "Petronas Twin Towers Skybridge",
+          "description": "Visit the skybridge (41st floor) and observation deck (86th floor). Pre-book tickets online 2 weeks ahead (RM 80/adult, RM 33/child under 12).",
           "details": {
-            "location_hint": "Concourse level, KL Convention Centre",
+            "location_hint": "Access via Concourse level, Suria KLCC",
+            "transport": [
+              {
+                "mode": "Walk",
+                "route": "Inside Suria KLCC Concourse",
+                "time": "2 min",
+                "cost": "Free",
+                "recommended": true
+              }
+            ],
             "tickets": [
               {
-                "type": "Family Ticket (2+2)",
-                "price": "RM 176 (Online)"
+                "type": "Skybridge + Observation",
+                "price": "RM 80 / RM 33",
+                "info": "41st & 86th floors (Pre-book online)"
               },
               {
-                "type": "Gate Price (Adult/Child)",
-                "price": "RM 59 / RM 49"
+                "type": "Observation Deck Only",
+                "price": "RM 60 / RM 25",
+                "info": "86th floor only (Walk-in possible)"
               }
             ],
-            "highlights": [
+            "timeline": [
               {
-                "name": "Underwater Tunnel",
-                "benefit": "90m walk under rays and sharks",
-                "time": "10:15 AM"
+                "time": "10:00 AM",
+                "event": "Security & high-speed elevator entry"
               },
               {
-                "name": "Feeding Session",
-                "benefit": "Live diver feeds sharks & talks on mic",
-                "time": "11:00 AM sharp"
+                "time": "10:30 AM",
+                "event": "Walk the Skybridge (41st floor)"
               },
               {
-                "name": "Touch Pool",
-                "benefit": "Kids touch starfish & small sharks",
-                "time": "11:45 AM"
+                "time": "10:50 AM",
+                "event": "Observation Deck (86th floor)"
+              },
+              {
+                "time": "11:20 AM",
+                "event": "Exit to Suria KLCC Mall"
               }
             ],
-            "must_do": "Do Not Miss the 11:00 AM Live Shark feeding session – gather early."
+            "must_do": "Do Not Miss booking 2 weeks before your trip – sells out."
           }
         },
         {
@@ -572,7 +581,7 @@
             "transport": [
               {
                 "mode": "Grab Taxi",
-                "route": "Direct from Aquaria",
+                "route": "Direct from Suria KLCC",
                 "time": "10 min",
                 "cost": "RM 12",
                 "recommended": true
@@ -682,14 +691,14 @@
             "transport": [
               {
                 "from": "Hotel",
-                "to": "Aquaria",
+                "to": "Petronas Towers",
                 "mode": "Walk",
                 "time": "18 min",
                 "cost": "Free",
                 "recommended": true
               },
               {
-                "from": "Aquaria",
+                "from": "Petronas Towers",
                 "to": "Samira",
                 "mode": "Grab",
                 "time": "10 min",
