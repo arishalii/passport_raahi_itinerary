@@ -40,7 +40,7 @@
       </div>
       <div>
         <h3 class="font-bold text-sm sm:text-base">Print-Ready A4 Itinerary</h3>
-        <p class="text-xs text-slate-400">Structured format • Each day starts on a clean new page</p>
+        <p class="text-xs text-slate-400">Structured format • Includes Family Highlights & all details</p>
       </div>
     </div>
     <div class="flex items-center gap-3 w-full sm:w-auto">
@@ -104,9 +104,9 @@
       try {
         const res = await fetch('/api/itinerary');
         if (!res.ok) throw new Error("API unreached");
-        const daysList = await res.json();
-        if (!daysList || daysList.length === 0) throw new Error("Empty API");
-        renderDays(daysList);
+        const list = await res.json();
+        if (!list || list.length === 0) throw new Error("Empty API");
+        renderDays(list);
       } catch (err) {
         try {
           const localRes = await fetch('./db.json');
@@ -126,13 +126,13 @@
       }
     }
 
-    function renderDays(daysList) {
+    function renderDays(list) {
       const container = document.getElementById('pdf-days-container');
-      if (!container || !daysList || daysList.length === 0) return;
+      if (!container || !list || list.length === 0) return;
 
       let html = '';
 
-      daysList.forEach((d, idx) => {
+      list.forEach((d, idx) => {
         const breakClass = idx > 0 ? 'page-break pt-12 border-t-2 border-slate-200 mt-12' : '';
         
         html += '<div class="day-section ' + breakClass + '">' +
@@ -164,15 +164,61 @@
 
             if (block.details) {
               const dt = block.details;
+              
+              // 1. Address
               if (dt.address) {
                 html += '<div class="text-xs text-slate-500 mb-4 bg-white p-3 rounded-xl border border-slate-100 flex items-center gap-2">' +
                   '<span class="material-symbols-outlined text-sm text-slate-400">location_on</span><span class="font-medium">' + dt.address + '</span></div>';
               }
+
+              // 2. Family Highlights Section
+              if (dt.highlights && dt.highlights.length > 0) {
+                html += '<div class="my-4 pt-3 border-t border-slate-200"><span class="text-[10px] font-bold uppercase tracking-wider text-amber-600 block mb-2.5 flex items-center gap-1"><span class="material-symbols-outlined text-xs">auto_awesome</span><span>Family Highlights</span></span><div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">';
+                dt.highlights.forEach(h => {
+                  const tStr = h.time ? '<span class="text-[10px] text-slate-400 block mt-0.5">Best time: ' + h.time + '</span>' : '';
+                  html += '<div class="bg-white p-3 rounded-xl border border-slate-200/80 shadow-sm"><span class="font-bold text-slate-900 block text-sm">' + (h.name || '-') + '</span><span class="text-slate-600 block mt-0.5">' + (h.benefit || h.type || '') + '</span>' + tStr + '</div>';
+                });
+                html += '</div></div>';
+              }
+
+              // 3. Featured Family Rides Section
+              if (dt.rides && dt.rides.length > 0) {
+                html += '<div class="my-4 pt-3 border-t border-slate-200"><span class="text-[10px] font-bold uppercase tracking-wider text-rose-600 block mb-2.5 flex items-center gap-1"><span class="material-symbols-outlined text-xs">attractions</span><span>Featured Family Rides</span></span><div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">';
+                dt.rides.forEach(r => {
+                  html += '<div class="bg-white p-3 rounded-xl border border-slate-200/80 shadow-sm flex justify-between items-start"><div><span class="font-bold text-slate-900 block text-sm">' + r.name + '</span><span class="text-[10px] text-slate-400 block mt-0.5">Min Height: ' + (r.min_height || '-') + '</span></div><span class="font-bold text-amber-600 ml-2">' + (r.thrill || '') + '</span></div>';
+                });
+                html += '</div></div>';
+              }
+
+              // 4. Malls & Options List
+              if (dt.malls && dt.malls.length > 0) {
+                html += '<div class="my-4 pt-3 border-t border-slate-200"><span class="text-[10px] font-bold uppercase tracking-wider text-blue-600 block mb-2.5">🛍️ Featured Malls & Stops</span><div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">';
+                dt.malls.forEach(m => {
+                  html += '<div class="bg-white p-2.5 rounded-lg border border-slate-200"><span class="font-bold text-slate-900 block">' + m.name + '</span><span class="text-slate-500 block text-[11px] mt-0.5">' + (m.best_for || '') + '</span></div>';
+                });
+                html += '</div></div>';
+              }
+
+              // 5. Dining Options List
+              if (dt.options && dt.options.length > 0) {
+                html += '<div class="my-4 pt-3 border-t border-slate-200"><span class="text-[10px] font-bold uppercase tracking-wider text-rose-600 block mb-2.5">🍽️ Dining & Stop Options</span><div class="space-y-2 text-xs">';
+                dt.options.forEach(opt => {
+                  const costBadge = opt.family_cost ? ' • ' + opt.family_cost + ' family' : (opt.cost ? ' • ' + opt.cost : (opt.hours ? ' • ' + opt.hours : ''));
+                  const dishStr = opt.dish ? '<span class="font-semibold text-slate-700">Rec: ' + opt.dish + '</span>' : '';
+                  const kidStr = opt.kids ? '<span class="text-[10px] text-slate-400 block mt-0.5">' + opt.kids + '</span>' : '';
+                  html += '<div class="bg-white p-2.5 rounded-lg border border-slate-200"><div class="font-bold text-slate-900">' + opt.name + (opt.cuisine ? ' (' + opt.cuisine + ')' : '') + costBadge + '</div>' + dishStr + kidStr + '</div>';
+                });
+                html += '</div></div>';
+              }
+
+              // 6. Concierge Note
               if (dt.must_do) {
                 html += '<div class="bg-amber-50 border border-amber-200 rounded-xl p-4 my-3 text-xs text-amber-950 font-medium">' +
                   '<div class="font-bold text-amber-800 uppercase tracking-wider text-[10px] mb-1 flex items-center gap-1"><span class="material-symbols-outlined text-xs">star</span><span>Concierge Note</span></div>' +
                   dt.must_do + '</div>';
               }
+
+              // 7. Admission Tickets
               if (dt.tickets && dt.tickets.length > 0) {
                 html += '<div class="my-4 pt-3 border-t border-slate-200"><span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Admission & Tickets</span><div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">';
                 dt.tickets.forEach(tk => {
@@ -180,6 +226,8 @@
                 });
                 html += '</div></div>';
               }
+
+              // 8. Suggested Timeline
               if (dt.timeline && dt.timeline.length > 0) {
                 html += '<div class="my-4 pt-3 border-t border-slate-200"><span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Suggested Flow</span><div class="space-y-1.5 text-xs">';
                 dt.timeline.forEach(tl => {
@@ -187,6 +235,8 @@
                 });
                 html += '</div></div>';
               }
+
+              // 9. Must-Try Menu
               if (dt.dishes && dt.dishes.length > 0) {
                 html += '<div class="my-4 pt-3 border-t border-slate-200"><span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Must-Try Menu</span><div class="flex flex-wrap gap-2 text-xs">';
                 dt.dishes.forEach(dish => {
@@ -194,6 +244,8 @@
                 });
                 html += '</div></div>';
               }
+
+              // 10. Transport Table
               if (dt.transport && dt.transport.length > 0) {
                 html += '<div class="my-4 pt-3 border-t border-slate-200"><span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">' + (isTransportSummary ? '🗺️ Final Daily Transport Breakdown' : 'Route Connections') + '</span><div class="overflow-x-auto bg-white rounded-xl border border-slate-200 p-2"><table class="w-full text-left text-xs border-collapse"><thead><tr class="border-b border-slate-200 text-slate-400 font-bold uppercase text-[10px]"><th class="p-2">' + (isTransportSummary ? 'From' : 'Mode') + '</th><th class="p-2">' + (isTransportSummary ? 'To' : 'Route') + '</th><th class="p-2">' + (isTransportSummary ? 'Best Mode' : 'Time') + '</th><th class="p-2">' + (isTransportSummary ? 'Time' : 'Cost') + '</th>' + (isTransportSummary ? '<th class="p-2 text-right">Cost (Family)</th>' : '') + '</tr></thead><tbody>';
                 dt.transport.forEach(t => {
@@ -207,6 +259,7 @@
                 });
                 html += '</tbody></table></div></div>';
               }
+
             }
             html += '</div>';
           });
