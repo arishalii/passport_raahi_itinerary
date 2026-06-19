@@ -1474,136 +1474,287 @@
     },
     {
       "day": 8,
-      "title": "Day 8: Jewel Changi & Departure",
-      "description": "Visit Changi Airport early to tour the indoor waterfall, canopy park, and Pokemon Centre before departure.",
+      "title": "Day 8: Coastal Hawkers, Jewel & Night Departure (27 June)",
+      "description": "✈️ Flight: 11:45 PM • 🏨 Hotel: ibis Budget Singapore Crystal • 🧳 Check-out: 10:00 AM (Keep luggage at hotel). Explore Orchard Road, coastal hawker dining at East Coast Lagoon, breezy leisure at East Coast Park, and 3 immersive hours at Jewel Changi.",
       "blocks": [
         {
           "type": "activity",
-          "time": "10:00 AM",
-          "title": "Orchard Road Mall Shopping",
-          "description": "Explore ION Orchard, Ngee Ann City, and Paragon. Get a free bird's-eye view of Singapore from ION Sky on the 56th floor.",
+          "time": "10:00 AM – 02:00 PM",
+          "title": "Orchard Road Shopping & Street Ice Cream",
+          "description": "Check out by 10:00 AM (leave luggage securely at hotel concierge). Head to Orchard Road to explore famous malls. DON'T MISS the iconic street wafer Ice Cream Sandwich stalls outside ION Orchard!",
           "details": {
-            "address": "Orchard Road, Singapore",
+            "address": "Orchard Road & ION Orchard Exits, Singapore",
             "transport": [
               {
                 "mode": "MRT",
                 "route": "Aljunied → City Hall → Orchard",
-                "time": "20 min",
-                "cost": "SGD 6",
+                "time": "20 mins",
+                "cost": "SGD 1.8",
                 "recommended": true
               },
               {
-                "mode": "Grab",
-                "route": "Direct from hotel",
-                "time": "15 min",
+                "mode": "Grab Taxi",
+                "route": "Hotel → Orchard Road",
+                "time": "15 mins",
                 "cost": "SGD 14"
               }
             ],
             "malls": [
               {
                 "name": "ION Orchard",
-                "best_for": "Luxury shopping, ION Sky observatory"
+                "best_for": "Most famous mall"
               },
               {
                 "name": "Ngee Ann City",
-                "best_for": "Kinokuniya books, Takashimaya store"
+                "best_for": "Luxury + Japanese brands"
               },
               {
                 "name": "Paragon",
-                "best_for": "Kids designer brands, Toys 'R' Us"
+                "best_for": "Premium shopping"
+              },
+              {
+                "name": "Orchard Central",
+                "best_for": "Rooftop views"
+              },
+              {
+                "name": "313@Somerset",
+                "best_for": "Affordable shopping"
               }
             ],
-            "must_do": "ION Sky observation deck (56th floor) is FREE and provides panoramic city views. Kid friendly."
+            "dishes": [
+              {
+                "name": "Wafer Ice Cream Sandwich (Durian/Mango/Yam/Choco/Coconut)",
+                "price": "SGD 1.5 – 2"
+              }
+            ],
+            "must_do": "🍦 DON'T MISS – Ice Cream Sandwich Stall outside ION Orchard and around Orchard MRT exits. One of Singapore's iconic street snacks. You specifically HAVE to try this (⭐⭐⭐⭐⭐)."
+          }
+        },
+        {
+          "type": "dining",
+          "time": "02:00 PM – 03:00 PM",
+          "title": "Lunch at East Coast Lagoon Food Village",
+          "description": "Dine right by the sea at one of Singapore's best hawker centres, much less crowded than city hawkers. Order sizzling satay, BBQ stingray, and fresh sugarcane juice.",
+          "details": {
+            "address": "1220 East Coast Parkway, Singapore",
+            "transport": [
+              {
+                "mode": "Grab Taxi",
+                "route": "Orchard → East Coast Lagoon",
+                "time": "15 mins",
+                "cost": "SGD 16",
+                "recommended": true
+              },
+              {
+                "mode": "MRT + Bus",
+                "route": "Orchard → Paya Lebar → Bus",
+                "time": "35 mins",
+                "cost": "SGD 4"
+              }
+            ],
+            "dishes": [
+              {
+                "name": "Satay Sticks",
+                "price": "⭐⭐⭐⭐⭐"
+              },
+              {
+                "name": "BBQ Sambal Stingray",
+                "price": "⭐⭐⭐⭐⭐"
+              },
+              {
+                "name": "Hainan Chicken Rice",
+                "price": "⭐⭐⭐⭐"
+              },
+              {
+                "name": "Fried Carrot Cake",
+                "price": "⭐⭐⭐⭐"
+              },
+              {
+                "name": "Sugar Cane Juice",
+                "price": "⭐⭐⭐⭐⭐"
+              }
+            ],
+            "must_do": "This is one of the best hawker centres in Singapore and much less crowded than city hawkers."
           }
         },
         {
           "type": "activity",
-          "time": "12:30 PM",
-          "title": "Jewel Changi Rain Vortex & Canopy Park",
-          "description": "Check in luggage, then visit the 40m tall Rain Vortex indoor waterfall. Head to Canopy Park on Level 5 for slides and walking nets.",
+          "time": "03:00 PM – 05:15 PM",
+          "title": "East Coast Park Leisure & Hotel Luggage Pickup",
+          "description": "Relax before the flight. Enjoy beach walks, kids play areas, cycling, and family photos. At 5:15 PM, take a Grab back to the hotel to retrieve your stored luggage.",
           "details": {
-            "location": "Jewel Changi Airport (T1 access)",
+            "address": "East Coast Beach, Bedok Jetty & Marine Cove",
             "transport": [
               {
-                "mode": "Grab Taxi",
-                "route": "Orchard Road → Changi Airport",
-                "time": "25 min",
-                "cost": "SGD 22",
+                "mode": "Grab Taxi (5:15 PM)",
+                "route": "East Coast Park → Hotel (Retrieve Bags)",
+                "time": "10 mins",
+                "cost": "SGD 10",
                 "recommended": true
               },
               {
                 "mode": "MRT",
-                "route": "Orchard → City Hall → Tanah Merah → Changi",
-                "time": "45 min",
-                "cost": "SGD 8"
+                "route": "Paya Lebar → Aljunied",
+                "time": "20 mins",
+                "cost": "SGD 3"
               }
             ],
             "highlights": [
               {
-                "name": "Rain Vortex",
-                "benefit": "40m indoor waterfall (FREE)",
-                "time": "11:15 AM"
+                "name": "East Coast Beach & Bedok Jetty",
+                "benefit": "Sea views, breezy beach walks, and family photos"
               },
               {
-                "name": "Canopy Park (Level 5)",
-                "benefit": "Slides, bouncing nets, glass bridge",
-                "time": "12:30 PM (SGD 20/adult, SGD 15/child)"
+                "name": "Marine Cove Playground",
+                "benefit": "Mega coastal kids play area"
+              },
+              {
+                "name": "Seaside Refreshments",
+                "benefit": "Try fresh coconut water, bubble tea, and ice cream"
+              }
+            ],
+            "timeline": [
+              {
+                "time": "03:00 PM",
+                "event": "Beach stroll, sea views, and Marine Cove playground"
+              },
+              {
+                "time": "04:15 PM",
+                "event": "Family photos on Bedok Jetty & relaxing before flight"
+              },
+              {
+                "time": "05:15 PM",
+                "event": "Pick up stored luggage from ibis budget Crystal concierge"
               }
             ]
           }
         },
         {
-          "type": "dining",
-          "time": "01:30 PM",
-          "title": "Lunch & Pokemon Centre Changi",
-          "description": "Visit the official Pokemon Centre. Have lunch at Jewel: Shake Shack, A&W (Root Beer Floats!), or Din Tai Fung. Board flight from Terminal 4 by 4:00 PM.",
+          "type": "activity",
+          "time": "06:00 PM – 09:30 PM",
+          "title": "Jewel Changi Airport Rain Vortex & Wonderfall",
+          "description": "Leave hotel at 6:00 PM via Grab (easier with luggage & kids). Arrive at Jewel at 6:30 PM for almost 3 hours of wonder. Tour the 40m Rain Vortex, Wonderfall, Pokemon Centre, and Canopy Park.",
           "details": {
-            "location": "Jewel Changi & Terminal 3/4",
+            "address": "Jewel Changi Airport, Singapore",
+            "transport": [
+              {
+                "mode": "Grab Taxi (6:00 PM)",
+                "route": "Hotel → Changi Airport (With luggage)",
+                "time": "20 mins",
+                "cost": "SGD 20",
+                "recommended": true,
+                "note": "With luggage and kids, Grab is easier"
+              },
+              {
+                "mode": "MRT",
+                "route": "Aljunied → Tanah Merah → Changi Airport",
+                "time": "35 mins",
+                "cost": "SGD 2"
+              }
+            ],
+            "highlights": [
+              {
+                "name": "Rain Vortex & Musical Shows",
+                "benefit": "World's tallest indoor waterfall. Musical Show Timings: 8:00 PM, 9:00 PM, 10:00 PM (⭐⭐⭐⭐⭐)"
+              },
+              {
+                "name": "The Wonderfall",
+                "benefit": "Another breathtaking cascading water feature inside Jewel"
+              },
+              {
+                "name": "Canopy Park",
+                "benefit": "Fun family sky garden attraction on Level 5"
+              }
+            ],
+            "malls": [
+              {
+                "name": "Pokémon Center Singapore",
+                "best_for": "Kids will love it"
+              },
+              {
+                "name": "Canopy Park",
+                "best_for": "Fun family attraction"
+              },
+              {
+                "name": "Bacha Coffee & TWG Tea",
+                "best_for": "Famous coffee & tea souvenirs"
+              },
+              {
+                "name": "Shake Shack & Charles & Keith",
+                "best_for": "Burgers, bags & accessories"
+              }
+            ],
             "options": [
               {
                 "name": "Shake Shack Jewel",
-                "dish": "Shack Burgers & Fries",
-                "cost": "SGD 40 family"
+                "dish": "ShackBurger & Fries",
+                "cost": "SGD 45"
+              },
+              {
+                "name": "Burger & Lobster",
+                "dish": "Lobster Roll",
+                "cost": "SGD 80"
               },
               {
                 "name": "A&W Restaurant",
-                "dish": "Coney Dogs & Root Beer Floats",
-                "cost": "SGD 30 family"
+                "dish": "Root Beer Float & Coney Dogs",
+                "cost": "SGD 35"
               },
               {
-                "name": "Din Tai Fung Jewel",
-                "dish": "Pork Chop Fried Rice",
-                "cost": "SGD 50"
+                "name": "Beauty in the Pot",
+                "dish": "Nourishing Hot Pot",
+                "cost": "SGD 90"
+              },
+              {
+                "name": "Jumbo Seafood",
+                "dish": "Chilli Crab",
+                "cost": "SGD 120"
               }
             ],
-            "must_do": "Make sure to check-in early. Terminal 4 requires boarding by 4:00 PM for the 6:55 PM departure."
+            "must_do": "🏆 Best Viewing Spot for Rain Vortex: Level 5 near Canopy Park entrance. Gives you panoramic photos, entire vortex visible, and least crowd!"
           }
         },
         {
           "type": "transport",
-          "time": "End of Day",
-          "title": "🗺️ Day 8 Final Transport Summary Table",
-          "description": "Complete travel and transport summary for Day 8 covering all origins, destinations, best travel modes, trip durations, and family costs.",
+          "time": "11:45 PM",
+          "title": "✈️ Flight Departure & Day 8 Final Transport Summary Table",
+          "description": "Board your 11:45 PM return flight home. Complete transport summary for Day 8 covering hotel check-out, coastal hawker excursions, airport transfers, and total family costs.",
           "details": {
             "transport": [
               {
                 "from": "Hotel",
                 "to": "Orchard Road",
                 "mode": "MRT",
-                "time": "20 min",
-                "cost": "SGD 6",
+                "time": "20 mins",
+                "cost": "SGD 1.8",
                 "recommended": true
               },
               {
-                "from": "Orchard Road",
+                "from": "Orchard",
+                "to": "East Coast Lagoon",
+                "mode": "Grab",
+                "time": "15 mins",
+                "cost": "SGD 16",
+                "recommended": true
+              },
+              {
+                "from": "East Coast",
+                "to": "Hotel (Pickup Bags)",
+                "mode": "Grab",
+                "time": "10 mins",
+                "cost": "SGD 10",
+                "recommended": true
+              },
+              {
+                "from": "Hotel",
                 "to": "Changi Airport",
                 "mode": "Grab",
-                "time": "25 min",
-                "cost": "SGD 22",
+                "time": "20 mins",
+                "cost": "SGD 20",
                 "recommended": true
               }
             ],
-            "must_do": "Comprehensive daily transport schedule for Day 8. Tap any row or route for details."
+            "must_do": "Total estimated family transport cost for Day 8: ~SGD 48. Safe travels home!"
           }
         }
       ]
