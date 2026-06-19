@@ -24,7 +24,7 @@
       "blocks": [
         {
           "type": "stay",
-          "time": "08:00 AM",
+          "time": "10:00 AM",
           "title": "Check-in & Rest at KLCC Platinum Suites",
           "description": "Check-in at Jalan Sultan Ismail. Relax at the rooftop infinity pool (depth 1.2m) with views of the Petronas Twin Towers. Request a high floor facing Petronas Towers.",
           "details": {
@@ -57,58 +57,6 @@
           }
         },
         {
-          "type": "dining",
-          "time": "10:00 AM",
-          "title": "Middle Lane Coffee",
-          "description": "Brunch at 29, Jalan Riong. Eggs Benedict Salmon (RM 28), berry pancakes (RM 22), and chocolate milkshake (RM 16). Do Not Miss: The burnt cheesecake - order it when you arrive (limited).",
-          "details": {
-            "address": "29, Jalan Riong, Kuala Lumpur",
-            "transport": [
-              {
-                "mode": "Grab",
-                "route": "Direct",
-                "time": "10 min",
-                "cost": "RM 12"
-              },
-              {
-                "mode": "Metro",
-                "route": "Bukit Nanas → Raja Chulan (Monorail) + 7 min walk",
-                "time": "20 min",
-                "cost": "RM 8",
-                "recommended": true
-              }
-            ],
-            "dishes": [
-              {
-                "name": "Eggs Benedict (Salmon)",
-                "price": "RM 28",
-                "kids": "15 yo choice"
-              },
-              {
-                "name": "Pancakes with berries",
-                "price": "RM 22",
-                "kids": "⭐⭐ Both kids"
-              },
-              {
-                "name": "Truffle Fries",
-                "price": "RM 18",
-                "kids": "⭐⭐ Both kids"
-              },
-              {
-                "name": "Iced Latte",
-                "price": "RM 14",
-                "kids": "Parents choice"
-              },
-              {
-                "name": "Chocolate Milkshake",
-                "price": "RM 16",
-                "kids": "⭐⭐ Both kids"
-              }
-            ],
-            "must_do": "The burnt cheesecake – order it when you arrive (limited)."
-          }
-        },
-        {
           "type": "activity",
           "time": "11:30 AM",
           "title": "KLCC Park Splash & Play",
@@ -118,7 +66,7 @@
             "transport": [
               {
                 "mode": "Grab",
-                "route": "Direct from cafe",
+                "route": "Direct from hotel",
                 "time": "5 min",
                 "cost": "RM 9",
                 "recommended": true
@@ -268,18 +216,11 @@
             "transport": [
               {
                 "from": "Hotel",
-                "to": "Middle Lane",
-                "mode": "Metro",
-                "time": "20 min",
-                "cost": "RM 8",
-                "recommended": true
-              },
-              {
-                "from": "Middle Lane",
                 "to": "KLCC Park",
-                "mode": "Grab",
-                "time": "5 min",
-                "cost": "RM 9"
+                "mode": "Walk",
+                "time": "15 min",
+                "cost": "Free",
+                "recommended": true
               },
               {
                 "from": "KLCC",
@@ -457,30 +398,58 @@
     {
       "day": 3,
       "title": "Day 3: Petronas Twin Towers & Chinatown Exploration",
-      "description": "Spend the day visiting Petronas Twin Towers Skybridge, Chinatown street markets, Bukit Bintang shopping, and the Hop On Hop Off Bus Night Tour.",
+      "description": "Start with breakfast at Middle Lane Coffee, then visit Petronas Twin Towers Skybridge, Chinatown street markets, Bukit Bintang shopping, and the Hop On Hop Off Bus Night Tour.",
       "blocks": [
         {
           "type": "dining",
-          "time": "09:00 AM",
-          "title": "Breakfast at Suria KLCC",
-          "description": "Enjoy breakfast croissants at Coffee Bean & Tea Leaf or a breakfast sandwich at San Francisco Coffee (approx RM 50 for family).",
+          "time": "08:30 AM",
+          "title": "Middle Lane Coffee",
+          "description": "Brunch at 29, Jalan Riong. Eggs Benedict Salmon (RM 28), berry pancakes (RM 22), and chocolate milkshake (RM 16). Do Not Miss: The burnt cheesecake - order it when you arrive (limited).",
           "details": {
-            "address": "Suria KLCC, Level Concourse",
-            "options": [
+            "address": "29, Jalan Riong, Kuala Lumpur",
+            "transport": [
               {
-                "name": "Coffee Bean & Tea Leaf",
-                "cuisine": "Cafe",
-                "dish": "Croissants & Chocolate chip cookie",
-                "family_cost": "RM 55"
+                "mode": "Grab",
+                "route": "Direct",
+                "time": "10 min",
+                "cost": "RM 12"
               },
               {
-                "name": "San Francisco Coffee",
-                "cuisine": "Cafe",
-                "dish": "Breakfast sandwiches & Latte",
-                "family_cost": "RM 50"
+                "mode": "Metro",
+                "route": "Bukit Nanas → Raja Chulan (Monorail) + 7 min walk",
+                "time": "20 min",
+                "cost": "RM 8",
+                "recommended": true
               }
             ],
-            "must_do": "Perfect quick morning bite with a view of the KLCC park before visiting Petronas Twin Towers Skybridge."
+            "dishes": [
+              {
+                "name": "Eggs Benedict (Salmon)",
+                "price": "RM 28",
+                "kids": "15 yo choice"
+              },
+              {
+                "name": "Pancakes with berries",
+                "price": "RM 22",
+                "kids": "⭐⭐ Both kids"
+              },
+              {
+                "name": "Truffle Fries",
+                "price": "RM 18",
+                "kids": "⭐⭐ Both kids"
+              },
+              {
+                "name": "Iced Latte",
+                "price": "RM 14",
+                "kids": "Parents choice"
+              },
+              {
+                "name": "Chocolate Milkshake",
+                "price": "RM 16",
+                "kids": "⭐⭐ Both kids"
+              }
+            ],
+            "must_do": "The burnt cheesecake – order it when you arrive (limited)."
           }
         },
         {
@@ -492,11 +461,17 @@
             "location_hint": "Access via Concourse level, Suria KLCC",
             "transport": [
               {
-                "mode": "Walk",
-                "route": "Inside Suria KLCC Concourse",
-                "time": "2 min",
-                "cost": "Free",
+                "mode": "Grab",
+                "route": "From Middle Lane Coffee",
+                "time": "15 min",
+                "cost": "RM 12",
                 "recommended": true
+              },
+              {
+                "mode": "Metro",
+                "route": "Raja Chulan → Bukit Nanas (Monorail) + walk",
+                "time": "20 min",
+                "cost": "RM 8"
               }
             ],
             "tickets": [
@@ -691,10 +666,18 @@
             "transport": [
               {
                 "from": "Hotel",
+                "to": "Middle Lane",
+                "mode": "Grab",
+                "time": "15 min",
+                "cost": "RM 12",
+                "recommended": true
+              },
+              {
+                "from": "Middle Lane",
                 "to": "Petronas Towers",
-                "mode": "Walk",
-                "time": "18 min",
-                "cost": "Free",
+                "mode": "Grab",
+                "time": "15 min",
+                "cost": "RM 12",
                 "recommended": true
               },
               {
