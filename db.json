@@ -230,45 +230,6 @@
           }
         },
         {
-          "type": "transport",
-          "time": "07:15 PM",
-          "title": "Hop On Hop Off Bus Night Tour",
-          "description": "Board the open-top double-decker bus at Sungai Wang Plaza (Bukit Bintang). Enjoy the 2-hour night lights loop showing Merdeka Square, KL Tower, and the lit-up Petronas Towers.",
-          "details": {
-            "boarding_point": "Sungai Wang Plaza (Bukit Bintang)",
-            "transport": [
-              {
-                "mode": "Metro",
-                "route": "Bukit Nanas → Bukit Bintang",
-                "time": "10 min",
-                "cost": "RM 8",
-                "recommended": true
-              },
-              {
-                "mode": "Grab",
-                "route": "Direct from hotel",
-                "time": "10 min",
-                "cost": "RM 14"
-              }
-            ],
-            "pricing": [
-              {
-                "type": "Adult Ticket",
-                "cost": "RM 45"
-              },
-              {
-                "type": "Child Ticket (4-12)",
-                "cost": "RM 24"
-              },
-              {
-                "type": "Family total",
-                "cost": "RM 138 (Includes free audio guide)"
-              }
-            ],
-            "must_do": "Last boarding is at 8:00 PM for the 2-hour night lights loop."
-          }
-        },
-        {
           "type": "dining",
           "time": "10:00 PM",
           "title": "Midnight Dinner at Bukit Bintang",
@@ -329,7 +290,7 @@
               },
               {
                 "from": "Hotel",
-                "to": "HOHO bus",
+                "to": "Bukit Bintang",
                 "mode": "Metro",
                 "time": "10 min",
                 "cost": "RM 8"
@@ -496,7 +457,7 @@
     {
       "day": 3,
       "title": "Day 3: Petronas Twin Towers & Chinatown Exploration",
-      "description": "Spend the day visiting Petronas Twin Towers Skybridge, Chinatown street markets, and shopping in Bukit Bintang.",
+      "description": "Spend the day visiting Petronas Twin Towers Skybridge, Chinatown street markets, Bukit Bintang shopping, and the Hop On Hop Off Bus Night Tour.",
       "blocks": [
         {
           "type": "dining",
@@ -684,6 +645,45 @@
         },
         {
           "type": "transport",
+          "time": "07:15 PM",
+          "title": "Hop On Hop Off Bus Night Tour",
+          "description": "Board the open-top double-decker bus at Sungai Wang Plaza (Bukit Bintang). Enjoy the 2-hour night lights loop showing Merdeka Square, KL Tower, and the lit-up Petronas Towers.",
+          "details": {
+            "boarding_point": "Sungai Wang Plaza (Bukit Bintang)",
+            "transport": [
+              {
+                "mode": "Metro",
+                "route": "Bukit Nanas → Bukit Bintang",
+                "time": "10 min",
+                "cost": "RM 8",
+                "recommended": true
+              },
+              {
+                "mode": "Grab",
+                "route": "Direct from hotel",
+                "time": "10 min",
+                "cost": "RM 14"
+              }
+            ],
+            "pricing": [
+              {
+                "type": "Adult Ticket",
+                "cost": "RM 45"
+              },
+              {
+                "type": "Child Ticket (4-12)",
+                "cost": "RM 24"
+              },
+              {
+                "type": "Family total",
+                "cost": "RM 138 (Includes free audio guide)"
+              }
+            ],
+            "must_do": "Last boarding is at 8:00 PM for the 2-hour night lights loop."
+          }
+        },
+        {
+          "type": "transport",
           "time": "End of Day",
           "title": "🗺️ Day 3 Final Transport Summary Table",
           "description": "Complete travel and transport summary for Day 3 covering all origins, destinations, best travel modes, trip durations, and family costs.",
@@ -714,6 +714,13 @@
               {
                 "from": "Chinatown",
                 "to": "Bukit Bintang",
+                "mode": "Metro",
+                "time": "10 min",
+                "cost": "RM 8"
+              },
+              {
+                "from": "HOHO bus",
+                "to": "Hotel",
                 "mode": "Metro",
                 "time": "10 min",
                 "cost": "RM 8"
